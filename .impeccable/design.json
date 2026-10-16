@@ -1,0 +1,335 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-16T21:04:21.640971+00:00",
+  "title": "Design System: UoD 3D measured campus",
+  "extensions": {
+    "colorMeta": {
+      "ink": {
+        "role": "neutral",
+        "displayName": "Ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "muted": {
+        "role": "neutral",
+        "displayName": "Supporting gray",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "line": {
+        "role": "neutral",
+        "displayName": "Divider gray",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "surface": {
+        "role": "neutral",
+        "displayName": "White surface",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-ink": {
+        "role": "neutral",
+        "displayName": "Dark-theme ink",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-muted": {
+        "role": "neutral",
+        "displayName": "Dark-theme supporting gray",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-line": {
+        "role": "neutral",
+        "displayName": "Dark-theme divider",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-surface": {
+        "role": "neutral",
+        "displayName": "Dark control surface",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-background": {
+        "role": "neutral",
+        "displayName": "Dark backing",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-overlay": {
+        "role": "neutral",
+        "displayName": "Dark scene overlay",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "light-overlay-text": {
+        "role": "neutral",
+        "displayName": "Light scene text",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      },
+      "dark-overlay-text": {
+        "role": "neutral",
+        "displayName": "Dark scene text",
+        "tonalRamp": [
+          "oklch(15% 0 0)",
+          "oklch(26.43% 0 0)",
+          "oklch(37.86% 0 0)",
+          "oklch(49.29% 0 0)",
+          "oklch(60.71% 0 0)",
+          "oklch(72.14% 0 0)",
+          "oklch(83.57% 0 0)",
+          "oklch(95% 0 0)"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "title": {
+        "displayName": "Title",
+        "purpose": "Sidebar survey heading."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Root inheritance size."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Controls and scene actions."
+      },
+      "section": {
+        "displayName": "Section",
+        "purpose": "Fieldset legends."
+      },
+      "annotation": {
+        "displayName": "Annotation",
+        "purpose": "Metadata and scene guidance."
+      }
+    },
+    "shadows": [
+      {
+        "name": "outdoor-tool",
+        "value": "0 3px 12px #273c3c14",
+        "purpose": "Quiet scene tools."
+      },
+      {
+        "name": "location-plate",
+        "value": "0 3px 16px #273c3c15",
+        "purpose": "Location plate over terrain."
+      },
+      {
+        "name": "capture-badge",
+        "value": "0 3px 15px #273c3c1a",
+        "purpose": "Registered capture identity."
+      }
+    ],
+    "motion": [
+      {
+        "name": "control",
+        "value": ".15s",
+        "purpose": "Button and switch state changes."
+      },
+      {
+        "name": "drawer",
+        "value": ".22s ease-out",
+        "purpose": "Mobile drawer."
+      },
+      {
+        "name": "progress",
+        "value": ".3s ease-out",
+        "purpose": "Progress transform."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "mobile",
+        "value": "700px"
+      },
+      {
+        "name": "compact",
+        "value": "1100px"
+      },
+      {
+        "name": "wide",
+        "value": "1600px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Appearance selection",
+      "kind": "button",
+      "refersTo": "button-appearance-selected",
+      "description": "Appearance selection from the shipped monochrome controls.",
+      "html": "<button class=\"ds-appearance\" aria-pressed=\"true\">Merged surface</button>",
+      "css": ".ds-appearance{font-family:\"Manrope Variable\",sans-serif;font-size:11px;cursor:pointer;transition:background .15s,color .15s;min-height:32px;padding:0 10px;border:1px solid var(--ink,#111);border-radius:5px;background:var(--ink,#111);color:var(--surface,#fff)}.ds-appearance:hover{filter:brightness(.94)}.ds-appearance:focus-visible{outline:3px solid var(--ink,#111);outline-offset:3px}"
+    },
+    {
+      "name": "Capture selection",
+      "kind": "button",
+      "refersTo": "button-capture-selected",
+      "description": "Capture selection from the shipped monochrome controls.",
+      "html": "<button class=\"ds-capture\" aria-pressed=\"true\"><strong>W</strong><span>Wide</span></button>",
+      "css": ".ds-capture{font-family:\"Manrope Variable\",sans-serif;font-size:11px;cursor:pointer;transition:background .15s,color .15s;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;height:59px;width:59px;padding:7px 3px;border:1px solid var(--ink,#111);border-radius:6px;background:var(--ink,#111);color:var(--surface,#fff)}.ds-capture strong{font-size:16px;font-weight:650;line-height:19px}.ds-capture span{font-size:9px}.ds-capture:hover{filter:brightness(.94)}.ds-capture:focus-visible{outline:3px solid var(--ink,#111);outline-offset:3px}"
+    },
+    {
+      "name": "Location bookmark",
+      "kind": "nav",
+      "refersTo": "location-bookmark",
+      "description": "Location bookmark from the shipped monochrome controls.",
+      "html": "<button class=\"ds-place\" aria-pressed=\"true\"><strong>Entire compound</strong><small>Full perimeter &amp; surroundings</small></button>",
+      "css": ".ds-place{font-family:\"Manrope Variable\",sans-serif;font-size:11px;cursor:pointer;transition:background .15s,color .15s;text-align:left;min-height:60px;padding:11px 9px;border:0;border-radius:6px;background:color-mix(in srgb,var(--ink,#111) 10%,var(--surface,#fff));color:var(--ink,#111)}.ds-place strong{display:block;font-size:11px;font-weight:700}.ds-place small{display:block;font-size:9px;color:var(--muted,#555);margin-top:4px}.ds-place:hover{background:color-mix(in srgb,var(--ink,#111) 14%,var(--surface,#fff))}.ds-place:focus-visible{outline:3px solid var(--ink,#111);outline-offset:3px}"
+    },
+    {
+      "name": "Lighting select",
+      "kind": "input",
+      "refersTo": "select",
+      "description": "Lighting select from the shipped monochrome controls.",
+      "html": "<label class=\"ds-field\">Lighting <select><option>Daylight</option><option>Late afternoon</option><option>Soft light</option></select></label>",
+      "css": ".ds-field{font-family:\"Manrope Variable\",sans-serif;font-size:11px;cursor:pointer;transition:background .15s,color .15s;color:var(--ink,#111)}.ds-field select{font:inherit;font-size:10px;min-height:32px;width:148px;padding:4px 6px;border:1px solid var(--line,#d8d8d8);border-radius:5px;background:var(--surface,#fff);color:var(--ink,#111)}.ds-field select:hover{border-color:var(--ink,#111)}.ds-field select:focus-visible{outline:3px solid var(--ink,#111);outline-offset:3px}"
+    },
+    {
+      "name": "Outdoor tool",
+      "kind": "button",
+      "refersTo": "button-outdoor",
+      "description": "Outdoor tool from the shipped monochrome controls.",
+      "html": "<button class=\"ds-tool\">Perspective</button>",
+      "css": ".ds-tool{font-family:\"Manrope Variable\",sans-serif;font-size:11px;cursor:pointer;transition:background .15s,color .15s;height:38px;padding:0 11px;border:0;border-radius:7px;background:var(--surface,#fff);color:var(--ink,#111);box-shadow:0 3px 12px #273c3c14}.ds-tool:hover{background:color-mix(in srgb,var(--ink,#111) 9%,var(--surface,#fff))}.ds-tool:focus-visible{outline:3px solid var(--ink,#111);outline-offset:3px}"
+    }
+  ],
+  "narrative": {
+    "northStar": "Campus visitor-directory precision",
+    "overview": "The measured campus leads. Compact Manrope, a monochrome header, quiet controls and fine dividers carry forward the survey viewer's layout and type system. Sunlit terrain and source imagery provide the scene's character; outdoor overlays stay quiet and readable. This independent React app runs on port 5174; the progressive COPC survey remains independently available on port 5173.\n\nThe owner explicitly requested a white-and-black interface with persistent light/dark switching. This approved colour-system change is scoped to this app; the original blue survey viewer retains its own system.\n\nThis document records the shipped implementation in `src/App.jsx`, `src/replica.css`, `src/style.css` and `src/scene.js`. It preserves the inherited typography, structure and component shapes while documenting the approved monochrome palette. The compound was approved; the fitted building was rejected. This record does not imply user approval of a final visual comp or calibrated geometric accuracy.",
+    "keyCharacteristics": [
+      "Measured building geometry remains the visual reference.",
+      "Pale continuous controls frame an available-height spatial scene.",
+      "Inverted pressed states and explicit labels make inspection modes legible.",
+      "Source distinctions remain visible alongside the reconstructed context."
+    ],
+    "rules": [
+      {
+        "name": "Theme Boundary",
+        "body": "Theme changes affect interface chrome only. Keep the measured building, terrain imagery and recorded thermal palette unchanged.",
+        "section": "colors"
+      },
+      {
+        "name": "Measured Content",
+        "body": "Keep the scan-derived building and Original points comparison available. Display colour corrections must remain reversible and must not edit source RGB.",
+        "section": "colors"
+      },
+      {
+        "name": "Quiet Depth",
+        "body": "Use tone and separators for permanent structure; reserve stronger cast shadows for temporary help and feedback.",
+        "section": "elevation"
+      },
+      {
+        "name": "Registered Capture",
+        "body": "W/T/Z must keep the same eastern-array geometry, camera and target. Normal uses modelled photovoltaic materials; W/T/Z uses supplied recorded imagery. The southern array has no supplied camera captures.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do preserve the inherited Manrope, monochrome theme roles, component shapes and visible keyboard focus.",
+      "Do keep Original points and Captured RGB available for comparison with display treatments.",
+      "Do preserve full-compound coverage, parking and both solar clusters.",
+      "Do preserve camera, target and geometry when switching registered eastern-array captures.",
+      "Do disclose scan-derived approximation, source gaps, modelled context and thermal limits.",
+      "Do retain labelled mobile controls and scrollable drawer access."
+    ],
+    "donts": [
+      "Don't replace the measured university with guessed architectural shapes.",
+      "Don't treat interpolated surface detail, image-traced extent or thermal colours as calibrated measurement.",
+      "Don't use source data colours as a general UI action palette.",
+      "Don't multiply permanent cards or strong shadows where the system uses separators."
+    ]
+  }
+}

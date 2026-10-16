@@ -28,3 +28,11 @@ approved building directly in code. The measured scene leads; UI supports it.
 
 The original progressive COPC survey remains a separate app at port 5173. This
 project runs independently at port 5174 and contains all prepared runtime assets.
+
+## Interface theme
+
+The owner subsequently requested a white-and-black interface with a persistent
+light/dark theme toggle, implemented by one small agent. Keep the campus model,
+imagery and thermal palette in natural recorded colours; the monochrome treatment
+applies to interface controls, panels and navigation. Preserve the existing
+layout, Manrope typography, accessibility and all inspection behavior.
