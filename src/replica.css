@@ -75,3 +75,10 @@
 :root[data-theme] .load-progress{background:color-mix(in srgb,var(--ink) 14%,var(--surface))}
 :root[data-theme] .load-progress span{background:var(--ink)}
 :root[data-theme] input[type=range]::-webkit-slider-runnable-track{background:color-mix(in srgb,var(--ink) 24%,var(--surface))}
+:root[data-theme] .replica-north{color:#111}
+:root[data-theme] .capture-badge>svg{color:#555}
+:root[data-theme] .site-label:after{background:#777}
+:root[data-theme] .replica-error>svg{color:#555}
+:root[data-theme] kbd{border-color:#888}
+:root[data-theme="light"] .drawer-backdrop:not([hidden]){background:#0008}
+:root[data-theme="dark"] .toggle-row input:checked:before{background:#111}
