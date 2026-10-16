@@ -9,6 +9,12 @@ from original scan coordinates and captured RGB. Colour improvements are display
 adjustments, not source edits. The owner's follow-up requests brighter natural daylight and removal of the mouldy green/sea-like cast. Avoid amplified saturation as the default. Keep the real courtyard, roofs and facades as
 captured, including source occlusions; do not invent missing building surfaces.
 
+The owner subsequently requested merging points for a more solid realistic view.
+Provide a scan-derived continuous surface as an option, with unsupported regions
+trimmed and Original points preserved for comparison. Clearly distinguish the
+estimated surface from the unchanged measured points. Make local Git commits
+for each completed logical change.
+
 Retain the full perimeter, parking lots, covered parking, roads, entrances,
 landscape and both solar clusters. The processed Wide/Thermal/Zoom captures belong
 to the larger eastern array. Switch imagery on one shared, registered surface

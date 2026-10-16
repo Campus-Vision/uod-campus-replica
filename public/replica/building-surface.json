@@ -1,0 +1,17 @@
+{
+  "source": "building.positions.bin and building.colors.bin, derived from original LAS",
+  "method": "Oriented-normal Poisson reconstruction, depth 10; proximity and triangle support trimming",
+  "voxelMetres": 0.16,
+  "vertices": 602236,
+  "triangles": 1030357,
+  "nearestSourceDistanceMetres": {
+    "median": 0.09761629321095333,
+    "p95": 0.27834861968613067,
+    "p99": 0.31087876216957344,
+    "max": 0.3199998720166439
+  },
+  "maximumRetainedEdgeMetres": 1.2,
+  "supportCutoffMetres": 0.32,
+  "colour": "Nearest original captured RGB; reversible natural daylight display grading",
+  "limits": "Surface estimation smooths small detail. Unsupported areas are removed; source occlusions may remain. Use Original points for measured truth."
+}

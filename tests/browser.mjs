@@ -53,12 +53,17 @@ try {
   assert.ok(await page.evaluate(() => window.uodReplica.state.building.count > 6000000));
   assert.equal(await page.evaluate(() => window.uodReplica.state.building.fittedArchitecture), false);
   assert.equal(await page.evaluate(() => window.uodReplica.building.material.toneMapped), false);
+  assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), true);
+  assert.equal(await page.evaluate(() => window.uodReplica.building.visible), false);
   await page.getByRole('button', {name:'Captured RGB', exact:true}).click();
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uBrightness.value), 1);
   await capture('building-captured.png');
   await page.locator('#building-saturation').fill('1.4');
   await page.locator('#building-brightness').fill('1.15');
+  await page.getByRole('button', {name:'Original points', exact:true}).click();
+  assert.equal(await page.evaluate(() => window.uodReplica.building.visible), true);
+  assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), false);
   await page.locator('#building-point-size').fill('0.15');
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1.4);
   await page.getByRole('button', {name:'Natural daylight', exact:true}).click();
@@ -73,6 +78,9 @@ try {
   assert.equal(after.uuid, original.uuid); assert.deepEqual(after.first, original.first); assert.deepEqual(after.rgb, original.rgb);
   assert.ok(Math.hypot(...after.camera.map((x,i)=>x-original.camera[i])) < 1e-6);
   await page.locator('#building-point-size').fill('0.12');
+  await capture('building-points.png');
+  await page.getByRole('button', {name:'Merged surface', exact:true}).click();
+  assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), true);
 
   await page.locator('[data-place="south"]').click();
   await page.waitForFunction(() => !window.uodReplica.state.transition);
@@ -102,7 +110,7 @@ try {
   assert.equal(await page.evaluate(() => document.documentElement.scrollWidth > innerWidth), false);
   assert.deepEqual(badRequests, []);
   assert.deepEqual(errors, []);
-  const result = { passed: true, tests: ['full-perimeter-framing', 'both-solar-clusters', 'shared-WTZ-geometry', 'fixed-WTZ-camera', 'wide-thermal-zoom', 'building-south-bookmarks', 'original-measured-points', 'reversible-react-colour-controls', 'unchanged-geometry-and-source-rgb', 'landscape', 'perimeter', 'lighting', 'view-presets', 'help', 'mobile-drawer'], state: await page.evaluate(() => window.uodReplica.state), errors, badRequests };
+  const result = { passed: true, tests: ['full-perimeter-framing', 'both-solar-clusters', 'shared-WTZ-geometry', 'fixed-WTZ-camera', 'wide-thermal-zoom', 'building-south-bookmarks', 'merged-surface-toggle', 'original-measured-points', 'reversible-react-colour-controls', 'unchanged-geometry-and-source-rgb', 'landscape', 'perimeter', 'lighting', 'view-presets', 'help', 'mobile-drawer'], state: await page.evaluate(() => window.uodReplica.state), errors, badRequests };
   await writeFile(new URL('browser-results.json', review), JSON.stringify(result, null, 2));
   console.log('PASS', JSON.stringify(result));
 } catch (error) {

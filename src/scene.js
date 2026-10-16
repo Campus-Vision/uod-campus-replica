@@ -11,8 +11,8 @@ const listen = (target, type, listener, options = {}) => target.addEventListener
 createIcons({ icons: { Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, SlidersHorizontal, Box, Layers2, RotateCcw, Expand, TriangleAlert, ArrowUpRight, LandPlot, Building2, PanelsTopLeft, ChevronRight, Crosshair } });
 const $ = id => document.getElementById(id);
 const asset = name => `/replica/${name}`;
-const state = { ready: false, place: 'compound', angle: 'perspective', capture: 'normal', pendingCapture: null, error: null, transition: false, geometries: {}, textureLoads: 0 };
-let site, scene, renderer, camera, controls, sun, hemi, terrain, building, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
+const state = { ready: false, place: 'compound', angle: 'perspective', representation: 'surface', capture: 'normal', pendingCapture: null, error: null, transition: false, geometries: {}, textureLoads: 0 };
+let site, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
 const buildingUniforms = { uNatural: {value: 1}, uSaturation: {value: 1.05}, uBrightness: {value: 1.1}, uPointSize: {value: .12}, uResolution: {value: 1} };
 let dirty = true, transition = null, settingCamera = false, resizeTimer, toastTimer, captureSequence = 0, shownProgress = 5;
 const textureCache = new Map(), labels = [];
@@ -53,9 +53,17 @@ async function loadMeasuredBuilding() {
   geometry.setAttribute('position', new THREE.BufferAttribute(new Float32Array(positions), 3));
   geometry.setAttribute('color', new THREE.BufferAttribute(new Uint8Array(colours), 3, true));
   geometry.computeBoundingSphere();
-  const material = new THREE.ShaderMaterial({
+  const cloud = new THREE.Points(geometry, makeMeasuredMaterial(true));
+  cloud.userData = { ...metadata, pointCount: metadata.count, measured: true };
+  return cloud;
+}
+
+function makeMeasuredMaterial(points) {
+  return new THREE.ShaderMaterial({
     uniforms: buildingUniforms,
+    defines: points ? { POINT_SURFACE: 1 } : {},
     vertexColors: true,
+    side: THREE.DoubleSide,
     toneMapped: false,
     vertexShader: `
       uniform float uPointSize;
@@ -65,7 +73,9 @@ async function loadMeasuredBuilding() {
         capturedColour = color;
         vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
         gl_Position = projectionMatrix * viewPosition;
-        gl_PointSize = clamp(uPointSize * uResolution * projectionMatrix[1][1] / (2.0 * max(1.0, -viewPosition.z)), 1.6, 18.0);
+        #ifdef POINT_SURFACE
+          gl_PointSize = clamp(uPointSize * uResolution * projectionMatrix[1][1] / (2.0 * max(1.0, -viewPosition.z)), 1.6, 18.0);
+        #endif
       }
     `,
     fragmentShader: `
@@ -74,8 +84,10 @@ async function loadMeasuredBuilding() {
       uniform float uNatural;
       varying vec3 capturedColour;
       void main() {
-        vec2 corner = gl_PointCoord - vec2(.5);
-        if(dot(corner, corner) > .25) discard;
+        #ifdef POINT_SURFACE
+          vec2 corner = gl_PointCoord - vec2(.5);
+          if(dot(corner, corner) > .25) discard;
+        #endif
         vec3 balanced = capturedColour;
         if (uNatural > .5) {
           float greenExcess = max(0.0, balanced.g - balanced.r);
@@ -88,9 +100,6 @@ async function loadMeasuredBuilding() {
       }
     `,
   });
-  const cloud = new THREE.Points(geometry, material);
-  cloud.userData = { ...metadata, pointCount: metadata.count, measured: true };
-  return cloud;
 }
 
 function makeParkingRoofs() {
@@ -446,8 +455,14 @@ async function init() {
       const gltf = await loader.loadAsync(asset(file), event => { if (event.total) progress(12 + completed * 26 + event.loaded / event.total * 24, label); });
       completed++; return gltf.scene;
     };
-    [terrain, building, eastSurface] = await Promise.all([load('terrain.glb', 'Preparing the full compound terrain…'), loadMeasuredBuilding(), load('east-surface.glb', 'Aligning the eastern solar array…')]);
-    if (disposed) { [terrain, building, eastSurface].forEach(disposeObject); return; }
+    [terrain, building, eastSurface, buildingSurface] = await Promise.all([load('terrain.glb', 'Preparing the full compound terrain…'), loadMeasuredBuilding(), load('east-surface.glb', 'Aligning the eastern solar array…'), load('building-surface.glb', 'Preparing merged measured surfaces…')]);
+    if (disposed) { [terrain, building, eastSurface, buildingSurface].forEach(disposeObject); return; }
+    buildingSurface.name = 'Measured surface reconstruction';
+    buildingSurface.traverse(object => {
+      if (object.isMesh) { object.material.dispose(); object.material = makeMeasuredMaterial(false); }
+    });
+    building.visible = state.representation === 'points';
+    buildingSurface.visible = state.representation === 'surface';
     facades = makeParkingRoofs();
     terrain.name = 'Georeferenced compound terrain'; building.name = 'Original measured university point cloud'; eastSurface.name = 'Shared registered eastern surface';
     modelMaterial(terrain); modelMaterial(eastSurface); modelMaterial(facades);
@@ -474,7 +489,7 @@ async function init() {
     eastSupports = makeSolarArray(site.eastRows, false, site.eastRowPlanes); eastSupports.name = 'East solar supports';
     parkingSupports = makeSolarArray(site.coveredParking.map(e=>e.points), false, site.coveredParking.map(e=>[0,0,e.z-site.origin[2]])); parkingSupports.name = 'Covered parking supports';
     perimeter = createPerimeter(); perimeter.name = 'Image-traced compound perimeter';
-    scene.add(terrain, building, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter);
+    scene.add(terrain, building, buildingSurface, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter);
     state.building = { representation: 'measured-points', count: building.geometry.attributes.position.count, originalRGB: true, fittedArchitecture: false };
     state.geometries = { terrain: terrain.uuid, building: building.uuid, east: eastSurface.uuid, south: southArray.uuid };
     label('University of Dubai', [-25, -155, 40]);
@@ -485,7 +500,7 @@ async function init() {
     $('replica-loading').hidden = true; $('replica-status').textContent = 'Campus ready'; $('replica-status-dot').className = 'status-dot ready';
     renderer.shadowMap.needsUpdate = true; invalidate();
     renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); fail(new Error('WebGL context lost')); });
-    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
+    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, buildingSurface, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
   } catch (error) { if (!disposed) fail(error); }
 }
 
@@ -564,6 +579,9 @@ function dispose() {
   delete window.uodReplica;
 }
 return { dispose, setAppearance(value) {
+  state.representation = value.representation;
+  if (building) building.visible = value.representation === 'points';
+  if (buildingSurface) buildingSurface.visible = value.representation === 'surface';
   buildingUniforms.uNatural.value = value.natural ? 1 : 0;
   buildingUniforms.uSaturation.value = value.saturation;
   buildingUniforms.uBrightness.value = value.brightness;

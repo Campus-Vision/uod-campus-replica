@@ -5,20 +5,24 @@ import './replica.css';
 function BuildingAppearance({ appearance, onChange }) {
   const update = (key, value) => onChange(current => ({ ...current, [key]: value }));
   return <fieldset className="building-appearance"><legend>Building appearance</legend>
-    <p className="appearance-note">Original LiDAR geometry. Reversible colour grading.</p>
+    <p className="appearance-note">Scan-derived surfaces. Original points for comparison.</p>
+    <div className="colour-presets" role="group" aria-label="Building representation">
+      <button aria-pressed={appearance.representation === 'surface'} onClick={() => update('representation', 'surface')}>Merged surface</button>
+      <button aria-pressed={appearance.representation === 'points'} onClick={() => update('representation', 'points')}>Original points</button>
+    </div>
     <div className="colour-presets" role="group" aria-label="Building colour">
       <button aria-pressed={!appearance.natural && appearance.saturation === 1 && appearance.brightness === 1} onClick={() => onChange(current => ({...current, natural: false, saturation: 1, brightness: 1}))}>Captured RGB</button>
       <button aria-pressed={appearance.natural && appearance.saturation === 1.05 && appearance.brightness === 1.1} onClick={() => onChange(current => ({...current, natural: true, saturation: 1.05, brightness: 1.1}))}>Natural daylight</button>
     </div>
     <label className="appearance-slider" htmlFor="building-saturation"><span>Saturation <output>{appearance.saturation.toFixed(2)}×</output></span><input id="building-saturation" type="range" min="0" max="1.8" step="0.01" value={appearance.saturation} onChange={event => update('saturation', Number(event.target.value))}/></label>
     <label className="appearance-slider" htmlFor="building-brightness"><span>Brightness <output>{appearance.brightness.toFixed(2)}×</output></span><input id="building-brightness" type="range" min="0.7" max="1.4" step="0.01" value={appearance.brightness} onChange={event => update('brightness', Number(event.target.value))}/></label>
-    <label className="appearance-slider" htmlFor="building-point-size"><span>Point coverage <output>{appearance.pointSize.toFixed(2)} m</output></span><input id="building-point-size" type="range" min="0.05" max="0.22" step="0.01" value={appearance.pointSize} onChange={event => update('pointSize', Number(event.target.value))}/></label>
+    <label className="appearance-slider" htmlFor="building-point-size"><span>Point coverage <output>{appearance.pointSize.toFixed(2)} m</output></span><input id="building-point-size" type="range" min="0.05" max="0.22" step="0.01" disabled={appearance.representation !== 'points'} value={appearance.pointSize} onChange={event => update('pointSize', Number(event.target.value))}/></label>
   </fieldset>;
 }
 
 export default function App() {
   const engine = useRef(null);
-  const [appearance, setAppearance] = useState({ natural: true, saturation: 1.05, brightness: 1.1, pointSize: .12 });
+  const [appearance, setAppearance] = useState({ representation: 'surface', natural: true, saturation: 1.05, brightness: 1.1, pointSize: .12 });
   useEffect(() => {
     engine.current = mountCampus();
     return () => { engine.current?.dispose(); engine.current = null; };
@@ -58,7 +62,7 @@ export default function App() {
         <label className="toggle-row" htmlFor="perimeter-toggle"><span>Show perimeter<span className="toggle-note">Extent traced from aerial imagery</span></span><input type="checkbox" role="switch" id="perimeter-toggle"/></label>
         <div className="select-row"><label htmlFor="lighting-select">Lighting</label><select id="lighting-select"><option value="daylight">Daylight</option><option value="afternoon">Late afternoon</option><option value="soft">Soft light</option></select></div>
       </fieldset>
-      <details className="survey-details replica-source"><summary>About this replica<i data-lucide="chevron-down"></i></summary><p>The university building is rendered directly from original LiDAR points and captured RGB. Rooflines, facades and courtyard remain as scanned; no replacement building geometry is fitted. The eastern array uses the supplied photogrammetry and registered imagery.</p><p>Scan gaps and occluded surfaces remain visible. Parking canopies, landscape and the southern array include modelled details. The perimeter is image-traced, not cadastral.</p><p>Normal shows modelled photovoltaic materials. W/T/Z shows the recorded eastern-array imagery on the same surface. Captures were made on 8 October 2026.</p><a href="http://127.0.0.1:5173/" className="reference-link">Open the measured survey<i data-lucide="arrow-up-right"></i></a></details>
+      <details className="survey-details replica-source"><summary>About this replica<i data-lucide="chevron-down"></i></summary><p>The university's merged surface is reconstructed from the original LiDAR geometry and captured RGB, with unsupported surfaces trimmed away. This estimates a continuous surface and smooths some fine detail. Original points restores the measured scan for comparison.</p><p>Scan gaps and occluded surfaces may remain visible. Parking canopies, landscape and the southern array include modelled details. The perimeter is image-traced, not cadastral.</p><p>The eastern array uses supplied photogrammetry. Normal shows modelled photovoltaic materials. W/T/Z shows recorded imagery on the same surface. Captures were made on 8 October 2026; thermal colours are not calibrated temperatures.</p><a href="http://127.0.0.1:5173/" className="reference-link">Open the measured survey<i data-lucide="arrow-up-right"></i></a></details>
       <div className="sidebar-footer"><i data-lucide="hard-drive"></i><span>Source data stays on your computer</span></div>
     </aside>
     <section className="replica-scene" id="replica-scene" aria-label="Three-dimensional campus replica">

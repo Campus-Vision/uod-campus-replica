@@ -43,6 +43,26 @@ test('separate React project has its own entry, dependencies and local scene ass
   for (const file of ['terrain.glb', 'east-surface.glb', 'wide.jpg', 'thermal.jpg', 'zoom.jpg']) await access(asset(file));
 });
 
+test('merged surface is a bounded scan-derived mesh with valid triangle indices', async () => {
+  const [meta, cloud, glb] = await Promise.all([json(asset('building-surface.json')), json(asset('building.json')), readFile(asset('building-surface.glb'))]);
+  assert.equal(glb.toString('ascii', 0, 4), 'glTF');
+  assert.equal(glb.readUInt32LE(8), glb.byteLength);
+  const document = JSON.parse(glb.toString('utf8', 20, 20 + glb.readUInt32LE(12)));
+  const primitive = document.meshes[0].primitives[0];
+  const positions = document.accessors[primitive.attributes.POSITION];
+  const indices = document.accessors[primitive.indices];
+  assert.equal(positions.count, meta.vertices);
+  assert.equal(indices.count, meta.triangles * 3);
+  assert.ok(meta.triangles > 500000 && meta.triangles < 1500000);
+  assert.ok(meta.nearestSourceDistanceMetres.max <= .3201);
+  for (let axis = 0; axis < 3; axis++) {
+    assert.ok(positions.min[axis] >= cloud.boundsLocal.min[axis] - .33);
+    assert.ok(positions.max[axis] <= cloud.boundsLocal.max[axis] + .33);
+  }
+  const start = 28 + glb.readUInt32LE(12) + document.bufferViews[indices.bufferView].byteOffset;
+  for (let i = 0; i < indices.count; i++) assert.ok(glb.readUInt32LE(start + i * 4) < meta.vertices);
+});
+
 test('both solar arrays and all covered parking remain within the compound', async () => {
   const site = await json(asset('site.json'));
   const inside = ([x, y]) => {

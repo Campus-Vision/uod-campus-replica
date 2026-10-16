@@ -17,11 +17,13 @@ separate viewer must be started separately. No survey server is needed for this 
 ## Building fidelity
 
 The previous aerial-traced roof and facade models are **not loaded** here.
-The university is rendered as 6,659,157 original measured points. There is no
-fitted, smoothed or invented building mesh. The original scan's courtyard,
-facades, roof curvature, captured vehicles and other visible details are retained.
-Occlusions and gaps remain visible; this is a dense point representation rather
-than a watertight photogrammetric model.
+The **Original points** view renders 6,659,157 original measured points. The
+default **Merged surface** view reconstructs a continuous triangular surface
+from the same scan with oriented-normal Poisson reconstruction, then trims
+unsupported vertices and faces. It preserves the recorded building's form
+without a hand-drawn architectural replacement. Fine detail may be smoothed;
+occlusions and gaps may remain. Switch to Original points to compare with the
+measured courtyard, facades, roofs, captured vehicles and other details.
 
 The deterministic LAS sample retains every twentieth source record. A six-centimetre
 voxel selection retains one actual point per occupied voxel without averaging XYZ
@@ -29,6 +31,13 @@ or RGB. Local float32 coordinates use the same UTM 40N origin as the compound.
 This storage introduces a measured maximum coordinate difference of 0.0000153 m.
 At distant viewpoints a distributed third of the points is drawn; the building
 bookmark and nearby views draw all prepared points.
+
+`scripts/reconstruct-surface.py` uses Open3D and SciPy to generate the surface.
+Preparation uses a 0.16 m sample and depth-10 reconstruction. Unsupported
+vertices farther than 0.32 m from a source point and faces spanning large gaps
+are removed before bounded simplification. Captured source RGB is transferred
+to surface vertices. The reconstruction statistics in `building-surface.json`
+describe proximity to the scan, not a certified architectural accuracy.
 
 **Captured RGB** shows the captured colours without grading. **Natural daylight**
 reduces the source green/cyan cast, gently lifts midtones, and applies
