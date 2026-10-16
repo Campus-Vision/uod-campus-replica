@@ -1,0 +1,40 @@
+{
+  "source": "20261008121946091.las",
+  "sourcePointCount": 200700295,
+  "inputSampling": "Every 20th LAS record, preserving its original XYZ and RGB",
+  "selection": "One original source point per occupied 0.06 metre voxel; no averaging or surface fitting",
+  "count": 6659157,
+  "voxelMetres": 0.06,
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "cropBounds": [
+    339905.0,
+    340335.0,
+    2777500.0,
+    2777830.0,
+    43.0,
+    90.0
+  ],
+  "boundsLocal": {
+    "min": [
+      -244.99998474121094,
+      -299.988525390625,
+      -6.999339580535889
+    ],
+    "max": [
+      184.9999237060547,
+      29.959972381591797,
+      33.59646224975586
+    ]
+  },
+  "positions": "building.positions.bin",
+  "colors": "building.colors.bin",
+  "positionFormat": "float32 little endian XYZ",
+  "colorFormat": "uint8 RGB sRGB",
+  "geometry": "Measured points only. No inferred roof, wall, window or courtyard geometry.",
+  "colour": "Original captured RGB; reversible display grading is applied in the browser.",
+  "limits": "The scan contains occlusions and gaps. Unobserved surfaces are not reconstructed."
+}
