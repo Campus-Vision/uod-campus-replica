@@ -2,6 +2,16 @@ import { useEffect, useRef, useState } from 'react';
 import { mountCampus } from './scene.js';
 import './replica.css';
 
+const THEME_KEY = 'uod-campus-replica-theme';
+
+function readTheme() {
+  try {
+    return window.localStorage.getItem(THEME_KEY) === 'dark' ? 'dark' : 'light';
+  } catch {
+    return 'light';
+  }
+}
+
 function BuildingAppearance({ appearance, onChange }) {
   const update = (key, value) => onChange(current => ({ ...current, [key]: value }));
   return <fieldset className="building-appearance"><legend>Building appearance</legend>
@@ -22,7 +32,12 @@ function BuildingAppearance({ appearance, onChange }) {
 
 export default function App() {
   const engine = useRef(null);
+  const [theme, setTheme] = useState(readTheme);
   const [appearance, setAppearance] = useState({ representation: 'surface', natural: true, saturation: 1.05, brightness: 1.1, pointSize: .12 });
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme;
+    try { window.localStorage.setItem(THEME_KEY, theme); } catch { /* Theme still works for this visit. */ }
+  }, [theme]);
   useEffect(() => {
     engine.current = mountCampus();
     return () => { engine.current?.dispose(); engine.current = null; };
@@ -33,7 +48,7 @@ export default function App() {
     <a className="brand" href="/" aria-label="UoD 3D campus replica"><span className="brand-mark" aria-hidden="true"><i data-lucide="scan"></i></span><span>UoD <strong>3D</strong></span></a>
     <div className="header-divider"></div>
     <nav className="product-nav" aria-label="Workspace"><a href="/" aria-current="page">Campus replica</a><a href="http://127.0.0.1:5173/">LiDAR survey<i data-lucide="arrow-up-right"></i></a></nav>
-    <div className="header-actions"><span className="local-indicator"><span></span>Local workspace</span><button className="icon-button header-button" id="replica-help" aria-label="Navigation help" aria-expanded="false"><i data-lucide="circle-help"></i></button></div>
+    <div className="header-actions"><span className="local-indicator"><span></span>Local workspace</span><button className="theme-toggle" type="button" onClick={() => setTheme(current => current === 'light' ? 'dark' : 'light')} aria-label={`Switch to ${theme === 'light' ? 'dark' : 'light'} theme`}><svg viewBox="0 0 20 20" aria-hidden="true"><path d={theme === 'light' ? 'M17.2 12.1A7.5 7.5 0 0 1 7.9 2.8a7.6 7.6 0 1 0 9.3 9.3Z' : 'M10 2v2m0 12v2M2 10h2m12 0h2M4.35 4.35l1.42 1.42m8.46 8.46 1.42 1.42m0-11.3-1.42 1.42m-8.46 8.46-1.42 1.42M14.5 10a4.5 4.5 0 1 1-9 0 4.5 4.5 0 0 1 9 0Z'} /></svg><span>{theme === 'light' ? 'Dark' : 'Light'}</span></button><button className="icon-button header-button" id="replica-help" aria-label="Navigation help" aria-expanded="false"><i data-lucide="circle-help"></i></button></div>
   </header>
   <main className="workspace">
     <aside className="sidebar replica-sidebar" id="replica-sidebar" aria-label="Campus controls">

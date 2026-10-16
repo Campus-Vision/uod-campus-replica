@@ -7,3 +7,71 @@
 @media(min-width:1600px){.replica-sidebar{width:310px;flex-basis:310px;padding-left:26px;padding-right:26px}.replica-toolbar{top:26px;left:29px;right:29px}}
 @media(max-width:1100px){.replica-sidebar{width:270px;flex-basis:270px;padding-left:18px;padding-right:18px}.replica-toolbar{left:18px;right:18px}.replica-hint{display:none}}
 @media(max-width:700px){.replica-app .header-divider{display:none}.product-nav{gap:17px}.product-nav a{font-size:10px}.product-nav a:nth-child(2){font-size:9px;gap:2px}.product-nav svg{width:10px;height:10px}.replica-app .app-header{gap:16px}.replica-app .header-actions{margin-left:auto}.replica-app .brand{gap:7px}.replica-app .brand-mark svg{width:22px;height:22px}.replica-app .brand{font-size:18px}.replica-sidebar{position:fixed;width:min(310px,88vw);padding:23px;flex-basis:auto}.replica-toolbar{top:16px;left:14px;right:14px}.replica-view-presets button{font-size:10px;padding:0 9px;height:31px;gap:5px}.replica-view-presets button svg{width:13px;height:13px}.replica-tool{height:37px;width:34px;padding:0}.replica-tool.icon-only{width:34px;height:37px}#replica-fullscreen{display:none}.replica-north{right:24px;top:78px}.replica-bottom{left:15px;right:15px;bottom:34px}.replica-location{padding:11px 13px;gap:9px}.replica-location strong{font-size:11px}.replica-location div>span{font-size:9px}.imagery-attribution{font-size:7px;max-width:calc(100% - 12px);bottom:4px;right:6px}.site-label{font-size:8px;padding:5px 7px}.capture-badge{top:70px;left:15px;padding:10px 12px;gap:9px}.capture-badge>span{font-size:19px}.capture-badge strong{font-size:10px}.capture-badge small{font-size:8px}.capture-badge>svg{height:14px;width:14px;margin-left:3px}.replica-help-panel{right:14px;top:65px}.replica-app .status-details{font-size:8px}.replica-app .status-details>span:last-child,.replica-app .status-divider{display:none}.replica-entry{display:none}.replica-intro{margin-top:-10px}.replica-view-presets{padding:3px}.replica-app .scene-tools{gap:5px}.replica-app .view-actions{gap:6px}.replica-loading strong{font-size:13px}.replica-loading{padding:24px}.replica-app .status-message{font-size:9px}}
+
+/* Replica controls use a monochrome system; the rendered campus keeps its source colour. */
+:root[data-theme="light"]{color-scheme:light;--ink:#111;--muted:#555;--line:#d8d8d8;--surface:#fff;background:#fff;color:#111}
+:root[data-theme="dark"]{color-scheme:dark;--ink:#f5f5f5;--muted:#b8b8b8;--line:#383838;--surface:#171717;background:#101010;color:#f5f5f5}
+:root[data-theme] body{background:var(--surface);color:var(--ink)}
+:root[data-theme] .app-header{background:var(--surface);color:var(--ink);border-bottom:1px solid var(--line)}
+:root[data-theme] .brand strong{color:inherit}
+:root[data-theme] .header-divider{background:var(--line)}
+:root[data-theme] .product-nav a,:root[data-theme] .product-nav a[aria-current]{color:var(--muted)}
+:root[data-theme] .product-nav a[aria-current]:after{background:var(--ink)}
+:root[data-theme] .product-nav a:hover{color:var(--ink)}
+:root[data-theme] .local-indicator{color:var(--muted)}
+:root[data-theme] .local-indicator>span{background:var(--ink)}
+.theme-toggle{height:32px;display:flex;align-items:center;gap:7px;padding:0 9px;border:1px solid var(--line);border-radius:5px;background:transparent;color:var(--ink);font-size:10px}
+.theme-toggle svg{width:15px;height:15px;fill:none;stroke:currentColor;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.theme-toggle:hover{background:color-mix(in srgb,var(--ink) 8%,var(--surface))}
+:root[data-theme] .icon-button{color:var(--muted)}
+:root[data-theme] .icon-button:hover{background:color-mix(in srgb,var(--ink) 9%,var(--surface));color:var(--ink)}
+:root[data-theme] .header-button{color:var(--ink)}
+:root[data-theme] .replica-sidebar{background:var(--surface);color:var(--ink);scrollbar-color:#888 var(--surface)}
+:root[data-theme] .replica-sidebar fieldset,:root[data-theme] .replica-source{border-color:var(--line)}
+:root[data-theme] .replica-sidebar legend,:root[data-theme] .replica-sidebar h1,:root[data-theme] .appearance-slider,:root[data-theme] .appearance-slider output{color:var(--ink)}
+:root[data-theme] .replica-sidebar p,:root[data-theme] .replica-sidebar small,:root[data-theme] .replica-sidebar .toggle-note{color:var(--muted)}
+:root[data-theme] .place-list>button{color:var(--ink)}
+:root[data-theme] .place-list>button:hover,:root[data-theme] .place-list>button[aria-pressed=true]{background:color-mix(in srgb,var(--ink) 10%,var(--surface));color:var(--ink)}
+:root[data-theme] .place-list small,:root[data-theme] .place-list>button>svg{color:var(--muted)}
+:root[data-theme] .capture-modes button,:root[data-theme] .colour-presets button{background:color-mix(in srgb,var(--ink) 7%,var(--surface));border-color:var(--line);color:var(--muted)}
+:root[data-theme] .capture-modes button[aria-pressed=true],:root[data-theme] .colour-presets button[aria-pressed=true]{background:var(--ink);border-color:var(--ink);color:var(--surface)}
+:root[data-theme] .capture-modes button:hover:not([aria-pressed=true]),:root[data-theme] .colour-presets button:hover:not([aria-pressed=true]){background:color-mix(in srgb,var(--ink) 14%,var(--surface));color:var(--ink)}
+:root[data-theme] .alignment-note{color:var(--muted)}
+:root[data-theme] .thermal-note{background:color-mix(in srgb,var(--ink) 8%,var(--surface));color:var(--ink)}
+:root[data-theme] .select-row select{background:var(--surface);border-color:var(--line);color:var(--ink)}
+:root[data-theme] .toggle-row input{background:#777}:root[data-theme] .toggle-row input:checked{background:var(--ink)}
+:root[data-theme] .replica-sidebar .reference-link{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+:root[data-theme] .sidebar-footer{color:var(--muted)}
+:root[data-theme] .statusbar{background:var(--surface);border-color:var(--line);color:var(--muted)}
+:root[data-theme] .status-divider{background:var(--line)}
+:root[data-theme] button:focus-visible,:root[data-theme] a:focus-visible,:root[data-theme] input:focus-visible,:root[data-theme] select:focus-visible,:root[data-theme] summary:focus-visible,#replica-view:focus-visible{outline:3px solid var(--ink);outline-offset:3px}
+:root[data-theme] ::selection{background:var(--ink);color:var(--surface)}
+:root[data-theme] .replica-view-presets,:root[data-theme] .replica-tool,:root[data-theme] .replica-location,:root[data-theme] .replica-hint,:root[data-theme] .capture-badge,:root[data-theme] .site-label,:root[data-theme] .imagery-attribution{background:#fff;color:#111}
+:root[data-theme] .replica-view-presets button{color:#444}
+:root[data-theme] .replica-view-presets button[aria-pressed=true]{background:#111;color:#fff}
+:root[data-theme] .replica-view-presets button:hover:not([aria-pressed=true]),:root[data-theme] .replica-tool:hover{background:#e8e8e8;color:#111}
+:root[data-theme] .replica-north,:root[data-theme] .replica-location strong,:root[data-theme] .replica-location div>span,:root[data-theme] .replica-hint,:root[data-theme] .imagery-attribution,:root[data-theme] .site-label,:root[data-theme] .site-label.solar{color:#111}
+:root[data-theme] .capture-badge small{color:#444}
+:root[data-theme] .capture-badge.thermal{background:#111;color:#fff}
+:root[data-theme] .capture-badge.thermal small,:root[data-theme] .capture-badge.thermal>svg{color:#ddd}
+:root[data-theme] .replica-loading,:root[data-theme] .replica-error,:root[data-theme] .replica-help-panel,:root[data-theme] .replica-toast{background:#fff;color:#111}
+:root[data-theme] .replica-loading p,:root[data-theme] .replica-error p,:root[data-theme] .replica-help-panel dd,:root[data-theme] .replica-help-panel p{color:#444}
+:root[data-theme] .replica-error button{background:#111;color:#fff}
+:root[data-theme] .replica-error a{color:#111;text-decoration:underline;text-underline-offset:3px}
+:root[data-theme="dark"] .replica-view-presets,:root[data-theme="dark"] .replica-tool,:root[data-theme="dark"] .replica-location,:root[data-theme="dark"] .replica-hint,:root[data-theme="dark"] .capture-badge,:root[data-theme="dark"] .site-label,:root[data-theme="dark"] .imagery-attribution,:root[data-theme="dark"] .replica-loading,:root[data-theme="dark"] .replica-error,:root[data-theme="dark"] .replica-help-panel,:root[data-theme="dark"] .replica-toast{background:#111;color:#fff}
+:root[data-theme="dark"] .replica-view-presets button{color:#ccc}
+:root[data-theme="dark"] .replica-view-presets button[aria-pressed=true]{background:#fff;color:#111}
+:root[data-theme="dark"] .replica-view-presets button:hover:not([aria-pressed=true]),:root[data-theme="dark"] .replica-tool:hover{background:#303030;color:#fff}
+:root[data-theme="dark"] .replica-north,:root[data-theme="dark"] .replica-location strong,:root[data-theme="dark"] .replica-location div>span,:root[data-theme="dark"] .replica-hint,:root[data-theme="dark"] .imagery-attribution,:root[data-theme="dark"] .site-label,:root[data-theme="dark"] .site-label.solar,:root[data-theme="dark"] .capture-badge small{color:#eee}
+:root[data-theme="dark"] .replica-loading p,:root[data-theme="dark"] .replica-error p,:root[data-theme="dark"] .replica-help-panel dd,:root[data-theme="dark"] .replica-help-panel p{color:#ccc}
+:root[data-theme="dark"] .replica-error button{background:#fff;color:#111}
+:root[data-theme="dark"] .replica-error a{color:#fff}
+:root[data-theme="dark"] .capture-badge.thermal{background:#000;color:#fff}
+:root[data-theme="dark"] .capture-badge.thermal small,:root[data-theme="dark"] .capture-badge.thermal>svg{color:#ddd}
+:root[data-theme="dark"] .drawer-backdrop:not([hidden]){background:#000a}
+:root[data-theme] .appearance-slider input,:root[data-theme] .toggle-row input{accent-color:var(--ink)}
+:root[data-theme] .location-indicator,:root[data-theme] .capture-dot,:root[data-theme] .status-dot{background:var(--ink)}
+:root[data-theme] .replica-spinner{border-color:color-mix(in srgb,var(--ink) 25%,transparent);border-top-color:var(--ink)}
+:root[data-theme] .load-progress{background:color-mix(in srgb,var(--ink) 14%,var(--surface))}
+:root[data-theme] .load-progress span{background:var(--ink)}
+:root[data-theme] input[type=range]::-webkit-slider-runnable-track{background:color-mix(in srgb,var(--ink) 24%,var(--surface))}
