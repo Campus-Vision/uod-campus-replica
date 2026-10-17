@@ -55,6 +55,8 @@ try {
   assert.equal(await page.evaluate(() => window.uodReplica.building.material.toneMapped), false);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), true);
   assert.equal(await page.evaluate(() => window.uodReplica.building.visible), false);
+  assert.ok(await page.evaluate(() => window.uodReplica.roofRepair.geometry.index.count > 30000));
+  assert.equal(await page.evaluate(() => window.uodReplica.roofRepair.userData.estimated), true);
   await page.getByRole('button', {name:'Captured RGB', exact:true}).click();
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uBrightness.value), 1);
@@ -64,6 +66,7 @@ try {
   await page.getByRole('button', {name:'Original points', exact:true}).click();
   assert.equal(await page.evaluate(() => window.uodReplica.building.visible), true);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), false);
+  assert.equal(await page.evaluate(() => window.uodReplica.roofRepair.visible), false);
   await page.locator('#building-point-size').fill('0.15');
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1.4);
   await page.getByRole('button', {name:'Natural daylight', exact:true}).click();

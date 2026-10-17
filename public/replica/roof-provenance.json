@@ -1,0 +1,603 @@
+{
+  "schema": 1,
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "coordinateSystem": "EPSG:32640; metres, Z up",
+  "footprintWorld": [
+    [
+      340083.6673346693,
+      2777697.3259559046
+    ],
+    [
+      340083.0661322645,
+      2777690.714087853
+    ],
+    [
+      340083.0661322645,
+      2777684.102219802
+    ],
+    [
+      340084.26853707415,
+      2777676.288193923
+    ],
+    [
+      340086.07214428857,
+      2777668.474168044
+    ],
+    [
+      340089.07815631264,
+      2777660.660142165
+    ],
+    [
+      340093.2865731463,
+      2777653.4471952
+    ],
+    [
+      340098.6973947896,
+      2777646.234248235
+    ],
+    [
+      340105.3106212425,
+      2777639.0213012695
+    ],
+    [
+      340113.126252505,
+      2777631.808354304
+    ],
+    [
+      340121.5430861724,
+      2777624.5954073393
+    ],
+    [
+      340133.5671342685,
+      2777616.7813814604
+    ],
+    [
+      340146.19238476956,
+      2777643.82993258
+    ],
+    [
+      340138.376753507,
+      2777648.037484976
+    ],
+    [
+      340131.1623246493,
+      2777652.8461162862
+    ],
+    [
+      340123.94789579156,
+      2777659.4579843376
+    ],
+    [
+      340117.9358717435,
+      2777666.6709313025
+    ],
+    [
+      340113.126252505,
+      2777673.883878268
+    ],
+    [
+      340109.51903807616,
+      2777681.0968252327
+    ],
+    [
+      340107.1142284569,
+      2777688.9108511116
+    ],
+    [
+      340106.5130260521,
+      2777695.522719163
+    ]
+  ],
+  "footprintReferencePixels": [
+    [
+      555.0,
+      1086.0
+    ],
+    [
+      554.0,
+      1097.0
+    ],
+    [
+      554.0,
+      1108.0
+    ],
+    [
+      556.0,
+      1121.0
+    ],
+    [
+      559.0,
+      1134.0
+    ],
+    [
+      564.0,
+      1147.0
+    ],
+    [
+      571.0,
+      1159.0
+    ],
+    [
+      580.0,
+      1171.0
+    ],
+    [
+      591.0,
+      1183.0
+    ],
+    [
+      604.0,
+      1195.0
+    ],
+    [
+      618.0,
+      1207.0
+    ],
+    [
+      638.0,
+      1220.0
+    ],
+    [
+      659.0,
+      1175.0
+    ],
+    [
+      646.0,
+      1168.0
+    ],
+    [
+      634.0,
+      1160.0
+    ],
+    [
+      622.0,
+      1149.0
+    ],
+    [
+      612.0,
+      1137.0
+    ],
+    [
+      604.0,
+      1125.0
+    ],
+    [
+      598.0,
+      1113.0
+    ],
+    [
+      594.0,
+      1100.0
+    ],
+    [
+      593.0,
+      1089.0
+    ]
+  ],
+  "source": {
+    "geometry": "Unchanged building.positions.bin original measured points; western upper rim only",
+    "footprint": "Manual image trace checked against analysis/building-reference.png and analysis/roof-support.png",
+    "appearance": "Esri World Imagery, campus-aerial.jpg; analysis/aerial-georef.json",
+    "sourceCapture": "20261008121946091.las"
+  },
+  "method": "Constrained aerial footprint; robust 95th-percentile rim height stations, 3-station median, PCHIP along measured rim; constant transverse extrapolation at each closest rim station",
+  "supportProfile": {
+    "pointCount": 88613,
+    "stationCount": 42,
+    "stationRadiusMetres": 2.4,
+    "minimumStationPointCount": 738,
+    "upperQuantile": 0.95,
+    "elevationMin": 74.49760093688965,
+    "elevationMax": 75.97494554519653,
+    "rawStationElevationMin": 74.48160095214844,
+    "rawStationElevationMax": 76.15771608352661,
+    "maximumDistanceFromMeasuredRimMetres": 29.527409504851775,
+    "stations": [
+      {
+        "worldXY": [
+          340083.6673346693,
+          2777697.3259559046
+        ],
+        "upperElevation": 74.66386013031006,
+        "filteredElevation": 74.57273054122925,
+        "count": 4203
+      },
+      {
+        "worldXY": [
+          340083.4447870617,
+          2777694.8784350613
+        ],
+        "upperElevation": 74.48160095214844,
+        "filteredElevation": 74.66386013031006,
+        "count": 3945
+      },
+      {
+        "worldXY": [
+          340083.22223945404,
+          2777692.430914218
+        ],
+        "upperElevation": 75.01156082153321,
+        "filteredElevation": 75.01156082153321,
+        "count": 2857
+      },
+      {
+        "worldXY": [
+          340083.0661322645,
+          2777689.9803789533
+        ],
+        "upperElevation": 75.04708623886108,
+        "filteredElevation": 75.01726150512695,
+        "count": 3426
+      },
+      {
+        "worldXY": [
+          340083.0661322645,
+          2777687.522761059
+        ],
+        "upperElevation": 75.01726150512695,
+        "filteredElevation": 75.04708623886108,
+        "count": 4688
+      },
+      {
+        "worldXY": [
+          340083.0661322645,
+          2777685.0651431642
+        ],
+        "upperElevation": 75.11346054077148,
+        "filteredElevation": 75.04559078216553,
+        "count": 5621
+      },
+      {
+        "worldXY": [
+          340083.29345692066,
+          2777682.624913048
+        ],
+        "upperElevation": 75.04559078216553,
+        "filteredElevation": 75.04559078216553,
+        "count": 5470
+      },
+      {
+        "worldXY": [
+          340083.6672303779,
+          2777680.195884617
+        ],
+        "upperElevation": 74.62846117019653,
+        "filteredElevation": 74.62846117019653,
+        "count": 4244
+      },
+      {
+        "worldXY": [
+          340084.0410038352,
+          2777677.7668561866
+        ],
+        "upperElevation": 74.62148017883301,
+        "filteredElevation": 74.62148017883301,
+        "count": 3525
+      },
+      {
+        "worldXY": [
+          340084.48479333404,
+          2777675.351275952
+        ],
+        "upperElevation": 74.49429559707642,
+        "filteredElevation": 74.62148017883301,
+        "count": 3492
+      },
+      {
+        "worldXY": [
+          340085.0375198742,
+          2777672.9566195915
+        ],
+        "upperElevation": 75.14646072387696,
+        "filteredElevation": 75.14646072387696,
+        "count": 3677
+      },
+      {
+        "worldXY": [
+          340085.59024641436,
+          2777670.5619632304
+        ],
+        "upperElevation": 75.2930606842041,
+        "filteredElevation": 75.2930606842041,
+        "count": 3233
+      },
+      {
+        "worldXY": [
+          340086.18521756085,
+          2777668.1802379237
+        ],
+        "upperElevation": 75.39634075164795,
+        "filteredElevation": 75.2930606842041,
+        "count": 2903
+      },
+      {
+        "worldXY": [
+          340087.06760886015,
+          2777665.8864917937
+        ],
+        "upperElevation": 75.11466026306152,
+        "filteredElevation": 75.27371120452881,
+        "count": 3741
+      },
+      {
+        "worldXY": [
+          340087.9500001594,
+          2777663.592745663
+        ],
+        "upperElevation": 75.27371120452881,
+        "filteredElevation": 75.27371120452881,
+        "count": 3812
+      },
+      {
+        "worldXY": [
+          340088.8323914587,
+          2777661.2989995326
+        ],
+        "upperElevation": 75.69549551010131,
+        "filteredElevation": 75.69549551010131,
+        "count": 3632
+      },
+      {
+        "worldXY": [
+          340089.97171640856,
+          2777659.1286395034
+        ],
+        "upperElevation": 75.69630012512206,
+        "filteredElevation": 75.69549551010131,
+        "count": 3617
+      },
+      {
+        "worldXY": [
+          340091.21022866294,
+          2777657.005911751
+        ],
+        "upperElevation": 75.56606101989746,
+        "filteredElevation": 75.57472076416016,
+        "count": 3669
+      },
+      {
+        "worldXY": [
+          340092.4487409173,
+          2777654.8831839985
+        ],
+        "upperElevation": 75.57472076416016,
+        "filteredElevation": 75.57472076416016,
+        "count": 3529
+      },
+      {
+        "worldXY": [
+          340093.76368487155,
+          2777652.811176902
+        ],
+        "upperElevation": 75.6498851776123,
+        "filteredElevation": 75.64092102050782,
+        "count": 2566
+      },
+      {
+        "worldXY": [
+          340095.2384494742,
+          2777650.845228001
+        ],
+        "upperElevation": 75.64092102050782,
+        "filteredElevation": 75.64092102050782,
+        "count": 2269
+      },
+      {
+        "worldXY": [
+          340096.7132140768,
+          2777648.8792790994
+        ],
+        "upperElevation": 75.64033555984497,
+        "filteredElevation": 75.64092102050782,
+        "count": 2006
+      },
+      {
+        "worldXY": [
+          340098.18797867943,
+          2777646.9133301983
+        ],
+        "upperElevation": 75.6410005569458,
+        "filteredElevation": 75.64033555984497,
+        "count": 1755
+      },
+      {
+        "worldXY": [
+          340099.7845561328,
+          2777645.0484976536
+        ],
+        "upperElevation": 75.63286018371582,
+        "filteredElevation": 75.6410005569458,
+        "count": 1671
+      },
+      {
+        "worldXY": [
+          340101.4454144434,
+          2777643.237024389
+        ],
+        "upperElevation": 75.75118103027344,
+        "filteredElevation": 75.72836608886719,
+        "count": 1539
+      },
+      {
+        "worldXY": [
+          340103.1062727539,
+          2777641.425551125
+        ],
+        "upperElevation": 75.72836608886719,
+        "filteredElevation": 75.75118103027344,
+        "count": 1600
+      },
+      {
+        "worldXY": [
+          340104.76713106444,
+          2777639.61407786
+        ],
+        "upperElevation": 75.82121553421021,
+        "filteredElevation": 75.82121553421021,
+        "count": 1528
+      },
+      {
+        "worldXY": [
+          340106.52566042094,
+          2777637.899957022
+        ],
+        "upperElevation": 76.15771608352661,
+        "filteredElevation": 75.93125066757202,
+        "count": 738
+      },
+      {
+        "worldXY": [
+          340108.33169717685,
+          2777636.2331886063
+        ],
+        "upperElevation": 75.93125066757202,
+        "filteredElevation": 75.93125066757202,
+        "count": 1158
+      },
+      {
+        "worldXY": [
+          340110.1377339327,
+          2777634.5664201905
+        ],
+        "upperElevation": 75.63071060180664,
+        "filteredElevation": 75.67311096191406,
+        "count": 2011
+      },
+      {
+        "worldXY": [
+          340111.9437706886,
+          2777632.899651775
+        ],
+        "upperElevation": 75.67311096191406,
+        "filteredElevation": 75.67311096191406,
+        "count": 1979
+      },
+      {
+        "worldXY": [
+          340113.77055358316,
+          2777631.2562096748
+        ],
+        "upperElevation": 76.08517532348633,
+        "filteredElevation": 75.97494554519653,
+        "count": 1968
+      },
+      {
+        "worldXY": [
+          340115.6366785311,
+          2777629.657002561
+        ],
+        "upperElevation": 75.97494554519653,
+        "filteredElevation": 75.97494554519653,
+        "count": 2010
+      },
+      {
+        "worldXY": [
+          340117.5028034791,
+          2777628.0577954464
+        ],
+        "upperElevation": 74.5557207107544,
+        "filteredElevation": 74.5557207107544,
+        "count": 2919
+      },
+      {
+        "worldXY": [
+          340119.36892842705,
+          2777626.4585883324
+        ],
+        "upperElevation": 74.49523591995239,
+        "filteredElevation": 74.49760093688965,
+        "count": 4636
+      },
+      {
+        "worldXY": [
+          340121.2350533751,
+          2777624.859381218
+        ],
+        "upperElevation": 74.49760093688965,
+        "filteredElevation": 74.49760093688965,
+        "count": 5357
+      },
+      {
+        "worldXY": [
+          340123.26363553974,
+          2777623.4772799686
+        ],
+        "upperElevation": 74.5028907775879,
+        "filteredElevation": 74.5028907775879,
+        "count": 5055
+      },
+      {
+        "worldXY": [
+          340125.3243352855,
+          2777622.138100267
+        ],
+        "upperElevation": 74.53326034545898,
+        "filteredElevation": 74.53326034545898,
+        "count": 4881
+      },
+      {
+        "worldXY": [
+          340127.38503503124,
+          2777620.7989205653
+        ],
+        "upperElevation": 74.54312019348144,
+        "filteredElevation": 74.54312019348144,
+        "count": 5365
+      },
+      {
+        "worldXY": [
+          340129.445734777,
+          2777619.4597408636
+        ],
+        "upperElevation": 74.5584156036377,
+        "filteredElevation": 74.5584156036377,
+        "count": 5810
+      },
+      {
+        "worldXY": [
+          340131.50643452274,
+          2777618.120561162
+        ],
+        "upperElevation": 74.61361026763916,
+        "filteredElevation": 74.61361026763916,
+        "count": 6051
+      },
+      {
+        "worldXY": [
+          340133.5671342685,
+          2777616.7813814604
+        ],
+        "upperElevation": 74.6866397857666,
+        "filteredElevation": 74.65012502670288,
+        "count": 3545
+      }
+    ]
+  },
+  "baselineCoverage": {
+    "method": "Vertical ray intersections with unchanged building-surface.glb within 0.35 m of rim-estimated roof",
+    "probeCount": 11143,
+    "coveredFraction": 0.0026922731759849235,
+    "missingFraction": 0.997307726824015,
+    "matchingMeasuredTrianglesOmitted": 30
+  },
+  "gridSpacingMetres": 0.65,
+  "overlapClearanceMetres": 0.035,
+  "vertices": 5718,
+  "triangles": 11113,
+  "aerialExtent": {
+    "xmin": 339600,
+    "ymin": 2777350,
+    "xmax": 340650,
+    "ymax": 2778350
+  },
+  "uvConvention": "u=(E-xmin)/(xmax-xmin), v=(ymax-N)/(ymax-ymin); image top is v=0",
+  "confidence": {
+    "footprint": "Image-constrained, manually traced; not a surveyed outline",
+    "height": "Measured upper-rim constrained longitudinally; transverse roof shape unobserved"
+  },
+  "limits": "Estimated aerial-informed infill. Roof interior and transverse curvature are not measured; closest-rim height is interpolated across the reflective gap. Upper-wall/parapet returns may bias roof height. Aerial has finite resolution and may predate the scan. This patch has no 0.32 m surface-to-scan accuracy claim; no hidden facade is inferred. Original points and measured surface remain unchanged."
+}

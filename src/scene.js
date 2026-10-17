@@ -3,6 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createIcons, Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, SlidersHorizontal, Box, Layers2, RotateCcw, Expand, TriangleAlert, ArrowUpRight, LandPlot, Building2, PanelsTopLeft, ChevronRight, Crosshair } from 'lucide';
 import { solarFrame, inverseAffine, terrainHeight } from './replica-math.js';
+import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers } from './reconstruction-layers.js';
 
 export function mountCampus() {
 const events = new AbortController();
@@ -12,7 +13,7 @@ createIcons({ icons: { Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, Slid
 const $ = id => document.getElementById(id);
 const asset = name => `/replica/${name}`;
 const state = { ready: false, place: 'compound', angle: 'perspective', representation: 'surface', capture: 'normal', pendingCapture: null, error: null, transition: false, geometries: {}, textureLoads: 0 };
-let site, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
+let site, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
 const buildingUniforms = { uNatural: {value: 1}, uSaturation: {value: 1.05}, uBrightness: {value: 1.1}, uPointSize: {value: .12}, uResolution: {value: 1} };
 let dirty = true, transition = null, settingCamera = false, resizeTimer, toastTimer, captureSequence = 0, shownProgress = 5;
 const textureCache = new Map(), labels = [];
@@ -58,10 +59,10 @@ async function loadMeasuredBuilding() {
   return cloud;
 }
 
-function makeMeasuredMaterial(points) {
+function makeMeasuredMaterial(points, roofMap = null, patches = false) {
   return new THREE.ShaderMaterial({
-    uniforms: buildingUniforms,
-    defines: points ? { POINT_SURFACE: 1 } : {},
+    uniforms: { ...buildingUniforms, uRoofMap: { value: roofMap } },
+    defines: { ...(points ? { POINT_SURFACE: 1 } : {}), ...(roofMap ? { ROOF_TEXTURE: 1 } : {}), ...(patches ? { MEASURED_PATCH: 1 } : {}) },
     vertexColors: true,
     side: THREE.DoubleSide,
     toneMapped: false,
@@ -69,9 +70,25 @@ function makeMeasuredMaterial(points) {
       uniform float uPointSize;
       uniform float uResolution;
       varying vec3 capturedColour;
+      varying vec2 surfaceUV;
+      #ifdef MEASURED_PATCH
+        attribute vec3 patchCenter;
+        attribute vec3 patchNormal;
+        attribute vec3 patchColour;
+        attribute float patchRadius;
+      #endif
       void main() {
+        surfaceUV = uv;
         capturedColour = color;
-        vec4 viewPosition = modelViewMatrix * vec4(position, 1.0);
+        vec3 surfacePosition = position;
+        #ifdef MEASURED_PATCH
+          vec3 n = normalize(patchNormal);
+          vec3 ref = abs(n.z) < .9 ? vec3(0.,0.,1.) : vec3(0.,1.,0.);
+          vec3 tangent = normalize(cross(ref,n));
+          surfacePosition = patchCenter + patchRadius * (position.x*tangent + position.y*cross(n,tangent));
+          capturedColour = patchColour;
+        #endif
+        vec4 viewPosition = modelViewMatrix * vec4(surfacePosition, 1.0);
         gl_Position = projectionMatrix * viewPosition;
         #ifdef POINT_SURFACE
           gl_PointSize = clamp(uPointSize * uResolution * projectionMatrix[1][1] / (2.0 * max(1.0, -viewPosition.z)), 1.6, 18.0);
@@ -82,13 +99,21 @@ function makeMeasuredMaterial(points) {
       uniform float uSaturation;
       uniform float uBrightness;
       uniform float uNatural;
+      uniform sampler2D uRoofMap;
       varying vec3 capturedColour;
+      varying vec2 surfaceUV;
       void main() {
         #ifdef POINT_SURFACE
           vec2 corner = gl_PointCoord - vec2(.5);
           if(dot(corner, corner) > .25) discard;
         #endif
+        #ifdef MEASURED_PATCH
+          if (distance(surfaceUV, vec2(.5)) > .5) discard;
+        #endif
         vec3 balanced = capturedColour;
+        #ifdef ROOF_TEXTURE
+          balanced = texture2D(uRoofMap, surfaceUV).rgb;
+        #endif
         if (uNatural > .5) {
           float greenExcess = max(0.0, balanced.g - balanced.r);
           balanced += greenExcess * vec3(.65, -.18, -.15);
@@ -461,6 +486,20 @@ async function init() {
     buildingSurface.traverse(object => {
       if (object.isMesh) { object.material.dispose(); object.material = makeMeasuredMaterial(false); }
     });
+    const roofResponse = await fetch(asset('roof-repair.json'), { signal: events.signal });
+    if (!roofResponse.ok) throw new Error('Roof repair data unavailable');
+    const roofData = await roofResponse.json();
+    const roofMap = await new THREE.TextureLoader().loadAsync(asset(site.aerial.image));
+    // Custom measured shaders consume captured sRGB bytes directly.
+    roofMap.flipY = false; roofMap.colorSpace = THREE.NoColorSpace;
+    roofMap.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
+    roofRepair = makeRoofLayer(roofData, makeMeasuredMaterial(false, roofMap));
+    roofRepair.material.polygonOffset = true;
+    roofRepair.material.polygonOffsetFactor = -1;
+    roofRepair.material.polygonOffsetUnits = -1;
+    roofRepair.renderOrder = 1;
+    buildingSurface.add(roofRepair);
+    syncReconstructionLayers(state.representation, $('landscape-toggle').checked, roofRepair, measuredDetails);
     building.visible = state.representation === 'points';
     buildingSurface.visible = state.representation === 'surface';
     facades = makeParkingRoofs();
@@ -500,7 +539,7 @@ async function init() {
     $('replica-loading').hidden = true; $('replica-status').textContent = 'Campus ready'; $('replica-status-dot').className = 'status-dot ready';
     renderer.shadowMap.needsUpdate = true; invalidate();
     renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); fail(new Error('WebGL context lost')); });
-    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, buildingSurface, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
+    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, buildingSurface, roofRepair, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
   } catch (error) { if (!disposed) fail(error); }
 }
 
@@ -582,6 +621,7 @@ return { dispose, setAppearance(value) {
   state.representation = value.representation;
   if (building) building.visible = value.representation === 'points';
   if (buildingSurface) buildingSurface.visible = value.representation === 'surface';
+  syncReconstructionLayers(value.representation, $('landscape-toggle').checked, roofRepair, measuredDetails);
   buildingUniforms.uNatural.value = value.natural ? 1 : 0;
   buildingUniforms.uSaturation.value = value.saturation;
   buildingUniforms.uBrightness.value = value.brightness;
