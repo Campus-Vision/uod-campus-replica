@@ -5,10 +5,12 @@ import assert from 'node:assert/strict';
 const review='../.impeccable/review/dense';await mkdir(review,{recursive:true});
 const name=process.argv[2]||'south-pilot';
 const textured=process.argv.includes('--textured');
+const sourceDirectory=process.argv.find(arg=>arg.startsWith('--source='))?.slice(9)||'../analysis/dense-reconstruction';
 const modelName=name+(textured?'-textured':'');
 const viewName=process.argv.find(arg=>arg.startsWith('--view='))?.slice(7)||name;
 const captureName=modelName+(viewName!==name?'-'+viewName:'');
 const views={
+ 'parking-boundary':{target:[36,-220,6],camera:[48,-252,26]},
  'south-pilot':{target:[-15.85,-220.46,3.8],camera:[-1.85,-241.46,21.8]},
  'building-pilot':{target:[-57,-140,14],camera:[-90,-182,48]},
  'building-trajectory':{target:[-57,-140,14],camera:[-90,-182,48]},
@@ -23,7 +25,8 @@ const errors=[];page.on('pageerror',e=>errors.push(e.message));
 try{
  await page.goto('http://127.0.0.1:5174/');
  await page.waitForFunction(()=>window.uodReplica?.state.ready,null,{timeout:120000});
- await copyFile(`../analysis/dense-reconstruction/${modelName}.glb`,`public/replica/dense-${modelName}.glb`);
+ await page.waitForTimeout(300); // Finish the mount resize debounce before fixing the comparison camera.
+ await copyFile(`${sourceDirectory}/${modelName}.glb`,`public/replica/dense-${modelName}.glb`);
  const report=await page.evaluate(async ({name,view})=>{
   const {GLTFLoader}=await import('/node_modules/three/examples/jsm/loaders/GLTFLoader.js');
   const gltf=await new GLTFLoader().loadAsync(`/replica/dense-${name}.glb`);const v=window.uodReplica;
@@ -32,6 +35,7 @@ try{
   v.scene.add(gltf.scene);window.__denseTrial=gltf.scene;
   v.building.visible=false;v.buildingSurface.visible=false;v.measuredDetails.visible=false;
   v.landscape.visible=false;
+  v.controls.enableDamping=false;v.controls.update();
   v.controls.target.set(...view.target);v.camera.position.set(...view.camera);v.controls.update();
   v.renderer.render(v.scene,v.camera);return {triangles:faces,target:v.controls.target.toArray(),camera:v.camera.position.toArray()};
  },{name:modelName,view:views[viewName]});
