@@ -1,0 +1,93 @@
+{
+  "source": "20261008121946091.las; measured spatial cache",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "inputCacheSampling": "One unchanged measured representative per occupied 0.08 metre voxel; every input cache record considered",
+  "inputCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las-voxel080",
+  "inputCacheManifestSHA256": "7a1424525f23ad0de1f3af1acf4551018e607021b2138323c52d133086e081c5",
+  "originalLASRecordsReadDuringExtraction": 200700295,
+  "boundsLocal": [
+    -250.0,
+    200.0,
+    -320.0,
+    60.0
+  ],
+  "haloMetres": 2.0,
+  "inputRegionRecords": 20840312,
+  "originalRegionRecords": null,
+  "coreRecords": 20840312,
+  "voxelMetres": 0.16,
+  "normalSamples": 6409375,
+  "outlierNormalSamplesRemoved": 92087,
+  "normalRadiusMetres": 0.5,
+  "normalMaxNeighbours": 32,
+  "normalOrientation": {
+    "method": "PCA normals oriented toward interpolated scanner position for each original measured record",
+    "trajectory": "@@2026-10-08-081521_REFINE2_Scanner1.PosL",
+    "trajectorySHA256": "8bfaac33c878c48891a4e52614baa4aa209b8b3701a2cebd960036f0030c5a7f",
+    "trajectoryRows": 127797,
+    "pointTimes": [
+      1791447586.0910008,
+      1791448224.4500165
+    ],
+    "trajectoryRowsReorderedByTimestamp": 18,
+    "trajectoryTimes": [
+      1791447586.09,
+      1791448224.973524
+    ],
+    "flippedNormals": 2542965,
+    "scannerRangeMedianMetres": 23.452965712045778,
+    "scannerRangeP95Metres": 85.00414435207479,
+    "limits": "Visibility-derived sign of estimated PCA normals; not proof of a watertight surface. Original numerical time bases must match."
+  },
+  "statisticalOutlierFilter": {
+    "neighbours": 20,
+    "standardDeviationRatio": 2.5
+  },
+  "poissonScale": 1.03,
+  "densityBottomQuantileRemoved": 0.01,
+  "taubinIterations": 1,
+  "method": "poisson; quadric browser base reduction",
+  "depth": 12,
+  "vertices": 3476150,
+  "triangles": 5709063,
+  "vertexSupportMetres": {
+    "median": 0.04822660276015937,
+    "p95": 0.08835700109128088,
+    "max": 0.09999975253637179,
+    "nonfinite": 0
+  },
+  "supportCutoffMetres": 0.1,
+  "faceSupportCutoffMetres": 0.12,
+  "maximumEdgeMetres": null,
+  "colour": "Inverse-distance weighted four nearest actual cache RGB samples; no source mutation",
+  "auditDomain": "Input cache representatives; every-record source requires a separate streaming audit",
+  "elapsedSeconds": 215.0,
+  "limits": "Triangle surface estimated from dense measured returns. Missing capture remains missing; density alone does not prove photorealism. Colour is source-derived, not photographic texture baking. Browser base is simplified; separate raw-record coverage audit is required.",
+  "parentMesh": "campus-base-trajectory.glb",
+  "reduction": {
+    "parentSHA256": "e0b8e056de81a1fdc16ca25e24858f69b01126ff6ea9d90ef0f826889d1bb880",
+    "targetTriangles": 6000000,
+    "simplifier": "fast-simplification 0.2.0",
+    "aggressiveness": 5.0,
+    "preserveBorder": false
+  },
+  "reductionCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las-voxel080",
+  "reductionCacheManifestSHA256": "7a1424525f23ad0de1f3af1acf4551018e607021b2138323c52d133086e081c5",
+  "targetTriangles": 6000000,
+  "adaptiveParentSupport": {
+    "sampleCount": 211340191,
+    "maximumGridSpacingMetres": 0.04,
+    "sampleCutoffMetres": 0.025,
+    "continuousParentDistanceBoundMetres": 0.065,
+    "maximumRetainedSampleDistanceMetres": 0.024999655783176422,
+    "rejectedFaces": 232599
+  },
+  "maximumEdgeLimitReason": "Adaptive entire-face parent support replaces the fine mesh edge-length cap",
+  "browserRole": "Full-footprint base; detailed local meshes remain separate",
+  "fileBytes": 162365816,
+  "reductionSeconds": 102.81
+}
