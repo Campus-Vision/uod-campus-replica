@@ -1,5 +1,7 @@
 {
   "mesh": "campus-base-browser-v2.glb",
+  "meshSHA256": "f59cb45ab70c1f80f0046f1ae7e43b3cd3017c2a5bdcea2fafb0f4bc5f7d1ac2",
+  "meshBytes": 162365816,
   "source": "20261008121946091.las",
   "sourceCacheRecords": 200424893,
   "sourceCropBoundsLocal": [

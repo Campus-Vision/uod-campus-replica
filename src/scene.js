@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createIcons, Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, SlidersHorizontal, Box, Layers2, RotateCcw, Expand, TriangleAlert, ArrowUpRight, LandPlot, Building2, PanelsTopLeft, ChevronRight, Crosshair } from 'lucide';
 import { solarFrame, inverseAffine, terrainHeight } from './replica-math.js';
-import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers, replaceCoarseDetailFaces } from './reconstruction-layers.js';
+import { makeRoofLayer, syncReconstructionLayers } from './reconstruction-layers.js';
 
 export function mountCampus() {
 const events = new AbortController();
@@ -13,7 +13,7 @@ createIcons({ icons: { Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, Slid
 const $ = id => document.getElementById(id);
 const asset = name => `/replica/${name}`;
 const state = { ready: false, place: 'compound', angle: 'perspective', representation: 'surface', capture: 'normal', pendingCapture: null, error: null, transition: false, geometries: {}, textureLoads: 0 };
-let site, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
+let site, campusSurfaceInfo, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
 const buildingUniforms = { uNatural: {value: 1}, uSaturation: {value: 1.05}, uBrightness: {value: 1.1}, uPointSize: {value: .12}, uResolution: {value: 1} };
 let dirty = true, transition = null, settingCamera = false, resizeTimer, toastTimer, captureSequence = 0, shownProgress = 5;
 const textureCache = new Map(), labels = [];
@@ -128,22 +128,6 @@ function makeMeasuredMaterial(points, roofMap = null, patches = false) {
       }
     `,
   });
-}
-
-async function loadMeasuredDetails() {
-  const read = async name => {
-    const response = await fetch(asset(name), { signal: events.signal });
-    if (!response.ok) throw new Error(`Measured detail asset unavailable: ${name}`);
-    return response;
-  };
-  const data = await (await read('details.json')).json();
-  const names = ['positions','colors','normals','radii'];
-  const buffers = await Promise.all(names.map(async name => (await read(data[name])).arrayBuffer()));
-  const arrays = Object.fromEntries(names.map((name,i) => [name, name === 'colors' ? new Uint8Array(buffers[i]) : new Float32Array(buffers[i])]));
-  const group = makeDetailLayers(data, arrays, () => makeMeasuredMaterial(false, null, true));
-  group.userData = data.metadata;
-  if (disposed) disposeObject(group); else pendingObjects.add(group);
-  return group;
 }
 
 function makeParkingRoofs() {
@@ -310,10 +294,9 @@ function makeSolarArray(rows, modelPanels, planes = null) {
 
 function makeLandscape() {
   const group = new THREE.Group();
-  const measuredTreeBounds = measuredDetails?.children.filter(e => e.userData.landscape).map(e => e.userData.boundsLocal) || [];
-  // Captured tree rows already have measured mesh and local fine detail.
-  // Retain modelled background vegetation beyond these captured contexts.
-  const trees = site.trees.filter(([x,y]) => !measuredTreeBounds.some(b => x >= b.min[0] && x <= b.max[0] && y >= b.min[1] && y <= b.max[1]));
+  const excluded = new Set(campusSurfaceInfo.modelledTreeExclusions.map(item => item.treeIndex));
+  const trees = site.trees.filter((_,index) => !excluded.has(index));
+  group.userData.scanVolumeExclusions = excluded.size;
   group.userData.modelledTreeCount = trees.length;
   const crownGeometry = new THREE.IcosahedronGeometry(1, 2);
   const pos = crownGeometry.attributes.position;
@@ -477,6 +460,9 @@ async function init() {
     const response = await fetch(asset('site.json'), {signal: events.signal});
     if (!response.ok) throw new Error(`Site metadata HTTP ${response.status}`);
     site = await response.json();
+    const surfaceResponse = await fetch(asset('campus-surface.json'), {signal: events.signal});
+    if (!surfaceResponse.ok) throw new Error(`Campus mesh metadata HTTP ${surfaceResponse.status}`);
+    campusSurfaceInfo = await surfaceResponse.json();
     if (disposed) return;
     scene = new THREE.Scene(); scene.background = new THREE.Color('#e8e5dc'); scene.fog = new THREE.Fog('#e8e5dc', 1600, 5000);
     camera = new THREE.PerspectiveCamera(43, 1, 1, 12000); camera.up.set(0, 0, 1);
@@ -505,9 +491,10 @@ async function init() {
       if (disposed) disposeObject(gltf.scene); else pendingObjects.add(gltf.scene);
       completed++; return gltf.scene;
     };
-    [terrain, building, eastSurface, buildingSurface] = await Promise.all([load('terrain.glb', 'Preparing the full compound terrain…'), loadMeasuredBuilding(), load('east-surface.glb', 'Aligning the eastern solar array…'), load('building-surface.glb', 'Preparing merged measured surfaces…')]);
+    [terrain, building, eastSurface, buildingSurface] = await Promise.all([load('terrain.glb', 'Preparing the full compound terrain…'), loadMeasuredBuilding(), load('east-surface.glb', 'Aligning the eastern solar array…'), load(campusSurfaceInfo.asset, 'Preparing the measured campus mesh…')]);
     if (disposed) { [terrain, building, eastSurface, buildingSurface].forEach(disposeObject); return; }
-    buildingSurface.name = 'Measured surface reconstruction';
+    buildingSurface.name = 'Measured full-campus triangle mesh';
+    buildingSurface.userData = campusSurfaceInfo;
     buildingSurface.traverse(object => {
       if (object.isMesh) { object.material.dispose(); object.material = makeMeasuredMaterial(false); }
     });
@@ -525,18 +512,8 @@ async function init() {
     roofRepair.material.polygonOffsetUnits = -1;
     roofRepair.renderOrder = 1;
     buildingSurface.add(roofRepair);
-    measuredDetails = await loadMeasuredDetails();
-    if (disposed) { disposeObject(measuredDetails); return; }
-    const detailRegions=measuredDetails.children.map(child => ({...child.userData,
-      footprintLocal:child.userData.referencePixelPolygon.map(([x,y]) => [339750+x/1497*900-site.origin[0],2778350.09765625-y/1664*1000.1953125-site.origin[1]])}));
-    measuredDetails.userData.replacedCoarseTriangles=replaceCoarseDetailFaces(buildingSurface, detailRegions, (x,y)=>terrainHeight(site,x,y));
-    const parkingSurface=await load('parking-surfaces.glb', 'Preparing fine captured parking surfaces…');
-    if (disposed) return;
-    parkingSurface.name='Local measured parking surfaces';
-    parkingSurface.traverse(object => {
-      if (object.isMesh) { object.material.dispose(); object.material=makeMeasuredMaterial(false); }
-    });
-    measuredDetails.add(parkingSurface);
+    measuredDetails = new THREE.Group();
+    measuredDetails.name = 'Progressive measured detail';
     syncReconstructionLayers(state.representation, $('landscape-toggle').checked, roofRepair, measuredDetails);
     building.visible = state.representation === 'points';
     buildingSurface.visible = state.representation === 'surface';
@@ -569,6 +546,9 @@ async function init() {
     scene.add(terrain, building, buildingSurface, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter);
     pendingObjects.clear();
     state.building = { representation: 'measured-points', count: building.geometry.attributes.position.count, originalRGB: true, fittedArchitecture: false };
+    state.surface = { representation: 'connected-triangle-mesh', triangles: campusSurfaceInfo.triangles,
+      inputMeasurements: campusSurfaceInfo.inputRegionRecords, originalRecordsRead: campusSurfaceInfo.originalRecordsRead,
+      rawAuditRecords: campusSurfaceInfo.rawSampleRecords, photorealismComplete: false };
     state.geometries = { terrain: terrain.uuid, building: building.uuid, east: eastSurface.uuid, south: southArray.uuid };
     label('University of Dubai', [-25, -155, 40]);
     const eastCenter = site.bookmarks.east; label('East solar array', [eastCenter[0], eastCenter[1], 14], 'solar');

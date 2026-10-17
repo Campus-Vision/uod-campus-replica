@@ -17,9 +17,9 @@ function BuildingAppearance({ appearance, onChange }) {
   return <fieldset className="building-appearance"><legend>Building appearance</legend>
     <p className="appearance-note">Scan-derived surfaces. Original points for comparison.</p>
     {appearance.representation === 'surface' && <p className="appearance-note" id="roof-repair-note">Western roof repaired from aerial imagery; interior height is estimated from the measured rim.</p>}
-    {appearance.representation === 'surface' && <p className="appearance-note">Fine parking and tree-row surfaces use small patches at measured scan positions. Occluded details may remain incomplete.</p>}
+    {appearance.representation === 'surface' && <p className="appearance-note">The building, parked vehicles and captured vegetation use connected triangle surfaces. Scan gaps may remain.</p>}
     <div className="colour-presets" role="group" aria-label="Building representation">
-      <button aria-pressed={appearance.representation === 'surface'} onClick={() => update('representation', 'surface')}>Merged surface</button>
+      <button aria-pressed={appearance.representation === 'surface'} onClick={() => update('representation', 'surface')}>Reconstructed mesh</button>
       <button aria-pressed={appearance.representation === 'points'} onClick={() => update('representation', 'points')}>Original points</button>
     </div>
     <div className="colour-presets" role="group" aria-label="Building colour">
@@ -75,7 +75,7 @@ export default function App() {
       </fieldset>
       <BuildingAppearance appearance={appearance} onChange={setAppearance} />
       <fieldset id="replica-display" disabled><legend>Scene</legend>
-        <label className="toggle-row" htmlFor="landscape-toggle"><span>Landscape<span className="toggle-note">Image-positioned trees & vegetation</span></span><input type="checkbox" role="switch" id="landscape-toggle" defaultChecked/></label>
+        <label className="toggle-row" htmlFor="landscape-toggle"><span>Background landscape<span className="toggle-note">Illustrative trees beyond captured volumes</span></span><input type="checkbox" role="switch" id="landscape-toggle" defaultChecked/></label>
         <label className="toggle-row" htmlFor="perimeter-toggle"><span>Show perimeter<span className="toggle-note">Extent traced from aerial imagery</span></span><input type="checkbox" role="switch" id="perimeter-toggle"/></label>
         <div className="select-row"><label htmlFor="lighting-select">Lighting</label><select id="lighting-select"><option value="daylight">Daylight</option><option value="afternoon">Late afternoon</option><option value="soft">Soft light</option></select></div>
       </fieldset>

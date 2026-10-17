@@ -17,6 +17,10 @@ module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
 np,o3d=module.np,module.o3d
 
 
+def file_hash(path):
+    with Path(path).open('rb') as stream:return hashlib.file_digest(stream,'sha256').hexdigest()
+
+
 def sample_records(cache,count=300000,seed=20261017):
     cache=Path(cache);meta=json.loads((cache/'manifest.json').read_text())
     if meta.get('voxelMetres') is not None:
@@ -51,6 +55,7 @@ def audit(path,cache,output,count=300000):
     if original.stat().st_size!=meta['sourceBytes'] or original.stat().st_mtime_ns!=meta['sourceModifiedNs']:
         raise ValueError('Original LAS changed since extraction; provenance audit required')
     source=records['xyz'].copy()
+    mesh_hash=file_hash(path)
     mesh=o3d.io.read_triangle_mesh(str(path))
     if not mesh.has_triangles():raise ValueError('Connected triangle mesh required')
     scene=o3d.t.geometry.RaycastingScene()
@@ -67,7 +72,9 @@ def audit(path,cache,output,count=300000):
         if np.any(chosen):
             heights.append({'localZMetres':[low,high],'sampledRecords':int(chosen.sum()),
                             'distanceMetres':metrics(distance[chosen])})
-    report={'mesh':path.name,'source':original.name,'sourceCacheRecords':meta['recordsRetained'],
+    if file_hash(path)!=mesh_hash:raise ValueError('Mesh changed during its coverage audit')
+    report={'mesh':path.name,'meshSHA256':mesh_hash,'meshBytes':path.stat().st_size,
+            'source':original.name,'sourceCacheRecords':meta['recordsRetained'],
             'sourceCropBoundsLocal':meta['boundsLocal'],'origin':meta['origin'],
             'originalRecordsRead':meta['recordsRead'],'sampledRecords':len(records),
             'sampling':'Uniform original retained-record IDs without replacement; seed 20261017',

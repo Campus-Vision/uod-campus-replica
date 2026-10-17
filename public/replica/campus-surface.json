@@ -1,0 +1,203 @@
+{
+  "asset": "campus-surface.glb",
+  "assetSHA256": "f59cb45ab70c1f80f0046f1ae7e43b3cd3017c2a5bdcea2fafb0f4bc5f7d1ac2",
+  "triangles": 5709063,
+  "vertices": 3476150,
+  "boundsLocal": [
+    -250.0,
+    200.0,
+    -320.0,
+    60.0
+  ],
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "source": "20261008121946091.las",
+  "originalRecordsRead": 200700295,
+  "sourceRetainedRecords": 200424893,
+  "inputRegionRecords": 20840312,
+  "rawSampleRecords": 300000,
+  "rawSampleDistanceMetres": {
+    "median": 0.007737522013485432,
+    "p95": 0.08374026417732239,
+    "max": 29.597030639648438,
+    "nonfinite": 0,
+    "within5cm": 0.8919233333333333,
+    "within10cm": 0.9646,
+    "within20cm": 0.9916033333333333
+  },
+  "modelledTreeExclusions": [
+    {
+      "treeIndex": 355,
+      "elevatedSourceRecords": 144
+    },
+    {
+      "treeIndex": 406,
+      "elevatedSourceRecords": 170
+    },
+    {
+      "treeIndex": 473,
+      "elevatedSourceRecords": 227
+    },
+    {
+      "treeIndex": 490,
+      "elevatedSourceRecords": 353
+    },
+    {
+      "treeIndex": 509,
+      "elevatedSourceRecords": 113
+    },
+    {
+      "treeIndex": 522,
+      "elevatedSourceRecords": 222
+    },
+    {
+      "treeIndex": 535,
+      "elevatedSourceRecords": 181
+    },
+    {
+      "treeIndex": 536,
+      "elevatedSourceRecords": 112
+    },
+    {
+      "treeIndex": 538,
+      "elevatedSourceRecords": 133
+    },
+    {
+      "treeIndex": 540,
+      "elevatedSourceRecords": 6739
+    },
+    {
+      "treeIndex": 546,
+      "elevatedSourceRecords": 391
+    },
+    {
+      "treeIndex": 548,
+      "elevatedSourceRecords": 990
+    },
+    {
+      "treeIndex": 554,
+      "elevatedSourceRecords": 183
+    },
+    {
+      "treeIndex": 555,
+      "elevatedSourceRecords": 127
+    },
+    {
+      "treeIndex": 562,
+      "elevatedSourceRecords": 213
+    },
+    {
+      "treeIndex": 564,
+      "elevatedSourceRecords": 4526
+    },
+    {
+      "treeIndex": 569,
+      "elevatedSourceRecords": 429
+    },
+    {
+      "treeIndex": 584,
+      "elevatedSourceRecords": 213
+    },
+    {
+      "treeIndex": 585,
+      "elevatedSourceRecords": 6352
+    },
+    {
+      "treeIndex": 592,
+      "elevatedSourceRecords": 1900
+    },
+    {
+      "treeIndex": 597,
+      "elevatedSourceRecords": 209
+    },
+    {
+      "treeIndex": 603,
+      "elevatedSourceRecords": 247
+    },
+    {
+      "treeIndex": 604,
+      "elevatedSourceRecords": 1986
+    },
+    {
+      "treeIndex": 605,
+      "elevatedSourceRecords": 536
+    },
+    {
+      "treeIndex": 607,
+      "elevatedSourceRecords": 5397
+    },
+    {
+      "treeIndex": 619,
+      "elevatedSourceRecords": 1566
+    },
+    {
+      "treeIndex": 622,
+      "elevatedSourceRecords": 521
+    },
+    {
+      "treeIndex": 634,
+      "elevatedSourceRecords": 246
+    },
+    {
+      "treeIndex": 638,
+      "elevatedSourceRecords": 4859
+    },
+    {
+      "treeIndex": 648,
+      "elevatedSourceRecords": 7872
+    },
+    {
+      "treeIndex": 660,
+      "elevatedSourceRecords": 132
+    },
+    {
+      "treeIndex": 670,
+      "elevatedSourceRecords": 487
+    },
+    {
+      "treeIndex": 673,
+      "elevatedSourceRecords": 334
+    },
+    {
+      "treeIndex": 681,
+      "elevatedSourceRecords": 965
+    },
+    {
+      "treeIndex": 682,
+      "elevatedSourceRecords": 365
+    },
+    {
+      "treeIndex": 689,
+      "elevatedSourceRecords": 691
+    },
+    {
+      "treeIndex": 697,
+      "elevatedSourceRecords": 442
+    },
+    {
+      "treeIndex": 698,
+      "elevatedSourceRecords": 722
+    },
+    {
+      "treeIndex": 700,
+      "elevatedSourceRecords": 860
+    },
+    {
+      "treeIndex": 721,
+      "elevatedSourceRecords": 281
+    },
+    {
+      "treeIndex": 727,
+      "elevatedSourceRecords": 245
+    }
+  ],
+  "treeExclusionMethod": "At least100 captured representatives more than1.5m above local10th percentile within65% of aerial crown radius; captured volume, not semantic tree labels",
+  "treeCoverageCacheManifestSHA256": "7a1424525f23ad0de1f3af1acf4551018e607021b2138323c52d133086e081c5",
+  "geometryProvenance": "dense-campus-browser-base.json",
+  "auditProvenance": "dense-campus-browser-base-raw-audit.json",
+  "photorealismComplete": false,
+  "limits": "Simplified measured triangle base. Occluded surfaces can remain incomplete; additional fine meshes and photographic validation remain in progress."
+}
