@@ -17,9 +17,30 @@ spec.loader.exec_module(dense)
 
 
 class DenseLasTests(unittest.TestCase):
+    def test_physical_compaction_keeps_source_records_without_moving_them(self):
+        with tempfile.TemporaryDirectory() as temp:
+            root=Path(temp);cache=root/'source';cache.mkdir()
+            rows=np.zeros(3,dense.DTYPE)
+            rows['xyz']=[[.001,.002,.003],[.004,.005,.006],[.051,0,0]]
+            rows['rgb']=[[1,2,3],[4,5,6],[7,8,9]];rows['record']=[7,8,9]
+            rows.tofile(cache/'tile-0-0.bin')
+            (cache/'manifest.json').write_text(json.dumps({'recordsRead':3,'recordsRetained':3,
+                'recordBytes':dense.DTYPE.itemsize,'tileSizeMetres':40,'bins':{'tile-0-0.bin':3}}))
+            result=dense.compact(cache,root/'compact',voxel=.04)
+            retained=np.fromfile(root/'compact/tile-0-0.bin',dense.DTYPE)
+            self.assertEqual(result['inputRecordsRetained'],3)
+            self.assertEqual(result['recordsRetained'],2)
+            np.testing.assert_array_equal(retained,rows[[0,2]])
+            np.testing.assert_array_equal(np.fromfile(cache/'tile-0-0.bin',dense.DTYPE),rows)
+
     @unittest.skipUnless((PROJECT.parent/'analysis/dense-las/manifest.json').exists(), 'Dense source cache not generated')
     def test_full_scan_cache_record_provenance(self):
-        directory=PROJECT.parent/'analysis/dense-las'
+        for name in ['dense-las','dense-las-voxel040']:
+            directory=PROJECT.parent/'analysis'/name
+            if (directory/'manifest.json').exists():
+                with self.subTest(cache=name):self.audit_cache(directory)
+
+    def audit_cache(self,directory):
         meta=json.loads((directory/'manifest.json').read_text())
         self.assertEqual(meta['recordsRead'],200700295)
         self.assertEqual(sum(meta['bins'].values()),meta['recordsRetained'])

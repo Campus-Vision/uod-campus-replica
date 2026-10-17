@@ -9,6 +9,7 @@ from pathlib import Path
 import struct
 import sys
 import time
+import hashlib
 
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT/'analysis/python-packages'))
@@ -104,10 +105,54 @@ def load_region(directory, bounds, halo=0.):
     return np.concatenate(parts) if parts else np.empty(0,DTYPE)
 
 
+def compact(cache,directory,voxel=.04):
+    """Consider every cached return, retaining an actual representative per voxel.
+
+    Spatial bins must align with the voxel grid so no voxel crosses two bins.
+    This is an offline reconstruction cache, not a replacement for raw auditing.
+    """
+    cache,directory=Path(cache),Path(directory)
+    meta=json.loads((cache/'manifest.json').read_text())
+    if voxel<=0 or not np.isclose(meta['tileSizeMetres']/voxel,round(meta['tileSizeMetres']/voxel),rtol=0,atol=1e-9):
+        raise ValueError('Voxel must be positive and divide the source spatial bin size')
+    directory.mkdir(parents=True,exist_ok=True)
+    if (directory/'manifest.json').exists() or any(directory.glob('tile-*.bin')):
+        raise ValueError('Choose an empty compaction output directory')
+    counts={};considered=0;started=time.monotonic()
+    for index,(name,count) in enumerate(meta['bins'].items()):
+        records=np.fromfile(cache/name,DTYPE)
+        if len(records)!=count:raise ValueError(f'Incomplete source spatial bin: {name}')
+        cells=np.floor(records['xyz'].astype('f8')/voxel).astype('i4')
+        _,chosen=np.unique(cells,axis=0,return_index=True)
+        # Source order makes repeated runs and original-record audits stable.
+        chosen.sort();records[chosen].tofile(directory/name)
+        counts[name]=len(chosen);considered+=count
+        if index%5==0 or index==len(meta['bins'])-1:
+            print(json.dumps({'bins':index+1,'totalBins':len(meta['bins']),
+                'recordsConsidered':considered,'representatives':sum(counts.values()),
+                'elapsedSeconds':round(time.monotonic()-started,1)}),flush=True)
+        del records,cells,chosen
+    if considered!=meta['recordsRetained']:raise ValueError('Source cache count mismatch')
+    result={**meta,'inputRecordsRetained':considered,'recordsRetained':sum(counts.values()),
+            'sampling':f'One unchanged measured representative per occupied {voxel} metre voxel; every input cache record considered',
+            'voxelMetres':voxel,'bins':counts,
+            'parentManifestSHA256':hashlib.sha256((cache/'manifest.json').read_bytes()).hexdigest(),
+            'elapsedSeconds':round(time.monotonic()-started,2),
+            'limits':'Physical preparation subset. Original every-record cache retained separately; full-source coverage must be audited against that cache.'}
+    (directory/'manifest.json').write_text(json.dumps(result,indent=2));return result
+
+
 if __name__ == '__main__':
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source', type=Path, default=ROOT/'20261008121946091.las')
-    parser.add_argument('--output', type=Path, default=ROOT/'analysis/dense-las')
+    parser.add_argument('--output', type=Path)
+    parser.add_argument('--compact-cache',type=Path,help='Prepare physical-voxel representatives from an existing every-record cache')
+    parser.add_argument('--voxel',type=float,default=.04)
     args=parser.parse_args()
-    result=extract(args.source,args.output,[340150,2777800,50],[-250,200,-320,60,-8,45])
+    if args.compact_cache:
+        output=args.output or ROOT/'analysis/dense-las-voxel040'
+        result=compact(args.compact_cache,output,args.voxel)
+    else:
+        output=args.output or ROOT/'analysis/dense-las'
+        result=extract(args.source,output,[340150,2777800,50],[-250,200,-320,60,-8,45])
     print(json.dumps({k:v for k,v in result.items() if k!='bins'},indent=2))
