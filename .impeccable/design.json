@@ -1,6 +1,6 @@
 {
   "schemaVersion": 2,
-  "generatedAt": "2026-10-16T21:04:21.640971+00:00",
+  "generatedAt": "2026-10-17T06:26:33.344961+00:00",
   "title": "Design System: UoD 3D measured campus",
   "extensions": {
     "colorMeta": {
@@ -288,7 +288,7 @@
   ],
   "narrative": {
     "northStar": "Campus visitor-directory precision",
-    "overview": "The measured campus leads. Compact Manrope, a monochrome header, quiet controls and fine dividers carry forward the survey viewer's layout and type system. Sunlit terrain and source imagery provide the scene's character; outdoor overlays stay quiet and readable. This independent React app runs on port 5174; the progressive COPC survey remains independently available on port 5173.\n\nThe owner explicitly requested a white-and-black interface with persistent light/dark switching. This approved colour-system change is scoped to this app; the original blue survey viewer retains its own system.\n\nThis document records the shipped implementation in `src/App.jsx`, `src/replica.css`, `src/style.css` and `src/scene.js`. It preserves the inherited typography, structure and component shapes while documenting the approved monochrome palette. The compound was approved; the fitted building was rejected. This record does not imply user approval of a final visual comp or calibrated geometric accuracy.",
+    "overview": "The measured campus leads. Compact Manrope, a monochrome header, quiet controls and fine dividers carry forward the survey viewer's layout and type system. Sunlit terrain and source imagery provide the scene's character; outdoor overlays stay quiet and readable. This independent React app runs on port 5174; the progressive COPC survey remains independently available on port 5173.\n\nThe owner explicitly requested a white-and-black interface with persistent light/dark switching. This approved colour-system change is scoped to this app; the original blue survey viewer retains its own system.\n\nThis document records the shipped implementation in `src/App.jsx`, `src/replica.css`, `src/style.css`, `src/scene.js` and `src/reconstruction-layers.js`. It preserves the inherited typography, structure and component shapes while documenting the approved monochrome palette. The rejected fitted building has been replaced with scan-derived geometry. The authorized western-roof repair uses an aerial outline and texture with measured rim heights; its unobserved interior remains an estimate. Local parking surfaces and small measured-centre patches improve detail without claiming recovered occlusions. Original points remains the comparison for all added surface layers. This record does not imply user approval of a final visual comp or calibrated geometric accuracy.",
     "keyCharacteristics": [
       "Measured building geometry remains the visual reference.",
       "Pale continuous controls frame an available-height spatial scene.",
@@ -323,6 +323,7 @@
       "Do preserve full-compound coverage, parking and both solar clusters.",
       "Do preserve camera, target and geometry when switching registered eastern-array captures.",
       "Do disclose scan-derived approximation, source gaps, modelled context and thermal limits.",
+      "Do keep the estimated roof disclosure visible in Merged surface and hide all added surface layers in Original points.",
       "Do retain labelled mobile controls and scrollable drawer access."
     ],
     "donts": [

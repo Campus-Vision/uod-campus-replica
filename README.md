@@ -48,6 +48,41 @@ compound's appearance. Thermal imagery keeps its recorded palette.
 
 ## Compound and solar inspection
 
+### Roof and local scan-detail refinement
+
+The western reflective roof now has an aerial-informed repair: 5,718 vertices,
+11,113 triangles, and the real aerial texture. Its footprint follows the map and
+keeps the courtyard open. Longitudinal height follows measured high-rim returns;
+the unobserved interior is interpolated, with transverse extrapolation up to
+29.53 m. This is an estimated repair, explicitly disclosed in the UI. Its height
+does not inherit the base mesh's 0.32 m source-support statistic. Original points
+hides the repair. Preparation and provenance: `scripts/prepare-roof.py`,
+`public/replica/roof-provenance.json` and `roof-repair.json`.
+
+Three parking contexts now use independent finer local surfaces (235,773 total
+triangles), with source RGB and vertices within 14 cm of selected measured points.
+Triangle centres/midpoints must remain within 16 cm of that source and edges
+within 45 cm. Preparation excludes points less than 0.35 m above an approximate
+local floor to reduce road debris. These are contextual scan regions, not
+individually classified, complete or watertight vehicle models. See
+`scripts/prepare-parking-surfaces.py` and `parking-surfaces.json` for per-region
+coverage/error distributions, including unmatched source points.
+
+Six parking/tree contexts additionally use 101,075 small oriented surface patches
+at unchanged measured centres and RGB, with radii 3.5–12 cm. Sparse/collinear
+neighbourhoods are rejected. The runtime replaces coarse non-ground faces only
+inside those checked contexts and below their measured height bounds, preserving
+the original on-disk GLB. Background modelled crowns are omitted in captured
+tree-row contexts. Other background landscape remains illustrative. Source
+occlusions, incomplete vehicle sides and sparse foliage remain visible.
+
+`Original points` hides all added surface layers. Landscape visibility hides
+the local tree-row patches while retaining parking surfaces. Preparation:
+`scripts/prepare-details.py`; source audits: `tests/test-details.py` and
+`tests/test-parking-surfaces.py`. Python tests use the isolated packages described
+above. `node tests/reconstruction-browser.mjs` captures fixed-camera comparisons
+against the original coarse GLB, plus dark-theme roof/detail views.
+
 The full compound, roads, entrances, six parking canopies and both solar arrays
 are retained. Terrain uses georeferenced aerial imagery with a LiDAR ground fit.
 The perimeter is image-traced, not a certified cadastral boundary. Landscape,
