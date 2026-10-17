@@ -87,5 +87,1267 @@
     "supportCutoffMetres": 0.32,
     "colour": "Nearest original captured RGB; reversible natural daylight display grading",
     "limits": "Surface estimation smooths small detail. Unsupported areas are removed; source occlusions may remain. Use Original points for measured truth."
+  },
+  "roof-repair.json": {
+    "schema": 1,
+    "origin": [
+      340150.0,
+      2777800.0,
+      50.0
+    ],
+    "coordinateSystem": "EPSG:32640; metres, Z up",
+    "footprintWorld": [
+      [
+        340083.6673346693,
+        2777697.3259559046
+      ],
+      [
+        340083.0661322645,
+        2777690.714087853
+      ],
+      [
+        340083.0661322645,
+        2777684.102219802
+      ],
+      [
+        340084.26853707415,
+        2777676.288193923
+      ],
+      [
+        340086.07214428857,
+        2777668.474168044
+      ],
+      [
+        340089.07815631264,
+        2777660.660142165
+      ],
+      [
+        340093.2865731463,
+        2777653.4471952
+      ],
+      [
+        340098.6973947896,
+        2777646.234248235
+      ],
+      [
+        340105.3106212425,
+        2777639.0213012695
+      ],
+      [
+        340113.126252505,
+        2777631.808354304
+      ],
+      [
+        340121.5430861724,
+        2777624.5954073393
+      ],
+      [
+        340133.5671342685,
+        2777616.7813814604
+      ],
+      [
+        340146.19238476956,
+        2777643.82993258
+      ],
+      [
+        340138.376753507,
+        2777648.037484976
+      ],
+      [
+        340131.1623246493,
+        2777652.8461162862
+      ],
+      [
+        340123.94789579156,
+        2777659.4579843376
+      ],
+      [
+        340117.9358717435,
+        2777666.6709313025
+      ],
+      [
+        340113.126252505,
+        2777673.883878268
+      ],
+      [
+        340109.51903807616,
+        2777681.0968252327
+      ],
+      [
+        340107.1142284569,
+        2777688.9108511116
+      ],
+      [
+        340106.5130260521,
+        2777695.522719163
+      ]
+    ],
+    "footprintReferencePixels": [
+      [
+        555.0,
+        1086.0
+      ],
+      [
+        554.0,
+        1097.0
+      ],
+      [
+        554.0,
+        1108.0
+      ],
+      [
+        556.0,
+        1121.0
+      ],
+      [
+        559.0,
+        1134.0
+      ],
+      [
+        564.0,
+        1147.0
+      ],
+      [
+        571.0,
+        1159.0
+      ],
+      [
+        580.0,
+        1171.0
+      ],
+      [
+        591.0,
+        1183.0
+      ],
+      [
+        604.0,
+        1195.0
+      ],
+      [
+        618.0,
+        1207.0
+      ],
+      [
+        638.0,
+        1220.0
+      ],
+      [
+        659.0,
+        1175.0
+      ],
+      [
+        646.0,
+        1168.0
+      ],
+      [
+        634.0,
+        1160.0
+      ],
+      [
+        622.0,
+        1149.0
+      ],
+      [
+        612.0,
+        1137.0
+      ],
+      [
+        604.0,
+        1125.0
+      ],
+      [
+        598.0,
+        1113.0
+      ],
+      [
+        594.0,
+        1100.0
+      ],
+      [
+        593.0,
+        1089.0
+      ]
+    ],
+    "source": {
+      "geometry": "Unchanged building.positions.bin original measured points; western upper rim only",
+      "footprint": "Manual image trace checked against analysis/building-reference.png and analysis/roof-support.png",
+      "appearance": "Esri World Imagery, campus-aerial.jpg; analysis/aerial-georef.json",
+      "sourceCapture": "20261008121946091.las"
+    },
+    "method": "Constrained aerial footprint; robust 95th-percentile rim height stations, 3-station median, PCHIP along measured rim; constant transverse extrapolation at each closest rim station",
+    "supportProfile": {
+      "pointCount": 88613,
+      "stationCount": 42,
+      "stationRadiusMetres": 2.4,
+      "minimumStationPointCount": 738,
+      "upperQuantile": 0.95,
+      "elevationMin": 74.49760093688965,
+      "elevationMax": 75.97494554519653,
+      "rawStationElevationMin": 74.48160095214844,
+      "rawStationElevationMax": 76.15771608352661,
+      "maximumDistanceFromMeasuredRimMetres": 29.527409504851775,
+      "stations": [
+        {
+          "worldXY": [
+            340083.6673346693,
+            2777697.3259559046
+          ],
+          "upperElevation": 74.66386013031006,
+          "filteredElevation": 74.57273054122925,
+          "count": 4203
+        },
+        {
+          "worldXY": [
+            340083.4447870617,
+            2777694.8784350613
+          ],
+          "upperElevation": 74.48160095214844,
+          "filteredElevation": 74.66386013031006,
+          "count": 3945
+        },
+        {
+          "worldXY": [
+            340083.22223945404,
+            2777692.430914218
+          ],
+          "upperElevation": 75.01156082153321,
+          "filteredElevation": 75.01156082153321,
+          "count": 2857
+        },
+        {
+          "worldXY": [
+            340083.0661322645,
+            2777689.9803789533
+          ],
+          "upperElevation": 75.04708623886108,
+          "filteredElevation": 75.01726150512695,
+          "count": 3426
+        },
+        {
+          "worldXY": [
+            340083.0661322645,
+            2777687.522761059
+          ],
+          "upperElevation": 75.01726150512695,
+          "filteredElevation": 75.04708623886108,
+          "count": 4688
+        },
+        {
+          "worldXY": [
+            340083.0661322645,
+            2777685.0651431642
+          ],
+          "upperElevation": 75.11346054077148,
+          "filteredElevation": 75.04559078216553,
+          "count": 5621
+        },
+        {
+          "worldXY": [
+            340083.29345692066,
+            2777682.624913048
+          ],
+          "upperElevation": 75.04559078216553,
+          "filteredElevation": 75.04559078216553,
+          "count": 5470
+        },
+        {
+          "worldXY": [
+            340083.6672303779,
+            2777680.195884617
+          ],
+          "upperElevation": 74.62846117019653,
+          "filteredElevation": 74.62846117019653,
+          "count": 4244
+        },
+        {
+          "worldXY": [
+            340084.0410038352,
+            2777677.7668561866
+          ],
+          "upperElevation": 74.62148017883301,
+          "filteredElevation": 74.62148017883301,
+          "count": 3525
+        },
+        {
+          "worldXY": [
+            340084.48479333404,
+            2777675.351275952
+          ],
+          "upperElevation": 74.49429559707642,
+          "filteredElevation": 74.62148017883301,
+          "count": 3492
+        },
+        {
+          "worldXY": [
+            340085.0375198742,
+            2777672.9566195915
+          ],
+          "upperElevation": 75.14646072387696,
+          "filteredElevation": 75.14646072387696,
+          "count": 3677
+        },
+        {
+          "worldXY": [
+            340085.59024641436,
+            2777670.5619632304
+          ],
+          "upperElevation": 75.2930606842041,
+          "filteredElevation": 75.2930606842041,
+          "count": 3233
+        },
+        {
+          "worldXY": [
+            340086.18521756085,
+            2777668.1802379237
+          ],
+          "upperElevation": 75.39634075164795,
+          "filteredElevation": 75.2930606842041,
+          "count": 2903
+        },
+        {
+          "worldXY": [
+            340087.06760886015,
+            2777665.8864917937
+          ],
+          "upperElevation": 75.11466026306152,
+          "filteredElevation": 75.27371120452881,
+          "count": 3741
+        },
+        {
+          "worldXY": [
+            340087.9500001594,
+            2777663.592745663
+          ],
+          "upperElevation": 75.27371120452881,
+          "filteredElevation": 75.27371120452881,
+          "count": 3812
+        },
+        {
+          "worldXY": [
+            340088.8323914587,
+            2777661.2989995326
+          ],
+          "upperElevation": 75.69549551010131,
+          "filteredElevation": 75.69549551010131,
+          "count": 3632
+        },
+        {
+          "worldXY": [
+            340089.97171640856,
+            2777659.1286395034
+          ],
+          "upperElevation": 75.69630012512206,
+          "filteredElevation": 75.69549551010131,
+          "count": 3617
+        },
+        {
+          "worldXY": [
+            340091.21022866294,
+            2777657.005911751
+          ],
+          "upperElevation": 75.56606101989746,
+          "filteredElevation": 75.57472076416016,
+          "count": 3669
+        },
+        {
+          "worldXY": [
+            340092.4487409173,
+            2777654.8831839985
+          ],
+          "upperElevation": 75.57472076416016,
+          "filteredElevation": 75.57472076416016,
+          "count": 3529
+        },
+        {
+          "worldXY": [
+            340093.76368487155,
+            2777652.811176902
+          ],
+          "upperElevation": 75.6498851776123,
+          "filteredElevation": 75.64092102050782,
+          "count": 2566
+        },
+        {
+          "worldXY": [
+            340095.2384494742,
+            2777650.845228001
+          ],
+          "upperElevation": 75.64092102050782,
+          "filteredElevation": 75.64092102050782,
+          "count": 2269
+        },
+        {
+          "worldXY": [
+            340096.7132140768,
+            2777648.8792790994
+          ],
+          "upperElevation": 75.64033555984497,
+          "filteredElevation": 75.64092102050782,
+          "count": 2006
+        },
+        {
+          "worldXY": [
+            340098.18797867943,
+            2777646.9133301983
+          ],
+          "upperElevation": 75.6410005569458,
+          "filteredElevation": 75.64033555984497,
+          "count": 1755
+        },
+        {
+          "worldXY": [
+            340099.7845561328,
+            2777645.0484976536
+          ],
+          "upperElevation": 75.63286018371582,
+          "filteredElevation": 75.6410005569458,
+          "count": 1671
+        },
+        {
+          "worldXY": [
+            340101.4454144434,
+            2777643.237024389
+          ],
+          "upperElevation": 75.75118103027344,
+          "filteredElevation": 75.72836608886719,
+          "count": 1539
+        },
+        {
+          "worldXY": [
+            340103.1062727539,
+            2777641.425551125
+          ],
+          "upperElevation": 75.72836608886719,
+          "filteredElevation": 75.75118103027344,
+          "count": 1600
+        },
+        {
+          "worldXY": [
+            340104.76713106444,
+            2777639.61407786
+          ],
+          "upperElevation": 75.82121553421021,
+          "filteredElevation": 75.82121553421021,
+          "count": 1528
+        },
+        {
+          "worldXY": [
+            340106.52566042094,
+            2777637.899957022
+          ],
+          "upperElevation": 76.15771608352661,
+          "filteredElevation": 75.93125066757202,
+          "count": 738
+        },
+        {
+          "worldXY": [
+            340108.33169717685,
+            2777636.2331886063
+          ],
+          "upperElevation": 75.93125066757202,
+          "filteredElevation": 75.93125066757202,
+          "count": 1158
+        },
+        {
+          "worldXY": [
+            340110.1377339327,
+            2777634.5664201905
+          ],
+          "upperElevation": 75.63071060180664,
+          "filteredElevation": 75.67311096191406,
+          "count": 2011
+        },
+        {
+          "worldXY": [
+            340111.9437706886,
+            2777632.899651775
+          ],
+          "upperElevation": 75.67311096191406,
+          "filteredElevation": 75.67311096191406,
+          "count": 1979
+        },
+        {
+          "worldXY": [
+            340113.77055358316,
+            2777631.2562096748
+          ],
+          "upperElevation": 76.08517532348633,
+          "filteredElevation": 75.97494554519653,
+          "count": 1968
+        },
+        {
+          "worldXY": [
+            340115.6366785311,
+            2777629.657002561
+          ],
+          "upperElevation": 75.97494554519653,
+          "filteredElevation": 75.97494554519653,
+          "count": 2010
+        },
+        {
+          "worldXY": [
+            340117.5028034791,
+            2777628.0577954464
+          ],
+          "upperElevation": 74.5557207107544,
+          "filteredElevation": 74.5557207107544,
+          "count": 2919
+        },
+        {
+          "worldXY": [
+            340119.36892842705,
+            2777626.4585883324
+          ],
+          "upperElevation": 74.49523591995239,
+          "filteredElevation": 74.49760093688965,
+          "count": 4636
+        },
+        {
+          "worldXY": [
+            340121.2350533751,
+            2777624.859381218
+          ],
+          "upperElevation": 74.49760093688965,
+          "filteredElevation": 74.49760093688965,
+          "count": 5357
+        },
+        {
+          "worldXY": [
+            340123.26363553974,
+            2777623.4772799686
+          ],
+          "upperElevation": 74.5028907775879,
+          "filteredElevation": 74.5028907775879,
+          "count": 5055
+        },
+        {
+          "worldXY": [
+            340125.3243352855,
+            2777622.138100267
+          ],
+          "upperElevation": 74.53326034545898,
+          "filteredElevation": 74.53326034545898,
+          "count": 4881
+        },
+        {
+          "worldXY": [
+            340127.38503503124,
+            2777620.7989205653
+          ],
+          "upperElevation": 74.54312019348144,
+          "filteredElevation": 74.54312019348144,
+          "count": 5365
+        },
+        {
+          "worldXY": [
+            340129.445734777,
+            2777619.4597408636
+          ],
+          "upperElevation": 74.5584156036377,
+          "filteredElevation": 74.5584156036377,
+          "count": 5810
+        },
+        {
+          "worldXY": [
+            340131.50643452274,
+            2777618.120561162
+          ],
+          "upperElevation": 74.61361026763916,
+          "filteredElevation": 74.61361026763916,
+          "count": 6051
+        },
+        {
+          "worldXY": [
+            340133.5671342685,
+            2777616.7813814604
+          ],
+          "upperElevation": 74.6866397857666,
+          "filteredElevation": 74.65012502670288,
+          "count": 3545
+        }
+      ]
+    },
+    "baselineCoverage": {
+      "method": "Vertical ray intersections with unchanged building-surface.glb within 0.35 m of rim-estimated roof",
+      "probeCount": 11143,
+      "coveredFraction": 0.0026922731759849235,
+      "missingFraction": 0.997307726824015,
+      "matchingMeasuredTrianglesOmitted": 30
+    },
+    "gridSpacingMetres": 0.65,
+    "overlapClearanceMetres": 0.035,
+    "vertices": 5718,
+    "triangles": 11113,
+    "aerialExtent": {
+      "xmin": 339600,
+      "ymin": 2777350,
+      "xmax": 340650,
+      "ymax": 2778350
+    },
+    "uvConvention": "u=(E-xmin)/(xmax-xmin), v=(ymax-N)/(ymax-ymin); image top is v=0",
+    "confidence": {
+      "footprint": "Image-constrained, manually traced; not a surveyed outline",
+      "height": "Measured upper-rim constrained longitudinally; transverse roof shape unobserved"
+    },
+    "limits": "Estimated aerial-informed infill. Roof interior and transverse curvature are not measured; closest-rim height is interpolated across the reflective gap. Upper-wall/parapet returns may bias roof height. Aerial has finite resolution and may predate the scan. This patch has no 0.32 m surface-to-scan accuracy claim; no hidden facade is inferred. Original points and measured surface remain unchanged."
+  },
+  "local-details": {
+    "source": "building.positions.bin and building.colors.bin; unchanged original LAS selection",
+    "origin": [
+      340150.0,
+      2777800.0,
+      50.0
+    ],
+    "coordinateFrame": "local XYZ metres, Z up; shared building origin",
+    "method": "Measured-centre oriented discs; deterministic 0.09m thinning; local 8-neighbor PCA normals",
+    "regions": [
+      {
+        "id": "west-parking",
+        "start": 0,
+        "count": 5201,
+        "landscape": false,
+        "referencePixelPolygon": [
+          [
+            516,
+            1092
+          ],
+          [
+            530,
+            1092
+          ],
+          [
+            570,
+            1193
+          ],
+          [
+            557,
+            1203
+          ]
+        ],
+        "context": "aerial parking context",
+        "sourceRegionPoints": 58361,
+        "heightFilteredPoints": 11954,
+        "normalCandidatePoints": 7729,
+        "boundsLocal": {
+          "min": [
+            -84.28977966308594,
+            -167.3043212890625,
+            0.31236058473587036
+          ],
+          "max": [
+            -60.09347915649414,
+            -106.52542877197266,
+            4.826260566711426
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.08487397172458032,
+          "p95": 0.12868655574609433
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.0678991749882698,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.029077040031552315,
+          "p95": 0.18137572705745697,
+          "max": 2.08939528465271,
+          "fractionBeyond3cm": 0.49375120169198233,
+          "fractionBeyondDiscRadius": 0.2651413189771198
+        },
+        "fractionNearestCentersWithinDiameter": 0.9938473370505672
+      },
+      {
+        "id": "south-parking",
+        "start": 5201,
+        "count": 51835,
+        "landscape": false,
+        "referencePixelPolygon": [
+          [
+            570,
+            1247
+          ],
+          [
+            639,
+            1268
+          ],
+          [
+            700,
+            1290
+          ],
+          [
+            714,
+            1314
+          ],
+          [
+            633,
+            1300
+          ],
+          [
+            561,
+            1277
+          ]
+        ],
+        "context": "aerial parking context",
+        "sourceRegionPoints": 289054,
+        "heightFilteredPoints": 104105,
+        "normalCandidatePoints": 72314,
+        "boundsLocal": {
+          "min": [
+            -60.444278717041016,
+            -239.44712829589844,
+            3.773960590362549
+          ],
+          "max": [
+            28.739721298217773,
+            -201.3506317138672,
+            8.563060760498047
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.08741832304065994,
+          "p95": 0.13065373275180533
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.0699346587061882,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.036226555705070496,
+          "p95": 0.2167188972234726,
+          "max": 1.896776556968689,
+          "fractionBeyond3cm": 0.5411401562650718,
+          "fractionBeyondDiscRadius": 0.3156168611941738
+        },
+        "fractionNearestCentersWithinDiameter": 0.9940966528407447
+      },
+      {
+        "id": "southeast-parking",
+        "start": 57036,
+        "count": 5151,
+        "landscape": false,
+        "referencePixelPolygon": [
+          [
+            807,
+            1255
+          ],
+          [
+            848,
+            1245
+          ],
+          [
+            873,
+            1265
+          ],
+          [
+            828,
+            1290
+          ]
+        ],
+        "context": "aerial parking context",
+        "sourceRegionPoints": 71848,
+        "heightFilteredPoints": 11149,
+        "normalCandidatePoints": 8928,
+        "boundsLocal": {
+          "min": [
+            88.22382354736328,
+            -219.88442993164062,
+            9.105460166931152
+          ],
+          "max": [
+            123.71221923828125,
+            -198.77012634277344,
+            11.783061027526855
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.09451688809656124,
+          "p95": 0.13895270044560612
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.07561351358890533,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.061165276914834976,
+          "p95": 0.3215228319168091,
+          "max": 1.5889250040054321,
+          "fractionBeyond3cm": 0.7109299165210639,
+          "fractionBeyondDiscRadius": 0.41739468064453505
+        },
+        "fractionNearestCentersWithinDiameter": 0.9908755581440497
+      },
+      {
+        "id": "west-tree-row",
+        "start": 62187,
+        "count": 10289,
+        "landscape": true,
+        "referencePixelPolygon": [
+          [
+            416,
+            1133
+          ],
+          [
+            435,
+            1130
+          ],
+          [
+            524,
+            1270
+          ],
+          [
+            500,
+            1288
+          ]
+        ],
+        "context": "aerial tree-row context",
+        "sourceRegionPoints": 279814,
+        "heightFilteredPoints": 28743,
+        "normalCandidatePoints": 23703,
+        "boundsLocal": {
+          "min": [
+            -149.86117553710938,
+            -223.34312438964844,
+            0.4310605823993683
+          ],
+          "max": [
+            -85.29338073730469,
+            -130.82012939453125,
+            11.1676607131958
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.0981133535516896,
+          "p95": 0.146641762081477
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.07849068194627762,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.09343502670526505,
+          "p95": 0.4289218783378601,
+          "max": 2.280651330947876,
+          "fractionBeyond3cm": 0.8129069880454854,
+          "fractionBeyondDiscRadius": 0.5605015064632132
+        },
+        "fractionNearestCentersWithinDiameter": 0.973661191563806
+      },
+      {
+        "id": "south-tree-row",
+        "start": 72476,
+        "count": 18196,
+        "landscape": true,
+        "referencePixelPolygon": [
+          [
+            509,
+            1302
+          ],
+          [
+            640,
+            1347
+          ],
+          [
+            705,
+            1357
+          ],
+          [
+            755,
+            1355
+          ],
+          [
+            810,
+            1337
+          ],
+          [
+            860,
+            1310
+          ],
+          [
+            870,
+            1323
+          ],
+          [
+            810,
+            1352
+          ],
+          [
+            755,
+            1370
+          ],
+          [
+            705,
+            1375
+          ],
+          [
+            640,
+            1360
+          ],
+          [
+            500,
+            1320
+          ]
+        ],
+        "context": "aerial tree-row context",
+        "sourceRegionPoints": 113755,
+        "heightFilteredPoints": 98299,
+        "normalCandidatePoints": 91369,
+        "boundsLocal": {
+          "min": [
+            -92.72248077392578,
+            -275.3167419433594,
+            4.404360771179199
+          ],
+          "max": [
+            122.70011901855469,
+            -233.23463439941406,
+            20.058361053466797
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.10883980184861225,
+          "p95": 0.15566061583334612
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.08707183599472046,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.021996647119522095,
+          "p95": 0.21313020586967468,
+          "max": 0.8895455002784729,
+          "fractionBeyond3cm": 0.4469114091009013,
+          "fractionBeyondDiscRadius": 0.23741481644317433
+        },
+        "fractionNearestCentersWithinDiameter": 0.9485601231039789
+      },
+      {
+        "id": "east-tree-row",
+        "start": 90672,
+        "count": 10403,
+        "landscape": true,
+        "referencePixelPolygon": [
+          [
+            938,
+            1170
+          ],
+          [
+            954,
+            1175
+          ],
+          [
+            936,
+            1220
+          ],
+          [
+            920,
+            1254
+          ],
+          [
+            895,
+            1286
+          ],
+          [
+            881,
+            1276
+          ],
+          [
+            904,
+            1245
+          ],
+          [
+            923,
+            1208
+          ]
+        ],
+        "context": "aerial tree-row context",
+        "sourceRegionPoints": 89042,
+        "heightFilteredPoints": 27945,
+        "normalCandidatePoints": 23519,
+        "boundsLocal": {
+          "min": [
+            130.9396209716797,
+            -216.48312377929688,
+            9.448660850524902
+          ],
+          "max": [
+            173.03762817382812,
+            -156.02952575683594,
+            18.389659881591797
+          ]
+        },
+        "neighborSpacingMetres": {
+          "median": 0.09955430034905254,
+          "p95": 0.14817972640295068
+        },
+        "radiusMetres": {
+          "min": 0.03500000014901161,
+          "median": 0.07964344322681427,
+          "max": 0.11999999731779099
+        },
+        "distanceToBaseMeshMetres": {
+          "median": 0.0740223377943039,
+          "p95": 0.3277265131473541,
+          "max": 1.0149019956588745,
+          "fractionBeyond3cm": 0.7733346150148995,
+          "fractionBeyondDiscRadius": 0.4768816687493992
+        },
+        "fractionNearestCentersWithinDiameter": 0.9768336056906661
+      }
+    ],
+    "count": 101075,
+    "binaryBytes": 3133325,
+    "positionsUnchanged": true,
+    "colorsUnchanged": true,
+    "maximumRadiusMetres": 0.12,
+    "normalSupportRadiusMetres": 0.22,
+    "groundEstimate": "4m-cell q10 minimum over adjacent cells",
+    "reference": "analysis/building-reference.png aerial context; no image-generated object geometry",
+    "referencePixelTransform": {
+      "easting": "339750 + x / 1497 * 900",
+      "northing": "2778350.09765625 - y / 1664 * 1000.1953125"
+    },
+    "normalAcceptance": "8 source neighbors within 0.22m; lambda0/sum <0.12; lambda1/lambda2 >0.12",
+    "limits": "Local visible-surface approximation, not watertight cars or botanical models. Region names are contextual, not semantic classification. Source gaps, sparse crowns, occluded vehicles and missing undersides remain. Discs do not connect separate objects. Scan and aerial capture dates may differ. Existing global Poisson mesh remains unchanged; these patches cannot remove distortions already present in that mesh. Original points hides this layer."
+  },
+  "parking-surfaces.glb": {
+    "source": "Unchanged prepared LAS position/RGB buffers",
+    "origin": [
+      340150.0,
+      2777800.0,
+      50.0
+    ],
+    "method": "Independent parking-region local Poisson depth 10; 0.065m normal-preparation voxel",
+    "normalRadiusMetres": 0.3,
+    "vertexSupportCutoffMetres": 0.14,
+    "minimumAboveLocalFloorMetres": 0.35,
+    "maximumAboveLocalFloorMetres": 3.0,
+    "floorEstimate": "4m-cell source q10 minimum over adjacent cells; approximation",
+    "centreAndMidpointSupportCutoffMetres": 0.16,
+    "maximumEdgeMetres": 0.45,
+    "count": 235773,
+    "regions": [
+      {
+        "id": "west-parking",
+        "node": 0,
+        "landscape": false,
+        "sourcePoints": 8723,
+        "normalSamples": 7264,
+        "sourceHeightAboveLocalFloorMetres": {
+          "min": 0.3500000238418579,
+          "median": 1.2483399510383606,
+          "p95": 2.3090389013290404,
+          "p99": 2.8172420859336857,
+          "max": 2.999440014362335
+        },
+        "vertices": 16031,
+        "triangles": 28800,
+        "referencePixelPolygon": [
+          [
+            516,
+            1092
+          ],
+          [
+            530,
+            1092
+          ],
+          [
+            570,
+            1193
+          ],
+          [
+            557,
+            1203
+          ]
+        ],
+        "boundsLocal": {
+          "min": [
+            -82.95085144042969,
+            -167.99932861328125,
+            0.20570945739746094
+          ],
+          "max": [
+            -58.06373977661133,
+            -106.28058624267578,
+            5.012170791625977
+          ]
+        },
+        "vertexNearestSourceMetres": {
+          "median": 0.04195464730171504,
+          "p95": 0.11772361459847264,
+          "p99": 0.13483906496311016,
+          "max": 0.1399957542800496
+        },
+        "sourceToBaseMeshMetres": {
+          "median": 0.04974742978811264,
+          "p95": 0.35865646600723267,
+          "p99": 1.4545263051986694,
+          "max": 2.9336555004119873
+        },
+        "sourceToLocalMeshMetres": {
+          "median": 0.004521323833614588,
+          "p95": 0.3151032626628876,
+          "p99": 1.514464259147644,
+          "max": 3.1553280353546143
+        },
+        "baseSourceFractionWithin10cm": 0.7699186059841797,
+        "localSourceFractionWithin10cm": 0.9219305284879056,
+        "coverageFractionImprovement": 0.15201192250372586
+      },
+      {
+        "id": "south-parking",
+        "node": 1,
+        "landscape": false,
+        "sourcePoints": 80111,
+        "normalSamples": 69310,
+        "sourceHeightAboveLocalFloorMetres": {
+          "min": 0.35000014305114746,
+          "median": 1.1912002563476562,
+          "p95": 2.1595098972320557,
+          "p99": 2.763761091232299,
+          "max": 2.9998202323913574
+        },
+        "vertices": 91514,
+        "triangles": 159976,
+        "referencePixelPolygon": [
+          [
+            570,
+            1247
+          ],
+          [
+            639,
+            1268
+          ],
+          [
+            700,
+            1290
+          ],
+          [
+            714,
+            1314
+          ],
+          [
+            633,
+            1300
+          ],
+          [
+            561,
+            1277
+          ]
+        ],
+        "boundsLocal": {
+          "min": [
+            -61.40287399291992,
+            -239.56430053710938,
+            3.6848678588867188
+          ],
+          "max": [
+            28.775279998779297,
+            -201.33375549316406,
+            8.67935562133789
+          ]
+        },
+        "vertexNearestSourceMetres": {
+          "median": 0.053873537985275194,
+          "p95": 0.1252205041742204,
+          "p99": 0.13701629640904558,
+          "max": 0.13999842073098118
+        },
+        "sourceToBaseMeshMetres": {
+          "median": 0.05988185480237007,
+          "p95": 0.31826531887054443,
+          "p99": 0.6358266472816467,
+          "max": 1.931362509727478
+        },
+        "sourceToLocalMeshMetres": {
+          "median": 0.00885390117764473,
+          "p95": 0.10690087825059891,
+          "p99": 0.42414727807044983,
+          "max": 2.5502076148986816
+        },
+        "baseSourceFractionWithin10cm": 0.6970328668971801,
+        "localSourceFractionWithin10cm": 0.9466615071588171,
+        "coverageFractionImprovement": 0.249628640261637
+      },
+      {
+        "id": "southeast-parking",
+        "node": 2,
+        "landscape": false,
+        "sourcePoints": 10924,
+        "normalSamples": 9955,
+        "sourceHeightAboveLocalFloorMetres": {
+          "min": 0.35030078887939453,
+          "median": 1.0643696784973145,
+          "p95": 1.8916477203369149,
+          "p99": 2.607777452468872,
+          "max": 2.9962005615234375
+        },
+        "vertices": 26371,
+        "triangles": 46997,
+        "referencePixelPolygon": [
+          [
+            807,
+            1255
+          ],
+          [
+            848,
+            1245
+          ],
+          [
+            873,
+            1265
+          ],
+          [
+            828,
+            1290
+          ]
+        ],
+        "boundsLocal": {
+          "min": [
+            86.53394317626953,
+            -220.06300354003906,
+            9.041253089904785
+          ],
+          "max": [
+            124.7334976196289,
+            -198.76698303222656,
+            12.072964668273926
+          ]
+        },
+        "vertexNearestSourceMetres": {
+          "median": 0.05458436231190427,
+          "p95": 0.12301012909305745,
+          "p99": 0.13617082636749675,
+          "max": 0.13999730670234353
+        },
+        "sourceToBaseMeshMetres": {
+          "median": 0.06786055862903595,
+          "p95": 0.4443824887275696,
+          "p99": 1.0149054527282715,
+          "max": 1.6390615701675415
+        },
+        "sourceToLocalMeshMetres": {
+          "median": 0.007953470572829247,
+          "p95": 0.11922402679920197,
+          "p99": 0.4977800250053406,
+          "max": 1.828173279762268
+        },
+        "baseSourceFractionWithin10cm": 0.6613877700476016,
+        "localSourceFractionWithin10cm": 0.9414134016843647,
+        "coverageFractionImprovement": 0.2800256316367631
+      }
+    ],
+    "binaryBytes": 4840108,
+    "limits": "Prototype measured-surface approximation. Source gaps/occluded cars remain. Context polygons are not semantic car classification. No vehicle templates or architectural geometry. Separate region meshes, strict edge/centre support prevent broad unsupported bridging; nearby source surfaces can still merge. Use source discs for fine holes and Original points for measured truth."
+  },
+  "local-detail-runtime-policy": {
+    "method": "Coarse non-ground triangles within contextual polygons and measured height bounds are replaced at runtime; source GLB and measured XYZ/RGB remain unchanged.",
+    "comparison": "Original points hides all additions. Tree-row patches follow landscape visibility; parking surfaces remain.",
+    "limits": "Local neighbourhood support does not prove watertight objects. Remaining global surface and background landscape include approximate context."
   }
 }

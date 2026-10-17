@@ -57,6 +57,9 @@ try {
   assert.equal(await page.evaluate(() => window.uodReplica.building.visible), false);
   assert.ok(await page.evaluate(() => window.uodReplica.roofRepair.geometry.index.count > 30000));
   assert.equal(await page.evaluate(() => window.uodReplica.roofRepair.userData.estimated), true);
+  assert.equal(await page.evaluate(() => window.uodReplica.measuredDetails.children.filter(o=>o.geometry?.isInstancedBufferGeometry).length), 6);
+  assert.ok(await page.evaluate(() => window.uodReplica.measuredDetails.children.reduce((n,o)=>n+(o.geometry?.instanceCount||0),0)>100000));
+  assert.ok(await page.evaluate(() => window.uodReplica.measuredDetails.userData.replacedCoarseTriangles>10000));
   await page.getByRole('button', {name:'Captured RGB', exact:true}).click();
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uBrightness.value), 1);
@@ -67,6 +70,7 @@ try {
   assert.equal(await page.evaluate(() => window.uodReplica.building.visible), true);
   assert.equal(await page.evaluate(() => window.uodReplica.buildingSurface.visible), false);
   assert.equal(await page.evaluate(() => window.uodReplica.roofRepair.visible), false);
+  assert.equal(await page.evaluate(() => window.uodReplica.measuredDetails.visible), false);
   await page.locator('#building-point-size').fill('0.15');
   assert.equal(await page.evaluate(() => window.uodReplica.buildingUniforms.uSaturation.value), 1.4);
   await page.getByRole('button', {name:'Natural daylight', exact:true}).click();
@@ -92,6 +96,8 @@ try {
   assert.equal(await page.evaluate(() => window.uodReplica.perimeter.visible), true);
   await page.locator('#landscape-toggle').uncheck();
   assert.equal(await page.evaluate(() => window.uodReplica.landscape.visible), false);
+  assert.equal(await page.evaluate(() => window.uodReplica.measuredDetails.children.filter(c=>c.userData.landscape).every(c=>!c.visible)), true);
+  assert.equal(await page.evaluate(() => window.uodReplica.measuredDetails.children.filter(c=>!c.userData.landscape).every(c=>c.visible)), true);
   await page.locator('#landscape-toggle').check();
   await page.locator('#lighting-select').selectOption('soft');
   await page.locator('#lighting-select').selectOption('daylight');

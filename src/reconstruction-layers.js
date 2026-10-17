@@ -56,3 +56,35 @@ export function syncReconstructionLayers(representation, showLandscape, roof, de
     for (const region of details.children) region.visible = !region.userData.landscape || showLandscape;
   }
 }
+
+export function replaceCoarseDetailFaces(root, regions, groundHeight) {
+  const inside = (x,y,polygon) => {
+    let result = false;
+    for (let i=0,j=polygon.length-1;i<polygon.length;j=i++) {
+      const [a,b]=polygon[i], [c,d]=polygon[j];
+      if (((b>y)!==(d>y)) && x<(c-a)*(y-b)/(d-b)+a) result=!result;
+    }
+    return result;
+  };
+  let removed = 0;
+  root.traverse(object => {
+    if (!object.isMesh || object.userData.estimated) return;
+    const geometry=object.geometry, position=geometry.attributes.position, index=geometry.index;
+    if (!index) return;
+    const keep=[];
+    for (let i=0;i<index.count;i+=3) {
+      const a=index.getX(i), b=index.getX(i+1), c=index.getX(i+2);
+      const x=(position.getX(a)+position.getX(b)+position.getX(c))/3;
+      const y=(position.getY(a)+position.getY(b)+position.getY(c))/3;
+      const z=(position.getZ(a)+position.getZ(b)+position.getZ(c))/3;
+      const replace=regions.some(region => {
+        const bounds=region.boundsLocal;
+        return x>=bounds.min[0] && x<=bounds.max[0] && y>=bounds.min[1] && y<=bounds.max[1] &&
+          z>bounds.min[2]-.1 && z<=bounds.max[2]+.15 && inside(x,y,region.footprintLocal) && z>groundHeight(x,y)+.25;
+      });
+      if (replace) removed++; else keep.push(a,b,c);
+    }
+    geometry.setIndex(keep);
+  });
+  return removed;
+}

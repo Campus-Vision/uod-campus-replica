@@ -1,0 +1,424 @@
+{
+  "source": "building.positions.bin and building.colors.bin; unchanged original LAS selection",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "coordinateFrame": "local XYZ metres, Z up; shared building origin",
+  "method": "Measured-centre oriented discs; deterministic 0.09m thinning; local 8-neighbor PCA normals",
+  "regions": [
+    {
+      "id": "west-parking",
+      "start": 0,
+      "count": 5201,
+      "landscape": false,
+      "referencePixelPolygon": [
+        [
+          516,
+          1092
+        ],
+        [
+          530,
+          1092
+        ],
+        [
+          570,
+          1193
+        ],
+        [
+          557,
+          1203
+        ]
+      ],
+      "context": "aerial parking context",
+      "sourceRegionPoints": 58361,
+      "heightFilteredPoints": 11954,
+      "normalCandidatePoints": 7729,
+      "boundsLocal": {
+        "min": [
+          -84.28977966308594,
+          -167.3043212890625,
+          0.31236058473587036
+        ],
+        "max": [
+          -60.09347915649414,
+          -106.52542877197266,
+          4.826260566711426
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.08487397172458032,
+        "p95": 0.12868655574609433
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.0678991749882698,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.029077040031552315,
+        "p95": 0.18137572705745697,
+        "max": 2.08939528465271,
+        "fractionBeyond3cm": 0.49375120169198233,
+        "fractionBeyondDiscRadius": 0.2651413189771198
+      },
+      "fractionNearestCentersWithinDiameter": 0.9938473370505672
+    },
+    {
+      "id": "south-parking",
+      "start": 5201,
+      "count": 51835,
+      "landscape": false,
+      "referencePixelPolygon": [
+        [
+          570,
+          1247
+        ],
+        [
+          639,
+          1268
+        ],
+        [
+          700,
+          1290
+        ],
+        [
+          714,
+          1314
+        ],
+        [
+          633,
+          1300
+        ],
+        [
+          561,
+          1277
+        ]
+      ],
+      "context": "aerial parking context",
+      "sourceRegionPoints": 289054,
+      "heightFilteredPoints": 104105,
+      "normalCandidatePoints": 72314,
+      "boundsLocal": {
+        "min": [
+          -60.444278717041016,
+          -239.44712829589844,
+          3.773960590362549
+        ],
+        "max": [
+          28.739721298217773,
+          -201.3506317138672,
+          8.563060760498047
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.08741832304065994,
+        "p95": 0.13065373275180533
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.0699346587061882,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.036226555705070496,
+        "p95": 0.2167188972234726,
+        "max": 1.896776556968689,
+        "fractionBeyond3cm": 0.5411401562650718,
+        "fractionBeyondDiscRadius": 0.3156168611941738
+      },
+      "fractionNearestCentersWithinDiameter": 0.9940966528407447
+    },
+    {
+      "id": "southeast-parking",
+      "start": 57036,
+      "count": 5151,
+      "landscape": false,
+      "referencePixelPolygon": [
+        [
+          807,
+          1255
+        ],
+        [
+          848,
+          1245
+        ],
+        [
+          873,
+          1265
+        ],
+        [
+          828,
+          1290
+        ]
+      ],
+      "context": "aerial parking context",
+      "sourceRegionPoints": 71848,
+      "heightFilteredPoints": 11149,
+      "normalCandidatePoints": 8928,
+      "boundsLocal": {
+        "min": [
+          88.22382354736328,
+          -219.88442993164062,
+          9.105460166931152
+        ],
+        "max": [
+          123.71221923828125,
+          -198.77012634277344,
+          11.783061027526855
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.09451688809656124,
+        "p95": 0.13895270044560612
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.07561351358890533,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.061165276914834976,
+        "p95": 0.3215228319168091,
+        "max": 1.5889250040054321,
+        "fractionBeyond3cm": 0.7109299165210639,
+        "fractionBeyondDiscRadius": 0.41739468064453505
+      },
+      "fractionNearestCentersWithinDiameter": 0.9908755581440497
+    },
+    {
+      "id": "west-tree-row",
+      "start": 62187,
+      "count": 10289,
+      "landscape": true,
+      "referencePixelPolygon": [
+        [
+          416,
+          1133
+        ],
+        [
+          435,
+          1130
+        ],
+        [
+          524,
+          1270
+        ],
+        [
+          500,
+          1288
+        ]
+      ],
+      "context": "aerial tree-row context",
+      "sourceRegionPoints": 279814,
+      "heightFilteredPoints": 28743,
+      "normalCandidatePoints": 23703,
+      "boundsLocal": {
+        "min": [
+          -149.86117553710938,
+          -223.34312438964844,
+          0.4310605823993683
+        ],
+        "max": [
+          -85.29338073730469,
+          -130.82012939453125,
+          11.1676607131958
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.0981133535516896,
+        "p95": 0.146641762081477
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.07849068194627762,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.09343502670526505,
+        "p95": 0.4289218783378601,
+        "max": 2.280651330947876,
+        "fractionBeyond3cm": 0.8129069880454854,
+        "fractionBeyondDiscRadius": 0.5605015064632132
+      },
+      "fractionNearestCentersWithinDiameter": 0.973661191563806
+    },
+    {
+      "id": "south-tree-row",
+      "start": 72476,
+      "count": 18196,
+      "landscape": true,
+      "referencePixelPolygon": [
+        [
+          509,
+          1302
+        ],
+        [
+          640,
+          1347
+        ],
+        [
+          705,
+          1357
+        ],
+        [
+          755,
+          1355
+        ],
+        [
+          810,
+          1337
+        ],
+        [
+          860,
+          1310
+        ],
+        [
+          870,
+          1323
+        ],
+        [
+          810,
+          1352
+        ],
+        [
+          755,
+          1370
+        ],
+        [
+          705,
+          1375
+        ],
+        [
+          640,
+          1360
+        ],
+        [
+          500,
+          1320
+        ]
+      ],
+      "context": "aerial tree-row context",
+      "sourceRegionPoints": 113755,
+      "heightFilteredPoints": 98299,
+      "normalCandidatePoints": 91369,
+      "boundsLocal": {
+        "min": [
+          -92.72248077392578,
+          -275.3167419433594,
+          4.404360771179199
+        ],
+        "max": [
+          122.70011901855469,
+          -233.23463439941406,
+          20.058361053466797
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.10883980184861225,
+        "p95": 0.15566061583334612
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.08707183599472046,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.021996647119522095,
+        "p95": 0.21313020586967468,
+        "max": 0.8895455002784729,
+        "fractionBeyond3cm": 0.4469114091009013,
+        "fractionBeyondDiscRadius": 0.23741481644317433
+      },
+      "fractionNearestCentersWithinDiameter": 0.9485601231039789
+    },
+    {
+      "id": "east-tree-row",
+      "start": 90672,
+      "count": 10403,
+      "landscape": true,
+      "referencePixelPolygon": [
+        [
+          938,
+          1170
+        ],
+        [
+          954,
+          1175
+        ],
+        [
+          936,
+          1220
+        ],
+        [
+          920,
+          1254
+        ],
+        [
+          895,
+          1286
+        ],
+        [
+          881,
+          1276
+        ],
+        [
+          904,
+          1245
+        ],
+        [
+          923,
+          1208
+        ]
+      ],
+      "context": "aerial tree-row context",
+      "sourceRegionPoints": 89042,
+      "heightFilteredPoints": 27945,
+      "normalCandidatePoints": 23519,
+      "boundsLocal": {
+        "min": [
+          130.9396209716797,
+          -216.48312377929688,
+          9.448660850524902
+        ],
+        "max": [
+          173.03762817382812,
+          -156.02952575683594,
+          18.389659881591797
+        ]
+      },
+      "neighborSpacingMetres": {
+        "median": 0.09955430034905254,
+        "p95": 0.14817972640295068
+      },
+      "radiusMetres": {
+        "min": 0.03500000014901161,
+        "median": 0.07964344322681427,
+        "max": 0.11999999731779099
+      },
+      "distanceToBaseMeshMetres": {
+        "median": 0.0740223377943039,
+        "p95": 0.3277265131473541,
+        "max": 1.0149019956588745,
+        "fractionBeyond3cm": 0.7733346150148995,
+        "fractionBeyondDiscRadius": 0.4768816687493992
+      },
+      "fractionNearestCentersWithinDiameter": 0.9768336056906661
+    }
+  ],
+  "count": 101075,
+  "binaryBytes": 3133325,
+  "positionsUnchanged": true,
+  "colorsUnchanged": true,
+  "maximumRadiusMetres": 0.12,
+  "normalSupportRadiusMetres": 0.22,
+  "groundEstimate": "4m-cell q10 minimum over adjacent cells",
+  "reference": "analysis/building-reference.png aerial context; no image-generated object geometry",
+  "referencePixelTransform": {
+    "easting": "339750 + x / 1497 * 900",
+    "northing": "2778350.09765625 - y / 1664 * 1000.1953125"
+  },
+  "normalAcceptance": "8 source neighbors within 0.22m; lambda0/sum <0.12; lambda1/lambda2 >0.12",
+  "limits": "Local visible-surface approximation, not watertight cars or botanical models. Region names are contextual, not semantic classification. Source gaps, sparse crowns, occluded vehicles and missing undersides remain. Discs do not connect separate objects. Scan and aerial capture dates may differ. Existing global Poisson mesh remains unchanged; these patches cannot remove distortions already present in that mesh. Original points hides this layer."
+}

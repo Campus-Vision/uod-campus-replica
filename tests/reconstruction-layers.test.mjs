@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers } from '../src/reconstruction-layers.js';
+import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers, replaceCoarseDetailFaces } from '../src/reconstruction-layers.js';
 
 test('roof repair retains local coordinates, imagery UVs and source disclosure', () => {
   const data = { positions: [0,0,24, 1,0,24, 0,1,24], uv: [.1,.2,.2,.2,.1,.3], indices: [0,1,2], metadata: { estimated: true } };
@@ -11,6 +11,21 @@ test('roof repair retains local coordinates, imagery UVs and source disclosure',
   assert.equal(mesh.userData.estimated, true);
   assert.throws(() => makeRoofLayer({...data, indices:[0,1,7]}, mesh.material), /index/i);
   assert.throws(() => makeRoofLayer({...data, uv:[2,0]}, mesh.material), /UV/i);
+});
+
+test('detail replacement removes coarse car faces while preserving ground and building', () => {
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position',new THREE.Float32BufferAttribute([
+    0,0,2, 1,0,2, 0,1,2,
+    0,0,0, 1,0,0, 0,1,0,
+    0,0,12, 1,0,12, 0,1,12,
+    10,10,2, 11,10,2, 10,11,2,
+  ],3)); geometry.setIndex([0,1,2,3,4,5,6,7,8,9,10,11]);
+  const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial());
+  const polygon=[[0,0],[2,0],[2,2],[0,2]];
+  const regions=[{footprintLocal:polygon,boundsLocal:{min:[0,0,.3],max:[2,2,4]},landscape:false}];
+  assert.equal(replaceCoarseDetailFaces(mesh,regions,()=>0),1);
+  assert.deepEqual([...geometry.index.array],[3,4,5,6,7,8,9,10,11]);
 });
 
 test('oriented patches keep measured centres and separate vegetation visibility', () => {

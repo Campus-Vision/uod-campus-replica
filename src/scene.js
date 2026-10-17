@@ -3,7 +3,7 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createIcons, Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, SlidersHorizontal, Box, Layers2, RotateCcw, Expand, TriangleAlert, ArrowUpRight, LandPlot, Building2, PanelsTopLeft, ChevronRight, Crosshair } from 'lucide';
 import { solarFrame, inverseAffine, terrainHeight } from './replica-math.js';
-import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers } from './reconstruction-layers.js';
+import { makeRoofLayer, makeDetailLayers, syncReconstructionLayers, replaceCoarseDetailFaces } from './reconstruction-layers.js';
 
 export function mountCampus() {
 const events = new AbortController();
@@ -17,6 +17,7 @@ let site, scene, renderer, camera, controls, sun, hemi, terrain, building, build
 const buildingUniforms = { uNatural: {value: 1}, uSaturation: {value: 1.05}, uBrightness: {value: 1.1}, uPointSize: {value: .12}, uResolution: {value: 1} };
 let dirty = true, transition = null, settingCamera = false, resizeTimer, toastTimer, captureSequence = 0, shownProgress = 5;
 const textureCache = new Map(), labels = [];
+const pendingObjects = new Set();
 const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
 const captureUniforms = { uCaptureMode: { value: 0 }, uCaptureMap: { value: null }, uSolarMaterialMap: { value: null }, uReferenceToSource: { value: new THREE.Matrix3() }, uCaptureExtent: { value: new THREE.Vector4() }, uRowCenters: { value: [] }, uRowAxes: { value: [] }, uRowSizes: { value: [] } };
 const placeNames = { compound: 'Entire compound', building: 'University building', east: 'East solar array', south: 'South solar array' };
@@ -35,6 +36,7 @@ function fail(error) {
   console.error(error);
 }
 function progress(value, text) {
+  if (disposed) return;
   shownProgress = Math.max(shownProgress, Math.min(100, value));
   $('load-progress-fill').style.transform = `scaleX(${shownProgress/100})`;
   $('replica-loading-detail').textContent = text;
@@ -56,6 +58,7 @@ async function loadMeasuredBuilding() {
   geometry.computeBoundingSphere();
   const cloud = new THREE.Points(geometry, makeMeasuredMaterial(true));
   cloud.userData = { ...metadata, pointCount: metadata.count, measured: true };
+  if (disposed) disposeObject(cloud); else pendingObjects.add(cloud);
   return cloud;
 }
 
@@ -125,6 +128,22 @@ function makeMeasuredMaterial(points, roofMap = null, patches = false) {
       }
     `,
   });
+}
+
+async function loadMeasuredDetails() {
+  const read = async name => {
+    const response = await fetch(asset(name), { signal: events.signal });
+    if (!response.ok) throw new Error(`Measured detail asset unavailable: ${name}`);
+    return response;
+  };
+  const data = await (await read('details.json')).json();
+  const names = ['positions','colors','normals','radii'];
+  const buffers = await Promise.all(names.map(async name => (await read(data[name])).arrayBuffer()));
+  const arrays = Object.fromEntries(names.map((name,i) => [name, name === 'colors' ? new Uint8Array(buffers[i]) : new Float32Array(buffers[i])]));
+  const group = makeDetailLayers(data, arrays, () => makeMeasuredMaterial(false, null, true));
+  group.userData = data.metadata;
+  if (disposed) disposeObject(group); else pendingObjects.add(group);
+  return group;
 }
 
 function makeParkingRoofs() {
@@ -291,6 +310,11 @@ function makeSolarArray(rows, modelPanels, planes = null) {
 
 function makeLandscape() {
   const group = new THREE.Group();
+  const measuredTreeBounds = measuredDetails?.children.filter(e => e.userData.landscape).map(e => e.userData.boundsLocal) || [];
+  // Captured tree rows already have measured mesh and local fine detail.
+  // Retain modelled background vegetation beyond these captured contexts.
+  const trees = site.trees.filter(([x,y]) => !measuredTreeBounds.some(b => x >= b.min[0] && x <= b.max[0] && y >= b.min[1] && y <= b.max[1]));
+  group.userData.modelledTreeCount = trees.length;
   const crownGeometry = new THREE.IcosahedronGeometry(1, 2);
   const pos = crownGeometry.attributes.position;
   for (let i = 0; i < pos.count; i++) {
@@ -300,12 +324,12 @@ function makeLandscape() {
   }
   crownGeometry.computeVertexNormals();
   const crownMaterial = new THREE.MeshStandardMaterial({ color: '#fff', roughness: 1, flatShading: false });
-  const crownCount = site.trees.length * 7;
+  const crownCount = trees.length * 7;
   const crowns = new THREE.InstancedMesh(crownGeometry, crownMaterial, crownCount);
   const trunkGeo = new THREE.CylinderGeometry(.13, .25, 1, 7); trunkGeo.rotateX(Math.PI / 2);
-  const trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshStandardMaterial({ color: '#71634c', roughness: 1 }), site.trees.length);
+  const trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshStandardMaterial({ color: '#71634c', roughness: 1 }), trees.length);
   const dummy = new THREE.Object3D(), palette = ['#566446', '#64704a', '#526047', '#6b714c', '#707653'];
-  site.trees.forEach(([x, y, , radius], index) => {
+  trees.forEach(([x, y, , radius], index) => {
     const ground = terrainHeight(site, x, y), h = Math.max(3, radius * 1.55);
     dummy.position.set(x, y, ground + h * .36); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, h * .72); dummy.updateMatrix(); trunks.setMatrixAt(index, dummy.matrix);
     for (let j = 0; j < 7; j++) {
@@ -478,6 +502,7 @@ async function init() {
     const loader = new GLTFLoader(); let completed = 0;
     const load = async (file, label) => {
       const gltf = await loader.loadAsync(asset(file), event => { if (event.total) progress(12 + completed * 26 + event.loaded / event.total * 24, label); });
+      if (disposed) disposeObject(gltf.scene); else pendingObjects.add(gltf.scene);
       completed++; return gltf.scene;
     };
     [terrain, building, eastSurface, buildingSurface] = await Promise.all([load('terrain.glb', 'Preparing the full compound terrain…'), loadMeasuredBuilding(), load('east-surface.glb', 'Aligning the eastern solar array…'), load('building-surface.glb', 'Preparing merged measured surfaces…')]);
@@ -490,6 +515,7 @@ async function init() {
     if (!roofResponse.ok) throw new Error('Roof repair data unavailable');
     const roofData = await roofResponse.json();
     const roofMap = await new THREE.TextureLoader().loadAsync(asset(site.aerial.image));
+    if (disposed) { roofMap.dispose(); return; }
     // Custom measured shaders consume captured sRGB bytes directly.
     roofMap.flipY = false; roofMap.colorSpace = THREE.NoColorSpace;
     roofMap.anisotropy = Math.min(8, renderer.capabilities.getMaxAnisotropy());
@@ -499,6 +525,18 @@ async function init() {
     roofRepair.material.polygonOffsetUnits = -1;
     roofRepair.renderOrder = 1;
     buildingSurface.add(roofRepair);
+    measuredDetails = await loadMeasuredDetails();
+    if (disposed) { disposeObject(measuredDetails); return; }
+    const detailRegions=measuredDetails.children.map(child => ({...child.userData,
+      footprintLocal:child.userData.referencePixelPolygon.map(([x,y]) => [339750+x/1497*900-site.origin[0],2778350.09765625-y/1664*1000.1953125-site.origin[1]])}));
+    measuredDetails.userData.replacedCoarseTriangles=replaceCoarseDetailFaces(buildingSurface, detailRegions, (x,y)=>terrainHeight(site,x,y));
+    const parkingSurface=await load('parking-surfaces.glb', 'Preparing fine captured parking surfaces…');
+    if (disposed) return;
+    parkingSurface.name='Local measured parking surfaces';
+    parkingSurface.traverse(object => {
+      if (object.isMesh) { object.material.dispose(); object.material=makeMeasuredMaterial(false); }
+    });
+    measuredDetails.add(parkingSurface);
     syncReconstructionLayers(state.representation, $('landscape-toggle').checked, roofRepair, measuredDetails);
     building.visible = state.representation === 'points';
     buildingSurface.visible = state.representation === 'surface';
@@ -528,7 +566,8 @@ async function init() {
     eastSupports = makeSolarArray(site.eastRows, false, site.eastRowPlanes); eastSupports.name = 'East solar supports';
     parkingSupports = makeSolarArray(site.coveredParking.map(e=>e.points), false, site.coveredParking.map(e=>[0,0,e.z-site.origin[2]])); parkingSupports.name = 'Covered parking supports';
     perimeter = createPerimeter(); perimeter.name = 'Image-traced compound perimeter';
-    scene.add(terrain, building, buildingSurface, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter);
+    scene.add(terrain, building, buildingSurface, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter);
+    pendingObjects.clear();
     state.building = { representation: 'measured-points', count: building.geometry.attributes.position.count, originalRGB: true, fittedArchitecture: false };
     state.geometries = { terrain: terrain.uuid, building: building.uuid, east: eastSurface.uuid, south: southArray.uuid };
     label('University of Dubai', [-25, -155, 40]);
@@ -539,7 +578,7 @@ async function init() {
     $('replica-loading').hidden = true; $('replica-status').textContent = 'Campus ready'; $('replica-status-dot').className = 'status-dot ready';
     renderer.shadowMap.needsUpdate = true; invalidate();
     renderer.domElement.addEventListener('webglcontextlost', event => { event.preventDefault(); fail(new Error('WebGL context lost')); });
-    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, buildingSurface, roofRepair, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
+    window.uodReplica = { state, scene, camera, controls, renderer, site, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, parkingSupports, eastSurface, southArray, landscape, perimeter, captureUniforms, buildingUniforms, goPlace, setCapture };
   } catch (error) { if (!disposed) fail(error); }
 }
 
@@ -576,7 +615,7 @@ document.querySelectorAll('[data-angle]').forEach(button => button.addEventListe
 document.querySelectorAll('[data-capture]').forEach(button => button.addEventListener('click', () => setCapture(button.dataset.capture)));
 $('replica-reset').addEventListener('click', () => goPlace('compound', false, 'perspective'));
 $('replica-retry').addEventListener('click', () => location.reload());
-$('landscape-toggle').addEventListener('change', event => { landscape.visible = event.target.checked; renderer.shadowMap.needsUpdate = true; invalidate(); });
+$('landscape-toggle').addEventListener('change', event => { landscape.visible = event.target.checked; syncReconstructionLayers(state.representation, event.target.checked, roofRepair, measuredDetails); renderer.shadowMap.needsUpdate = true; invalidate(); });
 $('perimeter-toggle').addEventListener('change', event => { perimeter.visible = event.target.checked; invalidate(); });
 $('lighting-select').addEventListener('change', event => setLighting(event.target.value));
 $('replica-fullscreen').addEventListener('click', async () => {
@@ -612,6 +651,8 @@ function dispose() {
   disposed = true; events.abort(); cancelAnimationFrame(frameId);
   resizeObserver.disconnect(); clearTimeout(resizeTimer); clearTimeout(toastTimer);
   controls?.dispose(); disposeObject(scene);
+  for (const object of pendingObjects) disposeObject(object);
+  pendingObjects.clear();
   for (const promise of textureCache.values()) promise.then(texture => texture.dispose()).catch(() => {});
   renderer?.dispose(); renderer?.domElement.remove();
   labels.forEach(({el}) => el.remove());

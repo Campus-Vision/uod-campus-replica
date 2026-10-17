@@ -17,6 +17,7 @@ function BuildingAppearance({ appearance, onChange }) {
   return <fieldset className="building-appearance"><legend>Building appearance</legend>
     <p className="appearance-note">Scan-derived surfaces. Original points for comparison.</p>
     {appearance.representation === 'surface' && <p className="appearance-note" id="roof-repair-note">Western roof repaired from aerial imagery; interior height is estimated from the measured rim.</p>}
+    {appearance.representation === 'surface' && <p className="appearance-note">Fine parking and tree-row surfaces use small patches at measured scan positions. Occluded details may remain incomplete.</p>}
     <div className="colour-presets" role="group" aria-label="Building representation">
       <button aria-pressed={appearance.representation === 'surface'} onClick={() => update('representation', 'surface')}>Merged surface</button>
       <button aria-pressed={appearance.representation === 'points'} onClick={() => update('representation', 'points')}>Original points</button>

@@ -1,0 +1,230 @@
+{
+  "source": "Unchanged prepared LAS position/RGB buffers",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "method": "Independent parking-region local Poisson depth 10; 0.065m normal-preparation voxel",
+  "normalRadiusMetres": 0.3,
+  "vertexSupportCutoffMetres": 0.14,
+  "minimumAboveLocalFloorMetres": 0.35,
+  "maximumAboveLocalFloorMetres": 3.0,
+  "floorEstimate": "4m-cell source q10 minimum over adjacent cells; approximation",
+  "centreAndMidpointSupportCutoffMetres": 0.16,
+  "maximumEdgeMetres": 0.45,
+  "count": 235773,
+  "regions": [
+    {
+      "id": "west-parking",
+      "node": 0,
+      "landscape": false,
+      "sourcePoints": 8723,
+      "normalSamples": 7264,
+      "sourceHeightAboveLocalFloorMetres": {
+        "min": 0.3500000238418579,
+        "median": 1.2483399510383606,
+        "p95": 2.3090389013290404,
+        "p99": 2.8172420859336857,
+        "max": 2.999440014362335
+      },
+      "vertices": 16031,
+      "triangles": 28800,
+      "referencePixelPolygon": [
+        [
+          516,
+          1092
+        ],
+        [
+          530,
+          1092
+        ],
+        [
+          570,
+          1193
+        ],
+        [
+          557,
+          1203
+        ]
+      ],
+      "boundsLocal": {
+        "min": [
+          -82.95085144042969,
+          -167.99932861328125,
+          0.20570945739746094
+        ],
+        "max": [
+          -58.06373977661133,
+          -106.28058624267578,
+          5.012170791625977
+        ]
+      },
+      "vertexNearestSourceMetres": {
+        "median": 0.04195464730171504,
+        "p95": 0.11772361459847264,
+        "p99": 0.13483906496311016,
+        "max": 0.1399957542800496
+      },
+      "sourceToBaseMeshMetres": {
+        "median": 0.04974742978811264,
+        "p95": 0.35865646600723267,
+        "p99": 1.4545263051986694,
+        "max": 2.9336555004119873
+      },
+      "sourceToLocalMeshMetres": {
+        "median": 0.004521323833614588,
+        "p95": 0.3151032626628876,
+        "p99": 1.514464259147644,
+        "max": 3.1553280353546143
+      },
+      "baseSourceFractionWithin10cm": 0.7699186059841797,
+      "localSourceFractionWithin10cm": 0.9219305284879056,
+      "coverageFractionImprovement": 0.15201192250372586
+    },
+    {
+      "id": "south-parking",
+      "node": 1,
+      "landscape": false,
+      "sourcePoints": 80111,
+      "normalSamples": 69310,
+      "sourceHeightAboveLocalFloorMetres": {
+        "min": 0.35000014305114746,
+        "median": 1.1912002563476562,
+        "p95": 2.1595098972320557,
+        "p99": 2.763761091232299,
+        "max": 2.9998202323913574
+      },
+      "vertices": 91514,
+      "triangles": 159976,
+      "referencePixelPolygon": [
+        [
+          570,
+          1247
+        ],
+        [
+          639,
+          1268
+        ],
+        [
+          700,
+          1290
+        ],
+        [
+          714,
+          1314
+        ],
+        [
+          633,
+          1300
+        ],
+        [
+          561,
+          1277
+        ]
+      ],
+      "boundsLocal": {
+        "min": [
+          -61.40287399291992,
+          -239.56430053710938,
+          3.6848678588867188
+        ],
+        "max": [
+          28.775279998779297,
+          -201.33375549316406,
+          8.67935562133789
+        ]
+      },
+      "vertexNearestSourceMetres": {
+        "median": 0.053873537985275194,
+        "p95": 0.1252205041742204,
+        "p99": 0.13701629640904558,
+        "max": 0.13999842073098118
+      },
+      "sourceToBaseMeshMetres": {
+        "median": 0.05988185480237007,
+        "p95": 0.31826531887054443,
+        "p99": 0.6358266472816467,
+        "max": 1.931362509727478
+      },
+      "sourceToLocalMeshMetres": {
+        "median": 0.00885390117764473,
+        "p95": 0.10690087825059891,
+        "p99": 0.42414727807044983,
+        "max": 2.5502076148986816
+      },
+      "baseSourceFractionWithin10cm": 0.6970328668971801,
+      "localSourceFractionWithin10cm": 0.9466615071588171,
+      "coverageFractionImprovement": 0.249628640261637
+    },
+    {
+      "id": "southeast-parking",
+      "node": 2,
+      "landscape": false,
+      "sourcePoints": 10924,
+      "normalSamples": 9955,
+      "sourceHeightAboveLocalFloorMetres": {
+        "min": 0.35030078887939453,
+        "median": 1.0643696784973145,
+        "p95": 1.8916477203369149,
+        "p99": 2.607777452468872,
+        "max": 2.9962005615234375
+      },
+      "vertices": 26371,
+      "triangles": 46997,
+      "referencePixelPolygon": [
+        [
+          807,
+          1255
+        ],
+        [
+          848,
+          1245
+        ],
+        [
+          873,
+          1265
+        ],
+        [
+          828,
+          1290
+        ]
+      ],
+      "boundsLocal": {
+        "min": [
+          86.53394317626953,
+          -220.06300354003906,
+          9.041253089904785
+        ],
+        "max": [
+          124.7334976196289,
+          -198.76698303222656,
+          12.072964668273926
+        ]
+      },
+      "vertexNearestSourceMetres": {
+        "median": 0.05458436231190427,
+        "p95": 0.12301012909305745,
+        "p99": 0.13617082636749675,
+        "max": 0.13999730670234353
+      },
+      "sourceToBaseMeshMetres": {
+        "median": 0.06786055862903595,
+        "p95": 0.4443824887275696,
+        "p99": 1.0149054527282715,
+        "max": 1.6390615701675415
+      },
+      "sourceToLocalMeshMetres": {
+        "median": 0.007953470572829247,
+        "p95": 0.11922402679920197,
+        "p99": 0.4977800250053406,
+        "max": 1.828173279762268
+      },
+      "baseSourceFractionWithin10cm": 0.6613877700476016,
+      "localSourceFractionWithin10cm": 0.9414134016843647,
+      "coverageFractionImprovement": 0.2800256316367631
+    }
+  ],
+  "binaryBytes": 4840108,
+  "limits": "Prototype measured-surface approximation. Source gaps/occluded cars remain. Context polygons are not semantic car classification. No vehicle templates or architectural geometry. Separate region meshes, strict edge/centre support prevent broad unsupported bridging; nearby source surfaces can still merge. Use source discs for fine holes and Original points for measured truth."
+}
