@@ -212,5 +212,8 @@ if __name__=='__main__':
     p.add_argument('--normal-radius',type=float)
     p.add_argument('--smoothing-iterations',type=int,default=2)
     args=p.parse_args()
-    reconstruct(args.cache,args.output,args.bounds,args.voxel,args.depth,args.method,write_obj=not args.no_obj,
-                trajectory=args.trajectory,normal_radius=args.normal_radius,smoothing_iterations=args.smoothing_iterations)
+    spec=importlib.util.spec_from_file_location('locks',PROJECT/'scripts/preparation-lock.py')
+    locks=importlib.util.module_from_spec(spec);spec.loader.exec_module(locks)
+    with locks.exclusive_worker(args.output.parent/(args.output.name+'.worker')):
+        reconstruct(args.cache,args.output,args.bounds,args.voxel,args.depth,args.method,write_obj=not args.no_obj,
+                    trajectory=args.trajectory,normal_radius=args.normal_radius,smoothing_iterations=args.smoothing_iterations)
