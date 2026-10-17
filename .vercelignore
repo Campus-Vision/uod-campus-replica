@@ -1,0 +1,30 @@
+# Vercel ignore — never deploy these to the serverless environment
+
+# Large binary assets — must be hosted on external blob storage
+# campus-surface.glb (162 MB), detail GLBs (~72 MB), point buffers (~100 MB)
+public/replica/*.glb
+public/replica/*.bin
+public/replica/*.jpg
+
+# These dense/diagnostic copies are retired originals — never ship
+public/replica/dense-campus-base-browser-v2.glb
+public/replica/dense-*.glb
+public/replica/dense-building-trajectory.glb
+public/replica/dense-south-pilot.glb
+public/replica/dense-building-pilot.glb
+public/replica/dense-vegetation-pilot.glb
+
+# Node tooling and build artifacts
+node_modules/
+dist/
+
+# Local environment files
+.env.local
+.env.*.local
+
+# Test output and screenshots
+tests/screenshots/
+.impeccable/review/
+
+# Python scripts (source only; runtime binaries stay local)
+scripts/__pycache__/
