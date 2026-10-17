@@ -4,6 +4,7 @@ This is measured-colour baking, not photographic multi-view reconstruction.
 The original high-resolution mesh and scan are retained separately.
 """
 import argparse
+import hashlib
 import importlib.util
 import io
 import json
@@ -86,7 +87,9 @@ def split_vertex_fans(mesh):
 def bake(path,triangles=250000,size=2048):
     path=Path(path);started=time.monotonic()
     meta=json.loads(path.with_suffix('.json').read_text())
-    source=module.dense.load_region(PROJECT.parent/'analysis/dense-las',meta['boundsLocal'],halo=meta['haloMetres'])
+    source_cache=PROJECT.parent/'analysis/dense-las'
+    source_manifest=(source_cache/'manifest.json').read_bytes()
+    source=module.dense.load_region(source_cache,meta['boundsLocal'],halo=meta['haloMetres'])
     tree=module.cKDTree(source['xyz'])
     cache=path.with_name(path.name+f'-lod-{triangles}.npz')
     stamp=[path.with_suffix('.glb').stat().st_mtime_ns,triangles,2]
@@ -160,6 +163,11 @@ def bake(path,triangles=250000,size=2048):
     corners=vertices[inverse.reshape(-1,3)]
     maximum_edge=max(float(np.linalg.norm(corners[:,a]-corners[:,b],axis=1).max()) for a,b in [(0,1),(1,2),(2,0)])
     result={**meta,'method':meta['method']+'; quadratic detail reduction and measured-colour UV baking',
+            'colourSourceCachePath':str(source_cache.resolve()),
+            'colourSourceCacheManifestSHA256':hashlib.sha256(source_manifest).hexdigest(),
+            'colourSourceCacheSampling':json.loads(source_manifest)['sampling'],
+            'colourSourceRegionRecords':len(source),
+            'auditDomain':'Actual original every-record spatial-cache values within this region; at most150000 evenly indexed records for the output distance audit',
             'parentMesh':path.with_suffix('.glb').name,'vertices':len(vertices),'triangles':len(mesh.triangles),
             'targetTriangles':triangles,'postSimplificationTrianglesRemoved':before-len(mesh.triangles),
             'disconnectedVertexFansSplit':split_vertices,'maximumEdgeMetres':maximum_edge,

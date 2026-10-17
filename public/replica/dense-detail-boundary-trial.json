@@ -1,0 +1,50 @@
+{
+  "left": "cell-0--6",
+  "right": "cell-1--6",
+  "triangleCounts": [
+    4782263,
+    7183117,
+    5709063
+  ],
+  "source": "Original every-record LAS cache; internal agreement, not independent survey control",
+  "sourceStripBoundsLocal": [
+    39.8,
+    40.2,
+    -239.0,
+    -201.0
+  ],
+  "sourceStripRecords": 135794,
+  "auditedRecords": 135794,
+  "unionDistanceMetres": {
+    "median": 0.006899307481944561,
+    "p95": 0.032568011432886124,
+    "max": 3.0187785625457764,
+    "nonfinite": 0,
+    "within5cm": 0.9799107471611411,
+    "within10cm": 0.9959644756027513
+  },
+  "baseDistanceMetres": {
+    "median": 0.01682724431157112,
+    "p95": 0.07681066542863846,
+    "max": 3.248140573501587,
+    "nonfinite": 0,
+    "within5cm": 0.8725864176620469,
+    "within10cm": 0.9750578081505811
+  },
+  "sharedPlaneQueryRecords": 34075,
+  "closestSurfaceDifferenceMetres": {
+    "median": 0.0008374020690098405,
+    "p95": 0.018340416252613068,
+    "max": 1.0283143520355225,
+    "nonfinite": 0
+  },
+  "bothSurfacesWithin20cmFraction": 0.9943360234776228,
+  "conditionalSupportedDifferenceMetres": {
+    "median": 0.0008285777876153588,
+    "p95": 0.016619686037302017,
+    "max": 0.32319721579551697,
+    "nonfinite": 0
+  },
+  "topologicallyStitched": false,
+  "limits": "Projected boundary queries move original returns by at most5cm in X. Conditional metrics exclude unsupported regions explicitly; they cannot prove a closed seam. Keep global base support and inspect the LOD transition visually before assembly."
+}
