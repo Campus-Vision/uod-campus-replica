@@ -1,0 +1,7 @@
+# Versions used for the verified offline LAS trials and native photo alignment.
+numpy==2.5.4
+scipy==1.18.1
+open3d==0.20.0
+pillow==12.3.0
+xatlas==0.0.11
+pycolmap==4.2.1

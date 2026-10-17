@@ -1,0 +1,153 @@
+{
+  "source": "20261008121946091.las; every-record spatial cache",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "boundsLocal": [
+    -40,
+    0,
+    -240,
+    -200
+  ],
+  "haloMetres": 2.0,
+  "originalRegionRecords": 9935445,
+  "coreRecords": 8069575,
+  "voxelMetres": 0.04,
+  "normalSamples": 2006354,
+  "outlierNormalSamplesRemoved": 42625,
+  "method": "poisson; quadratic detail reduction and measured-colour UV baking",
+  "depth": 10,
+  "vertices": 213412,
+  "triangles": 247882,
+  "vertexSupportMetres": {
+    "median": 0.024756193030848778,
+    "p95": 0.08544393041320658,
+    "max": 0.09998470618067236,
+    "nonfinite": 0
+  },
+  "supportCutoffMetres": 0.1,
+  "faceSupportCutoffMetres": 0.12,
+  "maximumEdgeMetres": 1.3570388555526733,
+  "colour": "2048-pixel UV atlas sampled from four nearest original LAS RGB returns; no source mutation",
+  "auditRecords": 150000,
+  "sourceToMeshDistanceMetres": {
+    "median": 0.004005530849099159,
+    "p95": 0.019743304699659348,
+    "max": 1.8595372438430786,
+    "nonfinite": 0
+  },
+  "baselineSourceToMeshDistanceMetres": {
+    "median": 0.010488134808838367,
+    "p95": 0.1881568431854248,
+    "max": 1.8513301610946655,
+    "nonfinite": 0
+  },
+  "coverageWithin5cm": 0.9889866666666667,
+  "baselineCoverageWithin5cm": 0.77892,
+  "coverageWithin10cm": 0.99636,
+  "baselineCoverageWithin10cm": 0.88026,
+  "elapsedSeconds": 133.05,
+  "limits": "Triangle surface estimated from dense measured returns. Missing capture remains missing; density alone does not prove photorealism. Colour is source-derived, not photographic texture baking. Reduced geometry and scan-colour texture are an approximation; raw-photograph texturing remains a separate stage.",
+  "parentMesh": "south-pilot.glb",
+  "targetTriangles": 250000,
+  "postSimplificationTrianglesRemoved": 2117,
+  "disconnectedVertexFansSplit": 459,
+  "adaptiveParentSupport": {
+    "sampleCount": 6976681,
+    "maximumGridSpacingMetres": 0.04,
+    "sampleCutoffMetres": 0.025,
+    "continuousParentDistanceBoundMetres": 0.065,
+    "maximumRetainedSampleDistanceMetres": 0.02499646693468094,
+    "rejectedFaces": 995
+  },
+  "textureSize": 2048,
+  "textureUVCharts": 13445,
+  "textureUVMethod": "xatlas 0.0.11; no vertex position changes",
+  "textureUtilization": 0.7936717867851257,
+  "textureCoveredPixels": 2954232,
+  "fileBytes": 14493188,
+  "bakeSeconds": 477.86,
+  "heightStratifiedAudit": {
+    "classification": "Approximate local-floor heights; NOT semantic car/tree/building labels",
+    "regions": [
+      {
+        "stratum": "ground",
+        "heightAboveApproximateFloorMetres": [
+          -0.5,
+          0.35
+        ],
+        "sourceRecords": 5860546,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.007499720901250839,
+          "p95": 0.09124305844306946,
+          "max": 1.1160134077072144,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.0033887040335685015,
+          "p95": 0.010966671630740166,
+          "max": 0.9334008097648621,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.91708,
+        "denseWithin5cm": 0.99724,
+        "baselineWithin10cm": 0.95424,
+        "denseWithin10cm": 0.99854
+      },
+      {
+        "stratum": "low-objects",
+        "heightAboveApproximateFloorMetres": [
+          0.35,
+          3
+        ],
+        "sourceRecords": 2046367,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.061735305935144424,
+          "p95": 0.3114490509033203,
+          "max": 1.7528384923934937,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.006477422080934048,
+          "p95": 0.037369225174188614,
+          "max": 1.6660228967666626,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.4245,
+        "denseWithin5cm": 0.97008,
+        "baselineWithin10cm": 0.69972,
+        "denseWithin10cm": 0.99036
+      },
+      {
+        "stratum": "higher-objects",
+        "heightAboveApproximateFloorMetres": [
+          3,
+          12
+        ],
+        "sourceRecords": 162479,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.10047271102666855,
+          "p95": 0.3867942988872528,
+          "max": 1.1790165901184082,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.01456185057759285,
+          "p95": 0.057867445051670074,
+          "max": 0.22562110424041748,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.28366,
+        "denseWithin5cm": 0.92652,
+        "baselineWithin10cm": 0.49838,
+        "denseWithin10cm": 0.99076
+      }
+    ]
+  },
+  "status": "Validated source-colour textured LOD trial; not full-campus integration"
+}
