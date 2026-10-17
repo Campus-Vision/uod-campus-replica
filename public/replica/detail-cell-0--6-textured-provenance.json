@@ -1,0 +1,110 @@
+{
+  "source": "20261008121946091.las; measured spatial cache",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "inputCacheSampling": "One unchanged measured representative per occupied 0.04 metre voxel; every input cache record considered",
+  "inputCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las-voxel040",
+  "inputCacheManifestSHA256": "26cac2e1f47c2af8e9fd24d256c936ef6fe0251de5965a97c086768c01dc2703",
+  "originalLASRecordsReadDuringExtraction": 200700295,
+  "boundsLocal": [
+    0.0,
+    40.0,
+    -240.0,
+    -200.0
+  ],
+  "haloMetres": 2.0,
+  "inputRegionRecords": 3077606,
+  "originalRegionRecords": null,
+  "coreRecords": 2537990,
+  "voxelMetres": 0.04,
+  "normalSamples": 3015103,
+  "outlierNormalSamplesRemoved": 62503,
+  "normalRadiusMetres": 0.24,
+  "normalMaxNeighbours": 32,
+  "normalOrientation": {
+    "method": "PCA normals oriented toward interpolated scanner position for each original measured record",
+    "trajectory": "@@2026-10-08-081521_REFINE2_Scanner1.PosL",
+    "trajectorySHA256": "8bfaac33c878c48891a4e52614baa4aa209b8b3701a2cebd960036f0030c5a7f",
+    "trajectoryRows": 127797,
+    "pointTimes": [
+      1791447713.097024,
+      1791448199.0610015
+    ],
+    "trajectoryRowsReorderedByTimestamp": 18,
+    "trajectoryTimes": [
+      1791447586.09,
+      1791448224.973524
+    ],
+    "flippedNormals": 1250864,
+    "scannerRangeMedianMetres": 10.819406394923961,
+    "scannerRangeP95Metres": 43.54937775104855,
+    "limits": "Visibility-derived sign of estimated PCA normals; not proof of a watertight surface. Original numerical time bases must match."
+  },
+  "statisticalOutlierFilter": {
+    "neighbours": 20,
+    "standardDeviationRatio": 2.5
+  },
+  "poissonScale": 1.03,
+  "densityBottomQuantileRemoved": 0.01,
+  "taubinIterations": 2,
+  "method": "poisson; quadratic detail reduction and measured-colour UV baking",
+  "depth": 10,
+  "vertices": 213797,
+  "triangles": 242863,
+  "vertexSupportMetres": {
+    "median": 0.0244147502953161,
+    "p95": 0.08281880122695934,
+    "max": 0.09999790811411254,
+    "nonfinite": 0
+  },
+  "supportCutoffMetres": 0.1,
+  "faceSupportCutoffMetres": 0.12,
+  "maximumEdgeMetres": 1.5453948974609375,
+  "colour": "2048-pixel UV atlas sampled from four nearest original LAS RGB returns; no source mutation",
+  "auditDomain": "Actual original every-record spatial-cache values within this region; at most150000 evenly indexed records for the output distance audit",
+  "auditRecords": 150000,
+  "sourceToMeshDistanceMetres": {
+    "median": 0.007214202545583248,
+    "p95": 0.023796265944838524,
+    "max": 2.6744461059570312,
+    "nonfinite": 0
+  },
+  "baselineSourceToMeshDistanceMetres": {
+    "median": 0.028704281896352768,
+    "p95": 0.2936939597129822,
+    "max": 7.853387355804443,
+    "nonfinite": 0
+  },
+  "coverageWithin5cm": 0.9875066666666666,
+  "baselineCoverageWithin5cm": 0.62398,
+  "coverageWithin10cm": 0.9971,
+  "baselineCoverageWithin10cm": 0.7880333333333334,
+  "elapsedSeconds": 48.47,
+  "limits": "Triangle surface estimated from dense measured returns. Missing capture remains missing; density alone does not prove photorealism. Colour is source-derived, not photographic texture baking. Reduced geometry and scan-colour texture are an approximation; raw-photograph texturing remains a separate stage.",
+  "colourSourceCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las",
+  "colourSourceCacheManifestSHA256": "d64cd0432bc8e4c5701e5094c68fc75c4a388b05e0cee36c48db0077989a717d",
+  "colourSourceCacheSampling": "Every LAS record; no temporal or voxel sampling",
+  "colourSourceRegionRecords": 16194863,
+  "parentMesh": "cell-0--6.glb",
+  "targetTriangles": 250000,
+  "postSimplificationTrianglesRemoved": 7136,
+  "disconnectedVertexFansSplit": 1545,
+  "adaptiveParentSupport": {
+    "sampleCount": 9049130,
+    "maximumGridSpacingMetres": 0.04,
+    "sampleCutoffMetres": 0.025,
+    "continuousParentDistanceBoundMetres": 0.065,
+    "maximumRetainedSampleDistanceMetres": 0.02499951235949993,
+    "rejectedFaces": 5470
+  },
+  "textureSize": 2048,
+  "textureUVCharts": 15672,
+  "textureUVMethod": "xatlas 0.0.11; no vertex position changes",
+  "textureUtilization": 0.785815417766571,
+  "textureCoveredPixels": 2996776,
+  "fileBytes": 14579100,
+  "bakeSeconds": 313.11
+}

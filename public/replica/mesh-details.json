@@ -1,0 +1,89 @@
+{
+  "version": 1,
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "tiles": [
+    {
+      "id": "cell-0--6-textured",
+      "asset": "detail-cell-0--6-textured.glb",
+      "assetSHA256": "a074f105463c105c1fd88d05a739a8669494d9a8c267a4167eba98f6036a6ce4",
+      "boundsLocal": [
+        0.0,
+        40.0,
+        -240.0,
+        -200.0
+      ],
+      "triangles": 242863,
+      "bytes": 14579100,
+      "provenance": "detail-cell-0--6-textured-provenance.json",
+      "review": "detail-cell-0--6-textured-review.json"
+    },
+    {
+      "id": "cell-1--6-textured",
+      "asset": "detail-cell-1--6-textured.glb",
+      "assetSHA256": "a55c136c772d7c31c40235a82ee6a5570123abcb9ec62bb29be70fe1cbcd748e",
+      "boundsLocal": [
+        40.0,
+        80.0,
+        -240.0,
+        -200.0
+      ],
+      "triangles": 220548,
+      "bytes": 14022712,
+      "provenance": "detail-cell-1--6-textured-provenance.json",
+      "review": "detail-cell-1--6-textured-review.json"
+    },
+    {
+      "id": "building-pilot-textured",
+      "asset": "detail-building-pilot-textured.glb",
+      "assetSHA256": "c557a0138af30639bd5f88dd8ab43a7aee7210932854b05ba96f350bb0cc9d13",
+      "boundsLocal": [
+        -80.0,
+        -40.0,
+        -160.0,
+        -120.0
+      ],
+      "triangles": 243841,
+      "bytes": 13497776,
+      "provenance": "detail-building-pilot-textured-provenance.json",
+      "review": "detail-building-pilot-textured-review.json"
+    },
+    {
+      "id": "south-pilot-textured",
+      "asset": "detail-south-pilot-textured.glb",
+      "assetSHA256": "52c43f453b99650ceae014ceb5b07e6175f032ff485b72adc3ba10d3de33f8c0",
+      "boundsLocal": [
+        -40,
+        0,
+        -240,
+        -200
+      ],
+      "triangles": 247882,
+      "bytes": 14493188,
+      "provenance": "detail-south-pilot-textured-provenance.json",
+      "review": "detail-south-pilot-textured-review.json"
+    },
+    {
+      "id": "vegetation-pilot-textured",
+      "asset": "detail-vegetation-pilot-textured.glb",
+      "assetSHA256": "7d5899086af7bd800f1a7dd07ba593463db3e2dff2de6dd610ace1a0277d0fd8",
+      "boundsLocal": [
+        -120.0,
+        -80.0,
+        -200.0,
+        -160.0
+      ],
+      "triangles": 247646,
+      "bytes": 15004264,
+      "provenance": "detail-vegetation-pilot-textured-provenance.json",
+      "review": "detail-vegetation-pilot-textured-review.json"
+    }
+  ],
+  "baseCoverage": "Full campus base retained, including through all detail holes",
+  "maximumViewDepthPreferenceMetres": 0.08,
+  "edgeRampMetres": 1.0,
+  "limits": "Selected local refinements only; remaining campus uses the measured base. Scan RGB atlases are not registered photograph textures. Depth preference changes visibility within8cm; exact source coordinates remain unchanged. Independent tiles are not topologically stitched."
+}

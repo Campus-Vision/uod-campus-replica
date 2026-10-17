@@ -5,6 +5,8 @@ import { createIcons, Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, Slide
 import { solarFrame, inverseAffine, terrainHeight } from './replica-math.js';
 import { makeRoofLayer, syncReconstructionLayers } from './reconstruction-layers.js';
 import { createBackgroundLandscape } from './background-landscape.js';
+import { createDetailManager } from './detail-loading.js';
+import { applyDetailPriority, disposeSceneResources } from './detail-material.js';
 
 export function mountCampus() {
 const events = new AbortController();
@@ -14,7 +16,7 @@ createIcons({ icons: { Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, Slid
 const $ = id => document.getElementById(id);
 const asset = name => `/replica/${name}`;
 const state = { ready: false, place: 'compound', angle: 'perspective', representation: 'surface', capture: 'normal', pendingCapture: null, error: null, transition: false, geometries: {}, textureLoads: 0 };
-let site, campusSurfaceInfo, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
+let site, campusSurfaceInfo, detailManifest, detailManager, scene, renderer, camera, controls, sun, hemi, terrain, building, buildingSurface, roofRepair, measuredDetails, facades, eastSurface, landscape, southArray, eastSupports, parkingSupports, perimeter;
 const buildingUniforms = { uNatural: {value: 1}, uSaturation: {value: 1.05}, uBrightness: {value: 1.1}, uPointSize: {value: .12}, uResolution: {value: 1} };
 let dirty = true, transition = null, settingCamera = false, resizeTimer, toastTimer, captureSequence = 0, shownProgress = 5;
 const textureCache = new Map(), labels = [];
@@ -357,6 +359,7 @@ function goPlace(place, instant = false, angle = state.angle) {
     transition = { start: performance.now(), from: camera.position.clone(), fromTarget: controls.target.clone(), ...desired, duration: 850 }; state.transition = true;
   }
   if (window.innerWidth <= 700) setPanel(false, false);
+  detailManager?.retry();
 }
 
 async function setCapture(mode) {
@@ -422,6 +425,8 @@ function frame(now) {
   }
   controls.update();
   if (dirty) {
+    detailManager?.update(camera.position,controls.target,state.ready&&state.representation==='surface'&&state.capture==='normal');
+    if(detailManager)state.detail.visible=detailManager.visibleIds();
     if (building?.isPoints) {
       const distance = camera.position.distanceTo(controls.target);
       const full = state.place === 'building' || distance < 400;
@@ -438,6 +443,9 @@ async function init() {
     const surfaceResponse = await fetch(asset('campus-surface.json'), {signal: events.signal});
     if (!surfaceResponse.ok) throw new Error(`Campus mesh metadata HTTP ${surfaceResponse.status}`);
     campusSurfaceInfo = await surfaceResponse.json();
+    const detailResponse=await fetch(asset('mesh-details.json'),{signal:events.signal});
+    if(!detailResponse.ok)throw new Error(`Detail metadata HTTP ${detailResponse.status}`);
+    detailManifest=await detailResponse.json();
     if (disposed) return;
     scene = new THREE.Scene(); scene.background = new THREE.Color('#e8e5dc'); scene.fog = new THREE.Fog('#e8e5dc', 1600, 5000);
     camera = new THREE.PerspectiveCamera(43, 1, 1, 12000); camera.up.set(0, 0, 1);
@@ -489,6 +497,36 @@ async function init() {
     buildingSurface.add(roofRepair);
     measuredDetails = new THREE.Group();
     measuredDetails.name = 'Progressive measured detail';
+    state.detail={available:detailManifest.tiles.length,visible:[],maximumResident:4,
+      baseCoverageRetained:true,maximumViewDepthPreferenceMetres:.08};
+    detailManager=createDetailManager({tiles:detailManifest.tiles,group:measuredDetails,
+      release:disposeSceneResources,invalidate,
+      onError:()=>toast('Local detail could not load. Select a campus location to retry.'),
+      load:async(tile,signal)=>{
+        const response=await fetch(asset(tile.asset),{signal});
+        if(!response.ok)throw new Error(`Detail HTTP ${response.status}`);
+        const bytes=await response.arrayBuffer();
+        if(bytes.byteLength!==tile.bytes)throw new Error('Incomplete detail asset');
+        const digest=await crypto.subtle.digest('SHA-256',bytes);
+        const hash=Array.from(new Uint8Array(digest),b=>b.toString(16).padStart(2,'0')).join('');
+        if(hash!==tile.assetSHA256)throw new Error('Detail asset differs from audited mesh');
+        signal.throwIfAborted();
+        const gltf=await loader.parseAsync(bytes,asset(''));
+        if(signal.aborted){disposeSceneResources(gltf.scene);signal.throwIfAborted();}
+        gltf.scene.name=tile.id;gltf.scene.userData={measured:true,provenance:tile.provenance};
+        try{
+          gltf.scene.traverse(object=>{
+            if(!object.isMesh)return;
+            const original=object.material,map=original.map;
+            if(!map)throw new Error('Measured colour atlas missing');
+            map.colorSpace=THREE.NoColorSpace;map.needsUpdate=true;
+            map.anisotropy=Math.min(8,renderer.capabilities.getMaxAnisotropy());
+            object.material=applyDetailPriority(makeMeasuredMaterial(false,map),tile.boundsLocal,camera);
+            original.dispose();object.renderOrder=2;
+          });
+          return gltf.scene;
+        }catch(error){disposeSceneResources(gltf.scene);throw error;}
+      }});
     syncReconstructionLayers(state.representation, $('landscape-toggle').checked, roofRepair, measuredDetails);
     building.visible = state.representation === 'points';
     buildingSurface.visible = state.representation === 'surface';
@@ -592,19 +630,13 @@ listen(document, 'keydown', event => {
 listen(window, 'pagehide', dispose);
 init();
 function disposeObject(root) {
-  root?.traverse(object => {
-    object.geometry?.dispose();
-    for (const material of (Array.isArray(object.material) ? object.material : [object.material])) {
-      if (!material) continue;
-      for (const value of Object.values(material)) if (value?.isTexture) value.dispose();
-      material.dispose();
-    }
-  });
+  disposeSceneResources(root);
 }
 function dispose() {
   if (disposed) return;
   disposed = true; events.abort(); cancelAnimationFrame(frameId);
   resizeObserver.disconnect(); clearTimeout(resizeTimer); clearTimeout(toastTimer);
+  detailManager?.dispose();
   controls?.dispose(); disposeObject(scene);
   for (const object of pendingObjects) disposeObject(object);
   pendingObjects.clear();

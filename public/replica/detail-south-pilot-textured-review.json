@@ -1,0 +1,248 @@
+{
+  "exportedGLB": {
+    "before": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-reconstruction\\south-pilot-textured.glb",
+      "sha256": "52c43f453b99650ceae014ceb5b07e6175f032ff485b72adc3ba10d3de33f8c0",
+      "bytes": 14493188,
+      "modifiedNs": 1792221217150832900
+    },
+    "after": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-reconstruction\\south-pilot-textured.glb",
+      "sha256": "52c43f453b99650ceae014ceb5b07e6175f032ff485b72adc3ba10d3de33f8c0",
+      "bytes": 14493188,
+      "modifiedNs": 1792221217150832900
+    },
+    "triangles": 247882,
+    "vertexBoundsLocalXYZ": [
+      [
+        -40.00765609741211,
+        -240.0067901611328,
+        4.102047920227051
+      ],
+      [
+        0.010447414591908455,
+        -199.99227905273438,
+        14.15112590789795
+      ]
+    ]
+  },
+  "baseGLB": {
+    "before": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-reconstruction\\campus-base-browser-v2.glb",
+      "sha256": "f59cb45ab70c1f80f0046f1ae7e43b3cd3017c2a5bdcea2fafb0f4bc5f7d1ac2",
+      "bytes": 162365816,
+      "modifiedNs": 1792236696983925300
+    },
+    "after": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-reconstruction\\campus-base-browser-v2.glb",
+      "sha256": "f59cb45ab70c1f80f0046f1ae7e43b3cd3017c2a5bdcea2fafb0f4bc5f7d1ac2",
+      "bytes": 162365816,
+      "modifiedNs": 1792236696983925300
+    },
+    "triangles": 5709063,
+    "vertexBoundsLocalXYZ": [
+      [
+        -250.01780700683594,
+        -317.51409912109375,
+        -8.040434837341309
+      ],
+      [
+        200.05252075195312,
+        59.965755462646484,
+        33.54619598388672
+      ]
+    ]
+  },
+  "metadataSHA256": "814a4c54ea43357cd35f827caebbf24b6212f2b6e86ecfa9fb793e4719809a54",
+  "sourceManifestSHA256": "d64cd0432bc8e4c5701e5094c68fc75c4a388b05e0cee36c48db0077989a717d",
+  "sourceCache": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las",
+  "sourceCacheSampling": "Every LAS record; no temporal or voxel sampling",
+  "sourceCacheRecords": 200424893,
+  "originalLASRecordsRead": 200700295,
+  "originalLASIdentity": {
+    "before": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\20261008121946091.las",
+      "bytes": 6823810842,
+      "modifiedNs": 1792173375769448400,
+      "matchesSourceManifest": true
+    },
+    "after": {
+      "path": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\20261008121946091.las",
+      "bytes": 6823810842,
+      "modifiedNs": 1792173375769448400,
+      "matchesSourceManifest": true
+    }
+  },
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "metadataBoundsLocal": [
+    -40,
+    0,
+    -240,
+    -200
+  ],
+  "boundsLocalXYZ": [
+    -40,
+    0,
+    -240,
+    -200,
+    -8.0,
+    45.0
+  ],
+  "boundsConvention": "XY lower-inclusive upper-exclusive; Z both-inclusive",
+  "sourceRecords": 8069575,
+  "sampledRecords": 100000,
+  "sampling": {
+    "method": "Uniform raw regional record IDs without replacement; independently seeded",
+    "seed": 2026101709,
+    "maximumRecords": 100000
+  },
+  "exportDistanceMetres": {
+    "within5cm": 0.9892,
+    "within10cm": 0.99648,
+    "within20cm": 0.99867,
+    "median": 0.004005755297839642,
+    "p95": 0.019767548888921738,
+    "max": 0.969133734703064
+  },
+  "baseDistanceMetres": {
+    "within5cm": 0.92855,
+    "within10cm": 0.97955,
+    "within20cm": 0.99633,
+    "median": 0.0063462513498961926,
+    "p95": 0.0626143366098404,
+    "max": 1.099873661994934
+  },
+  "localHeightBands": [
+    {
+      "localZMetres": [
+        -8,
+        0
+      ],
+      "upperInclusive": false,
+      "sourceRecords": 0,
+      "sampledRecords": 0,
+      "exportDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "baseDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "localZMetres": [
+        0,
+        3
+      ],
+      "upperInclusive": false,
+      "sourceRecords": 8,
+      "sampledRecords": 0,
+      "exportDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "baseDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      }
+    },
+    {
+      "localZMetres": [
+        3,
+        12
+      ],
+      "upperInclusive": false,
+      "sourceRecords": 8058875,
+      "sampledRecords": 99865,
+      "exportDistanceMetres": {
+        "within5cm": 0.9892254543633906,
+        "within10cm": 0.9964852550943775,
+        "within20cm": 0.9986682020727983,
+        "median": 0.00400039367377758,
+        "p95": 0.019658908247947693,
+        "max": 0.969133734703064
+      },
+      "baseDistanceMetres": {
+        "within5cm": 0.9292244530115656,
+        "within10cm": 0.9799128823912282,
+        "within20cm": 0.9965753767586242,
+        "median": 0.006335570942610502,
+        "p95": 0.06220538169145584,
+        "max": 1.099873661994934
+      }
+    },
+    {
+      "localZMetres": [
+        12,
+        25
+      ],
+      "upperInclusive": false,
+      "sourceRecords": 10692,
+      "sampledRecords": 135,
+      "exportDistanceMetres": {
+        "within5cm": 0.9703703703703703,
+        "within10cm": 0.9925925925925926,
+        "within20cm": 1.0,
+        "median": 0.011545540764927864,
+        "p95": 0.04433577135205269,
+        "max": 0.10153502970933914
+      },
+      "baseDistanceMetres": {
+        "within5cm": 0.42962962962962964,
+        "within10cm": 0.7111111111111111,
+        "within20cm": 0.8148148148148148,
+        "median": 0.0562686063349247,
+        "p95": 0.3991088569164276,
+        "max": 0.5851215124130249
+      }
+    },
+    {
+      "localZMetres": [
+        25,
+        45
+      ],
+      "upperInclusive": true,
+      "sourceRecords": 0,
+      "sampledRecords": 0,
+      "exportDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      },
+      "baseDistanceMetres": {
+        "within5cm": null,
+        "within10cm": null,
+        "within20cm": null,
+        "median": null,
+        "p95": null,
+        "max": null
+      }
+    }
+  ],
+  "elapsedSeconds": 5.66,
+  "limits": "Internal sampled original-source-to-exported-surface agreement only; not independent survey accuracy, semantic labels, texture quality, or proof of unseen surfaces. Dense source areas receive proportionate weight. Empty or unsampled height bands have null distance metrics."
+}
