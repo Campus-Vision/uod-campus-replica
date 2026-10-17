@@ -1,0 +1,1684 @@
+{
+  "mesh": "campus-base-trajectory.glb",
+  "source": "20261008121946091.las",
+  "sourceCacheRecords": 200424893,
+  "sourceCropBoundsLocal": [
+    -250.0,
+    200.0,
+    -320.0,
+    60.0,
+    -8.0,
+    45.0
+  ],
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "originalRecordsRead": 200700295,
+  "sampledRecords": 300000,
+  "sampling": "Uniform original retained-record IDs without replacement; seed 20261017",
+  "sourceManifestSHA256": "d64cd0432bc8e4c5701e5094c68fc75c4a388b05e0cee36c48db0077989a717d",
+  "distanceMetres": {
+    "median": 0.007618602365255356,
+    "p95": 0.07818429917097092,
+    "max": 29.597030639648438,
+    "nonfinite": 0,
+    "within5cm": 0.8981233333333334,
+    "within10cm": 0.97043,
+    "within20cm": 0.9950833333333333
+  },
+  "spatialCells": [
+    {
+      "cell40m": [
+        -7,
+        -7
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 7.362703800201416,
+        "p95": 7.362703800201416,
+        "max": 7.362703800201416,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        -7,
+        -5
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 0.07100918143987656,
+        "p95": 0.07100918143987656,
+        "max": 0.07100918143987656,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -7,
+        -4
+      ],
+      "sampledRecords": 9,
+      "distanceMetres": {
+        "median": 0.043235376477241516,
+        "p95": 1.0110759735107422,
+        "max": 1.5844677686691284,
+        "nonfinite": 0,
+        "within5cm": 0.5555555555555556,
+        "within10cm": 0.6666666666666666,
+        "within20cm": 0.8888888888888888
+      }
+    },
+    {
+      "cell40m": [
+        -7,
+        -3
+      ],
+      "sampledRecords": 89,
+      "distanceMetres": {
+        "median": 0.033116016536951065,
+        "p95": 0.12888064980506897,
+        "max": 1.2763944864273071,
+        "nonfinite": 0,
+        "within5cm": 0.6629213483146067,
+        "within10cm": 0.898876404494382,
+        "within20cm": 0.9887640449438202
+      }
+    },
+    {
+      "cell40m": [
+        -7,
+        -2
+      ],
+      "sampledRecords": 7,
+      "distanceMetres": {
+        "median": 0.037165358662605286,
+        "p95": 0.19364073872566223,
+        "max": 0.21974070370197296,
+        "nonfinite": 0,
+        "within5cm": 0.7142857142857143,
+        "within10cm": 0.7142857142857143,
+        "within20cm": 0.8571428571428571
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -8
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 7.482673168182373,
+        "p95": 7.482673168182373,
+        "max": 7.482673168182373,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -6
+      ],
+      "sampledRecords": 4,
+      "distanceMetres": {
+        "median": 0.043242406100034714,
+        "p95": 0.07331353425979614,
+        "max": 0.07861440628767014,
+        "nonfinite": 0,
+        "within5cm": 0.75,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -5
+      ],
+      "sampledRecords": 29,
+      "distanceMetres": {
+        "median": 0.04182509705424309,
+        "p95": 0.1624637097120285,
+        "max": 1.290644884109497,
+        "nonfinite": 0,
+        "within5cm": 0.5862068965517241,
+        "within10cm": 0.7931034482758621,
+        "within20cm": 0.9655172413793104
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -4
+      ],
+      "sampledRecords": 1417,
+      "distanceMetres": {
+        "median": 0.00569827388972044,
+        "p95": 0.07153453677892685,
+        "max": 3.288851022720337,
+        "nonfinite": 0,
+        "within5cm": 0.9019054340155258,
+        "within10cm": 0.9752999294283698,
+        "within20cm": 0.9922371206774877
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -3
+      ],
+      "sampledRecords": 9457,
+      "distanceMetres": {
+        "median": 0.004048505797982216,
+        "p95": 0.037326566874980927,
+        "max": 0.8764830827713013,
+        "nonfinite": 0,
+        "within5cm": 0.9675372739769483,
+        "within10cm": 0.9924923337210532,
+        "within20cm": 0.997356455535582
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -2
+      ],
+      "sampledRecords": 545,
+      "distanceMetres": {
+        "median": 0.011011328548192978,
+        "p95": 0.10399719327688217,
+        "max": 0.38930028676986694,
+        "nonfinite": 0,
+        "within5cm": 0.8275229357798165,
+        "within10cm": 0.944954128440367,
+        "within20cm": 0.9944954128440368
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        -1
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 0.011684167198836803,
+        "p95": 0.011684167198836803,
+        "max": 0.011684167198836803,
+        "nonfinite": 0,
+        "within5cm": 1.0,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        0
+      ],
+      "sampledRecords": 34,
+      "distanceMetres": {
+        "median": 0.06369183957576752,
+        "p95": 0.1630421131849289,
+        "max": 0.1931362897157669,
+        "nonfinite": 0,
+        "within5cm": 0.4411764705882353,
+        "within10cm": 0.7941176470588235,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -6,
+        1
+      ],
+      "sampledRecords": 6,
+      "distanceMetres": {
+        "median": 0.03372304141521454,
+        "p95": 0.11051124334335327,
+        "max": 0.13446836173534393,
+        "nonfinite": 0,
+        "within5cm": 0.8333333333333334,
+        "within10cm": 0.8333333333333334,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -7
+      ],
+      "sampledRecords": 4,
+      "distanceMetres": {
+        "median": 0.09191025793552399,
+        "p95": 0.12627282738685608,
+        "max": 0.12732945382595062,
+        "nonfinite": 0,
+        "within5cm": 0.25,
+        "within10cm": 0.5,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -6
+      ],
+      "sampledRecords": 64,
+      "distanceMetres": {
+        "median": 0.0312710702419281,
+        "p95": 0.18848824501037598,
+        "max": 0.33695822954177856,
+        "nonfinite": 0,
+        "within5cm": 0.625,
+        "within10cm": 0.8125,
+        "within20cm": 0.953125
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -5
+      ],
+      "sampledRecords": 380,
+      "distanceMetres": {
+        "median": 0.040485680103302,
+        "p95": 0.16013196110725403,
+        "max": 0.33948513865470886,
+        "nonfinite": 0,
+        "within5cm": 0.5894736842105263,
+        "within10cm": 0.8394736842105263,
+        "within20cm": 0.9736842105263158
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -4
+      ],
+      "sampledRecords": 2167,
+      "distanceMetres": {
+        "median": 0.011632447130978107,
+        "p95": 0.10532362014055252,
+        "max": 0.3276488184928894,
+        "nonfinite": 0,
+        "within5cm": 0.8186432856483618,
+        "within10cm": 0.9413936317489617,
+        "within20cm": 0.9958467928011075
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -3
+      ],
+      "sampledRecords": 17635,
+      "distanceMetres": {
+        "median": 0.004808124620467424,
+        "p95": 0.049204204231500626,
+        "max": 0.9559690952301025,
+        "nonfinite": 0,
+        "within5cm": 0.9509498157074,
+        "within10cm": 0.9852565920045364,
+        "within20cm": 0.9968244967394386
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -2
+      ],
+      "sampledRecords": 6083,
+      "distanceMetres": {
+        "median": 0.01817118376493454,
+        "p95": 0.0498712882399559,
+        "max": 3.090311050415039,
+        "nonfinite": 0,
+        "within5cm": 0.9501890514548742,
+        "within10cm": 0.9884925201380897,
+        "within20cm": 0.9973697188887062
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        -1
+      ],
+      "sampledRecords": 142,
+      "distanceMetres": {
+        "median": 0.03808662295341492,
+        "p95": 0.17422649264335632,
+        "max": 0.8771579265594482,
+        "nonfinite": 0,
+        "within5cm": 0.5704225352112676,
+        "within10cm": 0.7535211267605634,
+        "within20cm": 0.971830985915493
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        0
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 0.012166062369942665,
+        "p95": 0.012166062369942665,
+        "max": 0.012166062369942665,
+        "nonfinite": 0,
+        "within5cm": 1.0,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -5,
+        1
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 0.0719313845038414,
+        "p95": 0.0719313845038414,
+        "max": 0.0719313845038414,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -7
+      ],
+      "sampledRecords": 4,
+      "distanceMetres": {
+        "median": 0.03136315196752548,
+        "p95": 1.2150722742080688,
+        "max": 1.4229216575622559,
+        "nonfinite": 0,
+        "within5cm": 0.75,
+        "within10cm": 0.75,
+        "within20cm": 0.75
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -6
+      ],
+      "sampledRecords": 94,
+      "distanceMetres": {
+        "median": 0.03278575837612152,
+        "p95": 0.15356174111366272,
+        "max": 0.6585439443588257,
+        "nonfinite": 0,
+        "within5cm": 0.648936170212766,
+        "within10cm": 0.851063829787234,
+        "within20cm": 0.9680851063829787
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -5
+      ],
+      "sampledRecords": 5254,
+      "distanceMetres": {
+        "median": 0.0051880087703466415,
+        "p95": 0.0740448534488678,
+        "max": 2.8981986045837402,
+        "nonfinite": 0,
+        "within5cm": 0.9101636848115722,
+        "within10cm": 0.970118005329273,
+        "within20cm": 0.9958127141225733
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -4
+      ],
+      "sampledRecords": 11044,
+      "distanceMetres": {
+        "median": 0.008358226157724857,
+        "p95": 0.0749431625008583,
+        "max": 1.7274796962738037,
+        "nonfinite": 0,
+        "within5cm": 0.9068272365085114,
+        "within10cm": 0.9729264759145237,
+        "within20cm": 0.9964686707714596
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -3
+      ],
+      "sampledRecords": 10582,
+      "distanceMetres": {
+        "median": 0.00917929969727993,
+        "p95": 0.09105531126260757,
+        "max": 1.254080057144165,
+        "nonfinite": 0,
+        "within5cm": 0.8653373653373654,
+        "within10cm": 0.9594594594594594,
+        "within20cm": 0.9969759969759969
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -2
+      ],
+      "sampledRecords": 11535,
+      "distanceMetres": {
+        "median": 0.008158251643180847,
+        "p95": 0.05762306973338127,
+        "max": 0.675048291683197,
+        "nonfinite": 0,
+        "within5cm": 0.9381881231035978,
+        "within10cm": 0.988036410923277,
+        "within20cm": 0.9989596879063719
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        -1
+      ],
+      "sampledRecords": 340,
+      "distanceMetres": {
+        "median": 0.033386021852493286,
+        "p95": 0.15920960903167725,
+        "max": 1.0022695064544678,
+        "nonfinite": 0,
+        "within5cm": 0.5970588235294118,
+        "within10cm": 0.8264705882352941,
+        "within20cm": 0.9705882352941176
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        0
+      ],
+      "sampledRecords": 60,
+      "distanceMetres": {
+        "median": 0.05814517289400101,
+        "p95": 0.21074621379375458,
+        "max": 0.7254708409309387,
+        "nonfinite": 0,
+        "within5cm": 0.36666666666666664,
+        "within10cm": 0.75,
+        "within20cm": 0.8833333333333333
+      }
+    },
+    {
+      "cell40m": [
+        -4,
+        1
+      ],
+      "sampledRecords": 16,
+      "distanceMetres": {
+        "median": 0.09297525882720947,
+        "p95": 0.9023943543434143,
+        "max": 1.9353206157684326,
+        "nonfinite": 0,
+        "within5cm": 0.25,
+        "within10cm": 0.5,
+        "within20cm": 0.75
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -7
+      ],
+      "sampledRecords": 34,
+      "distanceMetres": {
+        "median": 0.045968905091285706,
+        "p95": 0.10771618038415909,
+        "max": 0.1671542376279831,
+        "nonfinite": 0,
+        "within5cm": 0.5294117647058824,
+        "within10cm": 0.9117647058823529,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -6
+      ],
+      "sampledRecords": 3406,
+      "distanceMetres": {
+        "median": 0.013663023710250854,
+        "p95": 0.11336889863014221,
+        "max": 2.48624324798584,
+        "nonfinite": 0,
+        "within5cm": 0.8094539048737522,
+        "within10cm": 0.9336465061655901,
+        "within20cm": 0.9926600117439812
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -5
+      ],
+      "sampledRecords": 5920,
+      "distanceMetres": {
+        "median": 0.012004906311631203,
+        "p95": 0.06850740313529968,
+        "max": 0.8482092022895813,
+        "nonfinite": 0,
+        "within5cm": 0.9170608108108108,
+        "within10cm": 0.9765202702702702,
+        "within20cm": 0.9956081081081081
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -4
+      ],
+      "sampledRecords": 4442,
+      "distanceMetres": {
+        "median": 0.00598518829792738,
+        "p95": 0.06884147971868515,
+        "max": 1.289737582206726,
+        "nonfinite": 0,
+        "within5cm": 0.9221071589374156,
+        "within10cm": 0.9756866276452049,
+        "within20cm": 0.994597028365601
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -3
+      ],
+      "sampledRecords": 8908,
+      "distanceMetres": {
+        "median": 0.004873375874012709,
+        "p95": 0.05212940648198128,
+        "max": 0.5473547577857971,
+        "nonfinite": 0,
+        "within5cm": 0.9461158509205209,
+        "within10cm": 0.987651549169286,
+        "within20cm": 0.9977548271216884
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -2
+      ],
+      "sampledRecords": 15394,
+      "distanceMetres": {
+        "median": 0.005325686652213335,
+        "p95": 0.05842343345284462,
+        "max": 2.608314037322998,
+        "nonfinite": 0,
+        "within5cm": 0.9343900220865272,
+        "within10cm": 0.9857087176822138,
+        "within20cm": 0.9982460698973626
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        -1
+      ],
+      "sampledRecords": 188,
+      "distanceMetres": {
+        "median": 0.02088957279920578,
+        "p95": 0.13443946838378906,
+        "max": 0.2765103578567505,
+        "nonfinite": 0,
+        "within5cm": 0.723404255319149,
+        "within10cm": 0.8936170212765957,
+        "within20cm": 0.9840425531914894
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        0
+      ],
+      "sampledRecords": 14,
+      "distanceMetres": {
+        "median": 0.04093090444803238,
+        "p95": 0.17306636273860931,
+        "max": 0.2705112099647522,
+        "nonfinite": 0,
+        "within5cm": 0.6428571428571429,
+        "within10cm": 0.7857142857142857,
+        "within20cm": 0.9285714285714286
+      }
+    },
+    {
+      "cell40m": [
+        -3,
+        1
+      ],
+      "sampledRecords": 25,
+      "distanceMetres": {
+        "median": 0.04618123546242714,
+        "p95": 0.614647388458252,
+        "max": 2.1875998973846436,
+        "nonfinite": 0,
+        "within5cm": 0.56,
+        "within10cm": 0.72,
+        "within20cm": 0.8
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -8
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 9.255619049072266,
+        "p95": 9.255619049072266,
+        "max": 9.255619049072266,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -7
+      ],
+      "sampledRecords": 1457,
+      "distanceMetres": {
+        "median": 0.03593569993972778,
+        "p95": 0.14158476889133453,
+        "max": 1.6494345664978027,
+        "nonfinite": 0,
+        "within5cm": 0.6252573781743308,
+        "within10cm": 0.8579272477693891,
+        "within20cm": 0.9849004804392587
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -6
+      ],
+      "sampledRecords": 10893,
+      "distanceMetres": {
+        "median": 0.005435235798358917,
+        "p95": 0.06205592304468155,
+        "max": 1.686669111251831,
+        "nonfinite": 0,
+        "within5cm": 0.9351877352428165,
+        "within10cm": 0.9813641788304416,
+        "within20cm": 0.998347562654916
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -5
+      ],
+      "sampledRecords": 3545,
+      "distanceMetres": {
+        "median": 0.00525517575442791,
+        "p95": 0.066827192902565,
+        "max": 2.589855432510376,
+        "nonfinite": 0,
+        "within5cm": 0.9244005641748942,
+        "within10cm": 0.9746121297602257,
+        "within20cm": 0.9912552891396332
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -4
+      ],
+      "sampledRecords": 4556,
+      "distanceMetres": {
+        "median": 0.014441624283790588,
+        "p95": 0.09764586389064789,
+        "max": 0.8199194669723511,
+        "nonfinite": 0,
+        "within5cm": 0.8270412642669008,
+        "within10cm": 0.9521510096575944,
+        "within20cm": 0.9949517120280948
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -3
+      ],
+      "sampledRecords": 4292,
+      "distanceMetres": {
+        "median": 0.01727120578289032,
+        "p95": 0.10433332622051239,
+        "max": 1.0692561864852905,
+        "nonfinite": 0,
+        "within5cm": 0.7958993476234856,
+        "within10cm": 0.9443150046598322,
+        "within20cm": 0.9925442684063374
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -2
+      ],
+      "sampledRecords": 9645,
+      "distanceMetres": {
+        "median": 0.005395717453211546,
+        "p95": 0.06358795613050461,
+        "max": 0.8370529413223267,
+        "nonfinite": 0,
+        "within5cm": 0.9299118714359772,
+        "within10cm": 0.9828926905132193,
+        "within20cm": 0.9990668740279938
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        -1
+      ],
+      "sampledRecords": 330,
+      "distanceMetres": {
+        "median": 0.03438892960548401,
+        "p95": 0.15256519615650177,
+        "max": 1.0232288837432861,
+        "nonfinite": 0,
+        "within5cm": 0.6060606060606061,
+        "within10cm": 0.8606060606060606,
+        "within20cm": 0.9818181818181818
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        0
+      ],
+      "sampledRecords": 18,
+      "distanceMetres": {
+        "median": 0.12855079770088196,
+        "p95": 0.44219473004341125,
+        "max": 0.801319420337677,
+        "nonfinite": 0,
+        "within5cm": 0.2777777777777778,
+        "within10cm": 0.4444444444444444,
+        "within20cm": 0.7222222222222222
+      }
+    },
+    {
+      "cell40m": [
+        -2,
+        1
+      ],
+      "sampledRecords": 29,
+      "distanceMetres": {
+        "median": 0.052449844777584076,
+        "p95": 0.531440019607544,
+        "max": 0.7548197507858276,
+        "nonfinite": 0,
+        "within5cm": 0.4827586206896552,
+        "within10cm": 0.7241379310344828,
+        "within20cm": 0.8275862068965517
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -8
+      ],
+      "sampledRecords": 24,
+      "distanceMetres": {
+        "median": 0.0567198321223259,
+        "p95": 1.2828742265701294,
+        "max": 2.3609957695007324,
+        "nonfinite": 0,
+        "within5cm": 0.375,
+        "within10cm": 0.75,
+        "within20cm": 0.875
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -7
+      ],
+      "sampledRecords": 7851,
+      "distanceMetres": {
+        "median": 0.006707817781716585,
+        "p95": 0.09802153706550598,
+        "max": 0.9338033199310303,
+        "nonfinite": 0,
+        "within5cm": 0.8402751241880015,
+        "within10cm": 0.9531269901923322,
+        "within20cm": 0.9971978091962808
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -6
+      ],
+      "sampledRecords": 12144,
+      "distanceMetres": {
+        "median": 0.006293564569205046,
+        "p95": 0.06232517957687378,
+        "max": 0.5759567022323608,
+        "nonfinite": 0,
+        "within5cm": 0.9277009222661396,
+        "within10cm": 0.9818017127799736,
+        "within20cm": 0.9978590250329381
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -5
+      ],
+      "sampledRecords": 4600,
+      "distanceMetres": {
+        "median": 0.012406053021550179,
+        "p95": 0.08836913853883743,
+        "max": 1.9368255138397217,
+        "nonfinite": 0,
+        "within5cm": 0.8458695652173913,
+        "within10cm": 0.96,
+        "within20cm": 0.9932608695652174
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -4
+      ],
+      "sampledRecords": 263,
+      "distanceMetres": {
+        "median": 0.0178105216473341,
+        "p95": 0.11876875907182693,
+        "max": 0.5797865986824036,
+        "nonfinite": 0,
+        "within5cm": 0.7832699619771863,
+        "within10cm": 0.9163498098859315,
+        "within20cm": 0.9885931558935361
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -3
+      ],
+      "sampledRecords": 4366,
+      "distanceMetres": {
+        "median": 0.004377384670078754,
+        "p95": 0.05685925483703613,
+        "max": 1.283871054649353,
+        "nonfinite": 0,
+        "within5cm": 0.9413650939074668,
+        "within10cm": 0.9823637196518552,
+        "within20cm": 0.9954191479615209
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -2
+      ],
+      "sampledRecords": 5673,
+      "distanceMetres": {
+        "median": 0.007405856158584356,
+        "p95": 0.08779214322566986,
+        "max": 1.794664740562439,
+        "nonfinite": 0,
+        "within5cm": 0.8714965626652564,
+        "within10cm": 0.9684470297902344,
+        "within20cm": 0.9962982548915917
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        -1
+      ],
+      "sampledRecords": 35,
+      "distanceMetres": {
+        "median": 0.05746804177761078,
+        "p95": 0.9339984655380249,
+        "max": 3.1959187984466553,
+        "nonfinite": 0,
+        "within5cm": 0.4857142857142857,
+        "within10cm": 0.6285714285714286,
+        "within20cm": 0.8
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        0
+      ],
+      "sampledRecords": 18,
+      "distanceMetres": {
+        "median": 0.12105917930603027,
+        "p95": 1.5075478553771973,
+        "max": 4.191664695739746,
+        "nonfinite": 0,
+        "within5cm": 0.2777777777777778,
+        "within10cm": 0.5,
+        "within20cm": 0.6111111111111112
+      }
+    },
+    {
+      "cell40m": [
+        -1,
+        1
+      ],
+      "sampledRecords": 6,
+      "distanceMetres": {
+        "median": 0.05196535587310791,
+        "p95": 0.16580045223236084,
+        "max": 0.1994260996580124,
+        "nonfinite": 0,
+        "within5cm": 0.5,
+        "within10cm": 0.8333333333333334,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -8
+      ],
+      "sampledRecords": 21,
+      "distanceMetres": {
+        "median": 0.04577244445681572,
+        "p95": 0.12793543934822083,
+        "max": 0.14493469893932343,
+        "nonfinite": 0,
+        "within5cm": 0.5714285714285714,
+        "within10cm": 0.7619047619047619,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -7
+      ],
+      "sampledRecords": 7712,
+      "distanceMetres": {
+        "median": 0.012373697943985462,
+        "p95": 0.09267324209213257,
+        "max": 0.6875861883163452,
+        "nonfinite": 0,
+        "within5cm": 0.8558091286307054,
+        "within10cm": 0.9592842323651453,
+        "within20cm": 0.9974066390041494
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -6
+      ],
+      "sampledRecords": 21646,
+      "distanceMetres": {
+        "median": 0.010593269020318985,
+        "p95": 0.0627858117222786,
+        "max": 4.446550369262695,
+        "nonfinite": 0,
+        "within5cm": 0.9188764667837014,
+        "within10cm": 0.9817518248175182,
+        "within20cm": 0.9974591148480089
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -5
+      ],
+      "sampledRecords": 2408,
+      "distanceMetres": {
+        "median": 0.0337836891412735,
+        "p95": 0.1399131864309311,
+        "max": 3.8876662254333496,
+        "nonfinite": 0,
+        "within5cm": 0.6553156146179402,
+        "within10cm": 0.8924418604651163,
+        "within20cm": 0.978405315614618
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -4
+      ],
+      "sampledRecords": 964,
+      "distanceMetres": {
+        "median": 0.03457563370466232,
+        "p95": 0.13106290996074677,
+        "max": 1.0669050216674805,
+        "nonfinite": 0,
+        "within5cm": 0.6410788381742739,
+        "within10cm": 0.8775933609958506,
+        "within20cm": 0.9865145228215768
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -3
+      ],
+      "sampledRecords": 96,
+      "distanceMetres": {
+        "median": 0.020627956837415695,
+        "p95": 0.23460663855075836,
+        "max": 0.8703863024711609,
+        "nonfinite": 0,
+        "within5cm": 0.71875,
+        "within10cm": 0.8645833333333334,
+        "within20cm": 0.9479166666666666
+      }
+    },
+    {
+      "cell40m": [
+        0,
+        -2
+      ],
+      "sampledRecords": 85,
+      "distanceMetres": {
+        "median": 0.016921333968639374,
+        "p95": 0.07933154702186584,
+        "max": 0.9907306432723999,
+        "nonfinite": 0,
+        "within5cm": 0.8235294117647058,
+        "within10cm": 0.9529411764705882,
+        "within20cm": 0.9764705882352941
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -8
+      ],
+      "sampledRecords": 9,
+      "distanceMetres": {
+        "median": 0.02970658615231514,
+        "p95": 0.1791452020406723,
+        "max": 0.25417232513427734,
+        "nonfinite": 0,
+        "within5cm": 0.6666666666666666,
+        "within10cm": 0.8888888888888888,
+        "within20cm": 0.8888888888888888
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -7
+      ],
+      "sampledRecords": 13812,
+      "distanceMetres": {
+        "median": 0.01531105488538742,
+        "p95": 0.0837780311703682,
+        "max": 6.067804336547852,
+        "nonfinite": 0,
+        "within5cm": 0.8850999131190269,
+        "within10cm": 0.9684332464523603,
+        "within20cm": 0.9960179554011005
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -6
+      ],
+      "sampledRecords": 19050,
+      "distanceMetres": {
+        "median": 0.01304764486849308,
+        "p95": 0.075031578540802,
+        "max": 3.281118154525757,
+        "nonfinite": 0,
+        "within5cm": 0.8966929133858268,
+        "within10cm": 0.9738582677165354,
+        "within20cm": 0.9918635170603675
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -5
+      ],
+      "sampledRecords": 1838,
+      "distanceMetres": {
+        "median": 0.028239645063877106,
+        "p95": 0.12178701907396317,
+        "max": 4.258450984954834,
+        "nonfinite": 0,
+        "within5cm": 0.7448313384113167,
+        "within10cm": 0.9243743199129488,
+        "within20cm": 0.9782372143634385
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -4
+      ],
+      "sampledRecords": 372,
+      "distanceMetres": {
+        "median": 0.0327378585934639,
+        "p95": 0.4288856089115143,
+        "max": 4.420713901519775,
+        "nonfinite": 0,
+        "within5cm": 0.6424731182795699,
+        "within10cm": 0.8172043010752689,
+        "within20cm": 0.9193548387096774
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -3
+      ],
+      "sampledRecords": 36,
+      "distanceMetres": {
+        "median": 0.03362139314413071,
+        "p95": 0.16181248426437378,
+        "max": 0.37268438935279846,
+        "nonfinite": 0,
+        "within5cm": 0.5555555555555556,
+        "within10cm": 0.8333333333333334,
+        "within20cm": 0.9722222222222222
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -2
+      ],
+      "sampledRecords": 18,
+      "distanceMetres": {
+        "median": 0.023678021505475044,
+        "p95": 0.05681546404957771,
+        "max": 0.06723661720752716,
+        "nonfinite": 0,
+        "within5cm": 0.8888888888888888,
+        "within10cm": 1.0,
+        "within20cm": 1.0
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        -1
+      ],
+      "sampledRecords": 2,
+      "distanceMetres": {
+        "median": 10.201239585876465,
+        "p95": 19.376548767089844,
+        "max": 20.396026611328125,
+        "nonfinite": 0,
+        "within5cm": 0.5,
+        "within10cm": 0.5,
+        "within20cm": 0.5
+      }
+    },
+    {
+      "cell40m": [
+        1,
+        0
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 27.049528121948242,
+        "p95": 27.049528121948242,
+        "max": 27.049528121948242,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -7
+      ],
+      "sampledRecords": 2036,
+      "distanceMetres": {
+        "median": 0.02065567672252655,
+        "p95": 0.11954333633184433,
+        "max": 0.6663200855255127,
+        "nonfinite": 0,
+        "within5cm": 0.7637524557956779,
+        "within10cm": 0.9219056974459725,
+        "within20cm": 0.9945972495088409
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -6
+      ],
+      "sampledRecords": 13662,
+      "distanceMetres": {
+        "median": 0.0060006375424563885,
+        "p95": 0.062118470668792725,
+        "max": 2.3349721431732178,
+        "nonfinite": 0,
+        "within5cm": 0.9297321036451471,
+        "within10cm": 0.9795783926218709,
+        "within20cm": 0.9950958864002343
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -5
+      ],
+      "sampledRecords": 3554,
+      "distanceMetres": {
+        "median": 0.01327948085963726,
+        "p95": 0.10497894138097763,
+        "max": 5.320941925048828,
+        "nonfinite": 0,
+        "within5cm": 0.827236916150816,
+        "within10cm": 0.943725379853686,
+        "within20cm": 0.9825548677546426
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -4
+      ],
+      "sampledRecords": 512,
+      "distanceMetres": {
+        "median": 0.021168526262044907,
+        "p95": 0.1608121544122696,
+        "max": 4.722469806671143,
+        "nonfinite": 0,
+        "within5cm": 0.78515625,
+        "within10cm": 0.904296875,
+        "within20cm": 0.95703125
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -3
+      ],
+      "sampledRecords": 18,
+      "distanceMetres": {
+        "median": 0.05502436310052872,
+        "p95": 0.48863521218299866,
+        "max": 1.1251752376556396,
+        "nonfinite": 0,
+        "within5cm": 0.3888888888888889,
+        "within10cm": 0.6666666666666666,
+        "within20cm": 0.7222222222222222
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -2
+      ],
+      "sampledRecords": 4,
+      "distanceMetres": {
+        "median": 0.06922052800655365,
+        "p95": 0.19267292320728302,
+        "max": 0.21232099831104279,
+        "nonfinite": 0,
+        "within5cm": 0.25,
+        "within10cm": 0.75,
+        "within20cm": 0.75
+      }
+    },
+    {
+      "cell40m": [
+        2,
+        -1
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 1.7966747283935547,
+        "p95": 1.7966747283935547,
+        "max": 1.7966747283935547,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -7
+      ],
+      "sampledRecords": 224,
+      "distanceMetres": {
+        "median": 0.020678764209151268,
+        "p95": 0.13475677371025085,
+        "max": 0.5208268761634827,
+        "nonfinite": 0,
+        "within5cm": 0.6830357142857143,
+        "within10cm": 0.8705357142857143,
+        "within20cm": 0.9821428571428571
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -6
+      ],
+      "sampledRecords": 3528,
+      "distanceMetres": {
+        "median": 0.006077452562749386,
+        "p95": 0.09311860054731369,
+        "max": 1.272310495376587,
+        "nonfinite": 0,
+        "within5cm": 0.8698979591836735,
+        "within10cm": 0.9589002267573696,
+        "within20cm": 0.9934807256235828
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -5
+      ],
+      "sampledRecords": 8436,
+      "distanceMetres": {
+        "median": 0.004746916703879833,
+        "p95": 0.059158287942409515,
+        "max": 2.6490912437438965,
+        "nonfinite": 0,
+        "within5cm": 0.9380037932669512,
+        "within10cm": 0.9784257942152679,
+        "within20cm": 0.9937174016121385
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -4
+      ],
+      "sampledRecords": 3896,
+      "distanceMetres": {
+        "median": 0.006387731991708279,
+        "p95": 0.07648491859436035,
+        "max": 1.4755967855453491,
+        "nonfinite": 0,
+        "within5cm": 0.9058008213552361,
+        "within10cm": 0.9694558521560575,
+        "within20cm": 0.9928131416837782
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -3
+      ],
+      "sampledRecords": 248,
+      "distanceMetres": {
+        "median": 0.012951659969985485,
+        "p95": 0.14036065340042114,
+        "max": 0.8934015035629272,
+        "nonfinite": 0,
+        "within5cm": 0.7580645161290323,
+        "within10cm": 0.907258064516129,
+        "within20cm": 0.9838709677419355
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -2
+      ],
+      "sampledRecords": 29,
+      "distanceMetres": {
+        "median": 0.06253139674663544,
+        "p95": 0.2030927687883377,
+        "max": 0.4298415780067444,
+        "nonfinite": 0,
+        "within5cm": 0.4482758620689655,
+        "within10cm": 0.7241379310344828,
+        "within20cm": 0.896551724137931
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        -1
+      ],
+      "sampledRecords": 5,
+      "distanceMetres": {
+        "median": 0.05582880973815918,
+        "p95": 0.9787692427635193,
+        "max": 1.131990909576416,
+        "nonfinite": 0,
+        "within5cm": 0.2,
+        "within10cm": 0.6,
+        "within20cm": 0.6
+      }
+    },
+    {
+      "cell40m": [
+        3,
+        0
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 23.46097755432129,
+        "p95": 23.46097755432129,
+        "max": 23.46097755432129,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -6
+      ],
+      "sampledRecords": 145,
+      "distanceMetres": {
+        "median": 0.03175068274140358,
+        "p95": 0.1770593523979187,
+        "max": 0.6946720480918884,
+        "nonfinite": 0,
+        "within5cm": 0.6344827586206897,
+        "within10cm": 0.8482758620689655,
+        "within20cm": 0.9517241379310345
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -5
+      ],
+      "sampledRecords": 1753,
+      "distanceMetres": {
+        "median": 0.009340494871139526,
+        "p95": 0.12294238805770874,
+        "max": 0.7598830461502075,
+        "nonfinite": 0,
+        "within5cm": 0.7626925270964061,
+        "within10cm": 0.9070165430690246,
+        "within20cm": 0.9908727895037079
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -4
+      ],
+      "sampledRecords": 6514,
+      "distanceMetres": {
+        "median": 0.0041140601970255375,
+        "p95": 0.08292245864868164,
+        "max": 1.7151739597320557,
+        "nonfinite": 0,
+        "within5cm": 0.8937672704943199,
+        "within10cm": 0.9680687749462695,
+        "within20cm": 0.9967761743936138
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -3
+      ],
+      "sampledRecords": 2272,
+      "distanceMetres": {
+        "median": 0.002091438975185156,
+        "p95": 0.06107400730252266,
+        "max": 1.0742119550704956,
+        "nonfinite": 0,
+        "within5cm": 0.9339788732394366,
+        "within10cm": 0.9766725352112676,
+        "within20cm": 0.9951584507042254
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -2
+      ],
+      "sampledRecords": 7,
+      "distanceMetres": {
+        "median": 0.3431633710861206,
+        "p95": 2.337007522583008,
+        "max": 2.8456807136535645,
+        "nonfinite": 0,
+        "within5cm": 0.14285714285714285,
+        "within10cm": 0.14285714285714285,
+        "within20cm": 0.2857142857142857
+      }
+    },
+    {
+      "cell40m": [
+        4,
+        -1
+      ],
+      "sampledRecords": 1,
+      "distanceMetres": {
+        "median": 29.597030639648438,
+        "p95": 29.597030639648438,
+        "max": 29.597030639648438,
+        "nonfinite": 0,
+        "within5cm": 0.0,
+        "within10cm": 0.0,
+        "within20cm": 0.0
+      }
+    }
+  ],
+  "localHeightBands": [
+    {
+      "localZMetres": [
+        -8,
+        0
+      ],
+      "sampledRecords": 91106,
+      "distanceMetres": {
+        "median": 0.005673398729413748,
+        "p95": 0.04634356126189232,
+        "max": 4.191664695739746,
+        "nonfinite": 0,
+        "within5cm": 0.9550852852721007,
+        "within10cm": 0.989473799749742,
+        "within20cm": 0.9982986850481856
+      }
+    },
+    {
+      "localZMetres": [
+        0,
+        3
+      ],
+      "sampledRecords": 42083,
+      "distanceMetres": {
+        "median": 0.007579726632684469,
+        "p95": 0.08146066963672638,
+        "max": 4.446550369262695,
+        "nonfinite": 0,
+        "within5cm": 0.8936625240595966,
+        "within10cm": 0.9682056887579308,
+        "within20cm": 0.9942256968372026
+      }
+    },
+    {
+      "localZMetres": [
+        3,
+        12
+      ],
+      "sampledRecords": 126357,
+      "distanceMetres": {
+        "median": 0.007465863134711981,
+        "p95": 0.07843101769685745,
+        "max": 29.597030639648438,
+        "nonfinite": 0,
+        "within5cm": 0.8960564115957169,
+        "within10cm": 0.9703696668961751,
+        "within20cm": 0.9963911773783803
+      }
+    },
+    {
+      "localZMetres": [
+        12,
+        25
+      ],
+      "sampledRecords": 34868,
+      "distanceMetres": {
+        "median": 0.02236897498369217,
+        "p95": 0.11826573312282562,
+        "max": 9.255619049072266,
+        "nonfinite": 0,
+        "within5cm": 0.7741195365377997,
+        "within10cm": 0.9273545944705748,
+        "within20cm": 0.9853160490994608
+      }
+    },
+    {
+      "localZMetres": [
+        25,
+        45
+      ],
+      "sampledRecords": 5586,
+      "distanceMetres": {
+        "median": 0.017626330256462097,
+        "p95": 0.10289264470338821,
+        "max": 3.6310694217681885,
+        "nonfinite": 0,
+        "within5cm": 0.8234872896527032,
+        "within10cm": 0.9468313641245972,
+        "within20cm": 0.9804869316147512
+      }
+    }
+  ],
+  "limits": "Sampled source-to-surface agreement, not surveyed accuracy or proof of unseen surfaces. Local Z bands are not semantic vegetation/vehicle/building labels. Dense source areas receive proportionate weight; per-cell metrics expose spatial gaps."
+}

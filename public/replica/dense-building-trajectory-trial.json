@@ -1,0 +1,194 @@
+{
+  "source": "20261008121946091.las; measured spatial cache",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "inputCacheSampling": "One unchanged measured representative per occupied 0.04 metre voxel; every input cache record considered",
+  "inputCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las-voxel040",
+  "inputCacheManifestSHA256": "26cac2e1f47c2af8e9fd24d256c936ef6fe0251de5965a97c086768c01dc2703",
+  "originalLASRecordsReadDuringExtraction": 200700295,
+  "boundsLocal": [
+    -80.0,
+    -40.0,
+    -160.0,
+    -120.0
+  ],
+  "haloMetres": 2.0,
+  "inputRegionRecords": 1267958,
+  "originalRegionRecords": null,
+  "coreRecords": 1111801,
+  "voxelMetres": 0.04,
+  "normalSamples": 1236905,
+  "outlierNormalSamplesRemoved": 31053,
+  "normalRadiusMetres": 0.24,
+  "normalMaxNeighbours": 32,
+  "normalOrientation": {
+    "method": "PCA normals oriented toward interpolated scanner position for each original measured record",
+    "trajectory": "@@2026-10-08-081521_REFINE2_Scanner1.PosL",
+    "trajectorySHA256": "8bfaac33c878c48891a4e52614baa4aa209b8b3701a2cebd960036f0030c5a7f",
+    "trajectoryRows": 127797,
+    "pointTimes": [
+      1791447602.9580603,
+      1791448199.1515515
+    ],
+    "trajectoryRowsReorderedByTimestamp": 18,
+    "trajectoryTimes": [
+      1791447586.09,
+      1791448224.973524
+    ],
+    "flippedNormals": 942722,
+    "scannerRangeMedianMetres": 57.64886833041177,
+    "scannerRangeP95Metres": 78.09667499018992,
+    "limits": "Visibility-derived sign of estimated PCA normals; not proof of a watertight surface. Original numerical time bases must match."
+  },
+  "statisticalOutlierFilter": {
+    "neighbours": 20,
+    "standardDeviationRatio": 2.5
+  },
+  "poissonScale": 1.03,
+  "densityBottomQuantileRemoved": 0.01,
+  "taubinIterations": 2,
+  "method": "poisson",
+  "depth": 10,
+  "vertices": 1819048,
+  "triangles": 3470451,
+  "vertexSupportMetres": {
+    "median": 0.02893887906320187,
+    "p95": 0.08216829770192684,
+    "max": 0.1000027108133519,
+    "nonfinite": 0
+  },
+  "supportCutoffMetres": 0.1,
+  "faceSupportCutoffMetres": 0.12,
+  "maximumEdgeMetres": 0.4,
+  "colour": "Inverse-distance weighted four nearest actual cache RGB samples; no source mutation",
+  "auditDomain": "Input cache representatives; every-record source requires a separate streaming audit",
+  "auditRecords": 150000,
+  "sourceToMeshDistanceMetres": {
+    "median": 0.010231975466012955,
+    "p95": 0.09352100640535355,
+    "max": 12.804214477539062,
+    "nonfinite": 0
+  },
+  "baselineSourceToMeshDistanceMetres": {
+    "median": 0.058177851140499115,
+    "p95": 0.9635379314422607,
+    "max": 18.931406021118164,
+    "nonfinite": 0
+  },
+  "coverageWithin5cm": 0.8904733333333333,
+  "baselineCoverageWithin5cm": 0.4614533333333333,
+  "coverageWithin10cm": 0.9546066666666667,
+  "baselineCoverageWithin10cm": 0.63276,
+  "elapsedSeconds": 31.38,
+  "limits": "Triangle surface estimated from dense measured returns. Missing capture remains missing; density alone does not prove photorealism. Colour is source-derived, not photographic texture baking.",
+  "heightStratifiedAudit": {
+    "classification": "Approximate local-floor heights; NOT semantic car/tree/building labels",
+    "regions": [
+      {
+        "stratum": "ground",
+        "heightAboveApproximateFloorMetres": [
+          -0.5,
+          0.35
+        ],
+        "sourceRecords": 960594,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.007190398871898651,
+          "p95": 0.12224344909191132,
+          "max": 9.543285369873047,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.0022671055048704147,
+          "p95": 0.011543652974069118,
+          "max": 4.430038928985596,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.92486,
+        "denseWithin5cm": 0.99496,
+        "baselineWithin10cm": 0.94474,
+        "denseWithin10cm": 0.9958
+      },
+      {
+        "stratum": "low-objects",
+        "heightAboveApproximateFloorMetres": [
+          0.35,
+          3
+        ],
+        "sourceRecords": 400321,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.03129534795880318,
+          "p95": 0.23918794095516205,
+          "max": 9.624238967895508,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.005820062011480331,
+          "p95": 0.040402766317129135,
+          "max": 5.506406307220459,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.66784,
+        "denseWithin5cm": 0.96546,
+        "baselineWithin10cm": 0.8417,
+        "denseWithin10cm": 0.9849
+      },
+      {
+        "stratum": "higher-objects",
+        "heightAboveApproximateFloorMetres": [
+          3,
+          12
+        ],
+        "sourceRecords": 753639,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.032423555850982666,
+          "p95": 0.7068471312522888,
+          "max": 9.728900909423828,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.010126902721822262,
+          "p95": 0.05761260539293289,
+          "max": 2.5805869102478027,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.59816,
+        "denseWithin5cm": 0.9392,
+        "baselineWithin10cm": 0.71312,
+        "denseWithin10cm": 0.97688
+      },
+      {
+        "stratum": "upper-building",
+        "heightAboveApproximateFloorMetres": [
+          12,
+          50
+        ],
+        "sourceRecords": 943671,
+        "auditRecords": 50000,
+        "baselineDistanceMetres": {
+          "median": 0.07056369632482529,
+          "p95": 0.8759755492210388,
+          "max": 18.439929962158203,
+          "nonfinite": 0
+        },
+        "denseDistanceMetres": {
+          "median": 0.008398125879466534,
+          "p95": 0.06564084440469742,
+          "max": 12.574921607971191,
+          "nonfinite": 0
+        },
+        "baselineWithin5cm": 0.37586,
+        "denseWithin5cm": 0.92966,
+        "baselineWithin10cm": 0.60946,
+        "denseWithin10cm": 0.97426
+      }
+    ],
+    "sourceCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las",
+    "sourceCacheManifestSHA256": "d64cd0432bc8e4c5701e5094c68fc75c4a388b05e0cee36c48db0077989a717d"
+  }
+}

@@ -4,6 +4,7 @@ Offline outputs remain separate from the approved browser assets until reviewed.
 Uses real measurements, overlapping crops and source-supported triangle trimming.
 """
 import argparse
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -77,9 +78,10 @@ def write_glb(path,vertices,faces,colours,normals,uv=None,texture=None):
         doc['meshes'][0]['primitives'][0]['material']=0
     header=json.dumps(doc,separators=(',',':')).encode();header+=b' '*(-len(header)%4)
     payload+=b'\0'*(-len(payload)%4)
-    path.write_bytes(struct.pack('<III',0x46546c67,2,28+len(header)+len(payload))+
-                     struct.pack('<II',len(header),0x4e4f534a)+header+
-                     struct.pack('<II',len(payload),0x004e4942)+payload)
+    with path.open('wb') as stream:
+        stream.write(struct.pack('<III',0x46546c67,2,28+len(header)+len(payload)))
+        stream.write(struct.pack('<II',len(header),0x4e4f534a));stream.write(header)
+        stream.write(struct.pack('<II',len(payload),0x004e4942));stream.write(payload)
 
 
 def summary(x):
@@ -100,12 +102,14 @@ def measured_colours(vertices,tree,colors,batch_size=200000):
     return rgb,nearest_distance
 
 
-def reconstruct(cache,output,bounds,voxel=.04,depth=10,method='poisson',halo=2.,write_obj=True):
+def reconstruct(cache,output,bounds,voxel=.04,depth=10,method='poisson',halo=2.,write_obj=True,
+                trajectory=None,normal_radius=None,smoothing_iterations=2):
     started=time.monotonic();output=Path(output);output.parent.mkdir(parents=True,exist_ok=True)
     cache_meta=json.loads((Path(cache)/'manifest.json').read_text())
     print('Loading measured cache region with overlap',bounds,flush=True)
     records=dense.load_region(cache,bounds,halo)
     source=records['xyz'].copy();colors=records['rgb'].copy()
+    source_ids=records['record'].copy() if trajectory else None
     del records
     if len(source)<1000: raise ValueError('Insufficient original measurements in region')
     # Preserve an actual measured representative in each occupied physical voxel.
@@ -113,18 +117,28 @@ def reconstruct(cache,output,bounds,voxel=.04,depth=10,method='poisson',halo=2.,
     _,chosen=np.unique(cells,axis=0,return_index=True);del cells
     print('Input measurements',len(source),'normal samples',len(chosen),flush=True)
     cloud=o3d.geometry.PointCloud(o3d.utility.Vector3dVector(source[chosen].astype(float)))
+    if trajectory:source_ids=source_ids[chosen]
     selected_count=len(chosen);del chosen
     cloud,accepted=cloud.remove_statistical_outlier(nb_neighbors=20,std_ratio=2.5)
-    cloud.estimate_normals(o3d.geometry.KDTreeSearchParamHybrid(radius=max(voxel*6,.18),max_nn=32))
+    radius=normal_radius if normal_radius is not None else max(voxel*6,.18)
+    cloud.estimate_normals(o3d.geometry.KDTreeSearchParamHybrid(radius=radius,max_nn=32))
     print('Orienting normals',len(cloud.points),flush=True)
-    cloud.orient_normals_consistent_tangent_plane(12)
+    if trajectory:
+        spec=importlib.util.spec_from_file_location('orientation',PROJECT/'scripts/scan-normal-orientation.py')
+        orientation=importlib.util.module_from_spec(spec);spec.loader.exec_module(orientation)
+        normal_orientation=orientation.orient(np.asarray(cloud.points),np.asarray(cloud.normals),
+            cache_meta['source'],source_ids[accepted],trajectory,cache_meta['origin'])
+        del source_ids
+    else:
+        cloud.orient_normals_consistent_tangent_plane(12)
+        normal_orientation={'method':'Consistent tangent plane','neighbours':12}
     normal_samples=len(cloud.points);outliers_removed=selected_count-len(accepted);del accepted
     print('Reconstructing connected',method,'surface',flush=True)
     if method=='poisson':
         mesh,density=o3d.geometry.TriangleMesh.create_from_point_cloud_poisson(cloud,depth=depth,scale=1.03,n_threads=8)
         mesh.remove_vertices_by_mask(np.asarray(density)<np.quantile(density,.01))
         del density
-        mesh=mesh.filter_smooth_taubin(number_of_iterations=2)
+        if smoothing_iterations:mesh=mesh.filter_smooth_taubin(number_of_iterations=smoothing_iterations)
     else:
         mesh=o3d.geometry.TriangleMesh.create_from_point_cloud_ball_pivoting(
             cloud,o3d.utility.DoubleVector([voxel*1.1,voxel*2,voxel*3.5]))
@@ -156,11 +170,17 @@ def reconstruct(cache,output,bounds,voxel=.04,depth=10,method='poisson',halo=2.,
     old=old_scene.compute_distance(o3d.core.Tensor(source[audit_ids])).numpy()
     meta={'source':'20261008121946091.las; measured spatial cache',
           'origin':cache_meta['origin'],'inputCacheSampling':cache_meta['sampling'],
+          'inputCachePath':str(Path(cache).resolve()),
+          'inputCacheManifestSHA256':hashlib.sha256((Path(cache)/'manifest.json').read_bytes()).hexdigest(),
           'originalLASRecordsReadDuringExtraction':cache_meta['recordsRead'],
           'boundsLocal':bounds,'haloMetres':halo,'inputRegionRecords':len(source),
           'originalRegionRecords':len(source) if cache_meta.get('voxelMetres') is None else None,
           'coreRecords':len(core_ids),'voxelMetres':voxel,'normalSamples':normal_samples,
           'outlierNormalSamplesRemoved':outliers_removed,
+          'normalRadiusMetres':radius,'normalMaxNeighbours':32,'normalOrientation':normal_orientation,
+          'statisticalOutlierFilter':{'neighbours':20,'standardDeviationRatio':2.5},
+          'poissonScale':1.03,'densityBottomQuantileRemoved':.01,
+          'taubinIterations':smoothing_iterations if method=='poisson' else 0,
           'method':method,'depth':depth if method=='poisson' else None,
           'vertices':len(vertices),'triangles':len(faces),
           'vertexSupportMetres':summary(distances),'supportCutoffMetres':.10,
@@ -188,5 +208,9 @@ if __name__=='__main__':
     p.add_argument('--depth',type=int,default=10)
     p.add_argument('--method',choices=['poisson','ball-pivoting'],default='poisson')
     p.add_argument('--no-obj',action='store_true',help='Keep the connected GLB only; avoids a redundant large interchange copy')
+    p.add_argument('--trajectory',type=Path,help='PosL scanner track for visibility-derived normal orientation')
+    p.add_argument('--normal-radius',type=float)
+    p.add_argument('--smoothing-iterations',type=int,default=2)
     args=p.parse_args()
-    reconstruct(args.cache,args.output,args.bounds,args.voxel,args.depth,args.method,write_obj=not args.no_obj)
+    reconstruct(args.cache,args.output,args.bounds,args.voxel,args.depth,args.method,write_obj=not args.no_obj,
+                trajectory=args.trajectory,normal_radius=args.normal_radius,smoothing_iterations=args.smoothing_iterations)

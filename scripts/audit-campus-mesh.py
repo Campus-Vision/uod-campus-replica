@@ -68,6 +68,7 @@ def audit(path,cache,output,count=300000):
             heights.append({'localZMetres':[low,high],'sampledRecords':int(chosen.sum()),
                             'distanceMetres':metrics(distance[chosen])})
     report={'mesh':path.name,'source':original.name,'sourceCacheRecords':meta['recordsRetained'],
+            'sourceCropBoundsLocal':meta['boundsLocal'],'origin':meta['origin'],
             'originalRecordsRead':meta['recordsRead'],'sampledRecords':len(records),
             'sampling':'Uniform original retained-record IDs without replacement; seed 20261017',
             'sourceManifestSHA256':hashlib.sha256((cache/'manifest.json').read_bytes()).hexdigest(),

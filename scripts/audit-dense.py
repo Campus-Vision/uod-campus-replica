@@ -1,5 +1,6 @@
 """Independent height-stratified dense mesh audit; ground cannot hide detail gaps."""
 import argparse
+import hashlib
 import importlib.util
 import json
 from pathlib import Path
@@ -18,6 +19,7 @@ def audit(path,cache):
     path=Path(path);meta=json.loads(path.with_suffix('.json').read_text());bounds=meta['boundsLocal']
     records=module.dense.load_region(cache,bounds,halo=0)
     source=records['xyz'].copy()
+    del records
     height=source[:,2]-details.local_floor(source)
     scenes=[]
     for meshpath in [PROJECT/'public/replica/building-surface.glb',path.with_suffix('.glb')]:
@@ -35,6 +37,8 @@ def audit(path,cache):
             'baselineWithin5cm':float(np.mean(old<=.05)),'denseWithin5cm':float(np.mean(new<=.05)),
             'baselineWithin10cm':float(np.mean(old<=.10)),'denseWithin10cm':float(np.mean(new<=.10))})
     meta['heightStratifiedAudit']={'classification':'Approximate local-floor heights; NOT semantic car/tree/building labels',
+        'sourceCachePath':str(Path(cache).resolve()),
+        'sourceCacheManifestSHA256':hashlib.sha256((Path(cache)/'manifest.json').read_bytes()).hexdigest(),
         'regions':results}
     path.with_suffix('.json').write_text(json.dumps(meta,indent=2));print(json.dumps(meta['heightStratifiedAudit'],indent=2),flush=True)
 

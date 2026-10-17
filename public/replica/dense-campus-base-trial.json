@@ -1,0 +1,87 @@
+{
+  "source": "20261008121946091.las; measured spatial cache",
+  "origin": [
+    340150.0,
+    2777800.0,
+    50.0
+  ],
+  "inputCacheSampling": "One unchanged measured representative per occupied 0.08 metre voxel; every input cache record considered",
+  "inputCachePath": "C:\\Users\\SamDerTad\\Desktop\\UoD 3D LiDAR\\analysis\\dense-las-voxel080",
+  "inputCacheManifestSHA256": "7a1424525f23ad0de1f3af1acf4551018e607021b2138323c52d133086e081c5",
+  "originalLASRecordsReadDuringExtraction": 200700295,
+  "boundsLocal": [
+    -250.0,
+    200.0,
+    -320.0,
+    60.0
+  ],
+  "haloMetres": 2.0,
+  "inputRegionRecords": 20840312,
+  "originalRegionRecords": null,
+  "coreRecords": 20840312,
+  "voxelMetres": 0.16,
+  "normalSamples": 6409375,
+  "outlierNormalSamplesRemoved": 92087,
+  "normalRadiusMetres": 0.5,
+  "normalMaxNeighbours": 32,
+  "normalOrientation": {
+    "method": "PCA normals oriented toward interpolated scanner position for each original measured record",
+    "trajectory": "@@2026-10-08-081521_REFINE2_Scanner1.PosL",
+    "trajectorySHA256": "8bfaac33c878c48891a4e52614baa4aa209b8b3701a2cebd960036f0030c5a7f",
+    "trajectoryRows": 127797,
+    "pointTimes": [
+      1791447586.0910008,
+      1791448224.4500165
+    ],
+    "trajectoryRowsReorderedByTimestamp": 18,
+    "trajectoryTimes": [
+      1791447586.09,
+      1791448224.973524
+    ],
+    "flippedNormals": 2542965,
+    "scannerRangeMedianMetres": 23.452965712045778,
+    "scannerRangeP95Metres": 85.00414435207479,
+    "limits": "Visibility-derived sign of estimated PCA normals; not proof of a watertight surface. Original numerical time bases must match."
+  },
+  "statisticalOutlierFilter": {
+    "neighbours": 20,
+    "standardDeviationRatio": 2.5
+  },
+  "poissonScale": 1.03,
+  "densityBottomQuantileRemoved": 0.01,
+  "taubinIterations": 1,
+  "method": "poisson",
+  "depth": 12,
+  "vertices": 11423371,
+  "triangles": 20351184,
+  "vertexSupportMetres": {
+    "median": 0.04338236418956464,
+    "p95": 0.08748150277026673,
+    "max": 0.10000796094153294,
+    "nonfinite": 0
+  },
+  "supportCutoffMetres": 0.1,
+  "faceSupportCutoffMetres": 0.12,
+  "maximumEdgeMetres": 0.4,
+  "colour": "Inverse-distance weighted four nearest actual cache RGB samples; no source mutation",
+  "auditDomain": "Input cache representatives; every-record source requires a separate streaming audit",
+  "auditRecords": 150000,
+  "sourceToMeshDistanceMetres": {
+    "median": 0.019009441137313843,
+    "p95": 0.14166060090065002,
+    "max": 46.65110397338867,
+    "nonfinite": 0
+  },
+  "baselineSourceToMeshDistanceMetres": {
+    "median": 0.056926414370536804,
+    "p95": 0.7828921675682068,
+    "max": 65.95156860351562,
+    "nonfinite": 0
+  },
+  "coverageWithin5cm": 0.73014,
+  "baselineCoverageWithin5cm": 0.47378,
+  "coverageWithin10cm": 0.8951266666666666,
+  "baselineCoverageWithin10cm": 0.6239933333333333,
+  "elapsedSeconds": 215.0,
+  "limits": "Triangle surface estimated from dense measured returns. Missing capture remains missing; density alone does not prove photorealism. Colour is source-derived, not photographic texture baking."
+}

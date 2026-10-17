@@ -9,6 +9,7 @@ const modelName=name+(textured?'-textured':'');
 const views={
  'south-pilot':{target:[-15.85,-220.46,3.8],camera:[-1.85,-241.46,21.8]},
  'building-pilot':{target:[-57,-140,14],camera:[-90,-182,48]},
+ 'building-trajectory':{target:[-57,-140,14],camera:[-90,-182,48]},
  'vegetation-pilot':{target:[-110,-180,4],camera:[-90,-205,20]},
 };
 assert.ok(views[name], 'Unknown fixed comparison view');
