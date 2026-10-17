@@ -35,7 +35,7 @@ class DenseLasTests(unittest.TestCase):
 
     @unittest.skipUnless((PROJECT.parent/'analysis/dense-las/manifest.json').exists(), 'Dense source cache not generated')
     def test_full_scan_cache_record_provenance(self):
-        for name in ['dense-las','dense-las-voxel040']:
+        for name in ['dense-las','dense-las-voxel040','dense-las-voxel080']:
             directory=PROJECT.parent/'analysis'/name
             if (directory/'manifest.json').exists():
                 with self.subTest(cache=name):self.audit_cache(directory)

@@ -53,6 +53,16 @@ class DenseMeshTests(unittest.TestCase):
         self.assertLess(np.linalg.norm(np.asarray(result.vertices)[np.asarray(result.triangles)[:,0]]-
                                       np.asarray(result.vertices)[np.asarray(result.triangles)[:,1]],axis=1).max(),.15)
 
+    def test_face_support_batching_preserves_identical_triangles(self):
+        vertices=np.array([[0,0,0],[.1,0,0],[0,.1,0],[1,0,0],[1.1,0,0],[1,.1,0]],float)
+        faces=np.array([[0,1,2],[3,4,5],[1,3,2]])
+        def run(batch):
+            mesh=o3d.geometry.TriangleMesh(o3d.utility.Vector3dVector(vertices),o3d.utility.Vector3iVector(faces))
+            return module.supported_mesh(mesh,module.cKDTree(vertices),[-1,2,-1,1],batch_size=batch)
+        small,large=run(1),run(100)
+        np.testing.assert_array_equal(np.asarray(small.vertices),np.asarray(large.vertices))
+        np.testing.assert_array_equal(np.asarray(small.triangles),np.asarray(large.triangles))
+
     def test_export_contains_triangle_indices_normals_and_colour(self):
         with tempfile.TemporaryDirectory() as temp:
             path=Path(temp)/'mesh.glb'
