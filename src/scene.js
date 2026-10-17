@@ -4,6 +4,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
 import { createIcons, Scan, CircleHelp, MapPin, X, ChevronDown, HardDrive, SlidersHorizontal, Box, Layers2, RotateCcw, Expand, TriangleAlert, ArrowUpRight, LandPlot, Building2, PanelsTopLeft, ChevronRight, Crosshair } from 'lucide';
 import { solarFrame, inverseAffine, terrainHeight } from './replica-math.js';
 import { makeRoofLayer, syncReconstructionLayers } from './reconstruction-layers.js';
+import { createBackgroundLandscape } from './background-landscape.js';
 
 export function mountCampus() {
 const events = new AbortController();
@@ -293,37 +294,11 @@ function makeSolarArray(rows, modelPanels, planes = null) {
 }
 
 function makeLandscape() {
-  const group = new THREE.Group();
   const excluded = new Set(campusSurfaceInfo.modelledTreeExclusions.map(item => item.treeIndex));
   const trees = site.trees.filter((_,index) => !excluded.has(index));
+  const group = createBackgroundLandscape(trees, (x,y) => terrainHeight(site,x,y));
   group.userData.scanVolumeExclusions = excluded.size;
-  group.userData.modelledTreeCount = trees.length;
-  const crownGeometry = new THREE.IcosahedronGeometry(1, 2);
-  const pos = crownGeometry.attributes.position;
-  for (let i = 0; i < pos.count; i++) {
-    const x = pos.getX(i), y = pos.getY(i), z = pos.getZ(i);
-    const noise = 1 + .09 * Math.sin(x * 17 + y * 11) * Math.cos(z * 19 - x * 7);
-    pos.setXYZ(i, x * noise, y * noise, z * noise);
-  }
-  crownGeometry.computeVertexNormals();
-  const crownMaterial = new THREE.MeshStandardMaterial({ color: '#fff', roughness: 1, flatShading: false });
-  const crownCount = trees.length * 7;
-  const crowns = new THREE.InstancedMesh(crownGeometry, crownMaterial, crownCount);
-  const trunkGeo = new THREE.CylinderGeometry(.13, .25, 1, 7); trunkGeo.rotateX(Math.PI / 2);
-  const trunks = new THREE.InstancedMesh(trunkGeo, new THREE.MeshStandardMaterial({ color: '#71634c', roughness: 1 }), trees.length);
-  const dummy = new THREE.Object3D(), palette = ['#566446', '#64704a', '#526047', '#6b714c', '#707653'];
-  trees.forEach(([x, y, , radius], index) => {
-    const ground = terrainHeight(site, x, y), h = Math.max(3, radius * 1.55);
-    dummy.position.set(x, y, ground + h * .36); dummy.rotation.set(0, 0, 0); dummy.scale.set(1, 1, h * .72); dummy.updateMatrix(); trunks.setMatrixAt(index, dummy.matrix);
-    for (let j = 0; j < 7; j++) {
-      const angle = j * 2.399963 + index * .713, reach = j === 0 ? 0 : radius * .46;
-      dummy.position.set(x + Math.cos(angle) * reach, y + Math.sin(angle) * reach, ground + h * .72 + Math.sin(j * 1.7) * radius * .15);
-      dummy.rotation.set(index * .37 + j, j * .2, angle); dummy.scale.set(radius * .7, radius * .64, radius * .62); dummy.updateMatrix();
-      crowns.setMatrixAt(index * 7 + j, dummy.matrix); crowns.setColorAt(index * 7 + j, new THREE.Color(palette[(index + j) % palette.length]));
-    }
-  });
-  crowns.castShadow = true; crowns.receiveShadow = true; trunks.castShadow = true;
-  crowns.computeBoundingSphere(); trunks.computeBoundingSphere(); group.add(crowns, trunks); return group;
+  return group;
 }
 
 function createPerimeter() {
